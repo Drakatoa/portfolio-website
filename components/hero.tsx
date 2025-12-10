@@ -55,7 +55,7 @@ export function Hero() {
             {/* Vertical portfolio text */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8">
               <div
-                className="text-7xl md:text-9xl font-bold text-white/20 tracking-wider"
+                className="text-7xl md:text-8xl font-bold text-white/20 tracking-wider"
                 style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
               >
                 PORTFOLIO
@@ -67,7 +67,7 @@ export function Hero() {
 
             {/* Role badges */}
             <div className="flex items-center gap-4 mb-8">
-              <span className="border border-white px-4 py-2 text-sm font-mono">UTD STUDENT</span>
+              <span className="border border-white px-4 py-2 text-sm font-mono">DESIGNER</span>
               <span className="text-white/60">+</span>
               <span className="border border-white px-4 py-2 text-sm font-mono">DEVELOPER</span>
             </div>
@@ -105,6 +105,15 @@ export function Hero() {
                 </div>
                 <span className="text-xs font-mono">EMAIL</span>
               </a>
+              <a
+                href="/resume.pdf"
+                className="group flex flex-col items-center gap-2 hover:opacity-70 transition-opacity"
+              >
+                <div className="border border-white p-3 group-hover:bg-white group-hover:text-black transition-colors">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-mono">RESUME</span>
+              </a>
             </div>
 
             {/* Bio text */}
@@ -120,14 +129,7 @@ export function Hero() {
               <div className="h-px w-12 bg-white/40" />
             </div>
 
-            {/* Resume button */}
-            <a
-              href="/resume.pdf"
-              className="inline-flex items-center gap-2 border border-white px-6 py-3 hover:bg-white hover:text-black transition-colors font-mono text-sm"
-            >
-              <FileText className="w-4 h-4" />
-              RESUME
-            </a>
+            
           </div>
 
           {/* Right side - Profile image in parallelogram */}
