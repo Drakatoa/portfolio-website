@@ -28,11 +28,11 @@ export function Navigation() {
           <a href="#about" className="hover:opacity-70 transition-opacity">
             {"[ABOUT]"}
           </a>
+          <a href="#experience" className="hover:opacity-70 transition-opacity">
+            {"[EXPERIENCE]"}
+          </a>
           <a href="#projects" className="hover:opacity-70 transition-opacity">
             {"[PROJECTS]"}
-          </a>
-          <a href="#contact" className="hover:opacity-70 transition-opacity">
-            {"[CONTACT]"}
           </a>
         </div>
       </div>

@@ -27,9 +27,7 @@ export function Resume() {
             <div className="pt-6 border-t border-white/20">
               <h3 className="text-xs text-white/60 mb-4 font-mono">{"[QUICK VIEW]"}</h3>
               <p className="text-sm text-white/80 leading-relaxed">
-                {
-                  "Full resume available for download. Includes detailed work experience, education, projects, and technical skills."
-                }
+                {"Full CV with experience, projects, skills, and awards. PDF is kept current."}
               </p>
             </div>
 
@@ -51,30 +49,28 @@ export function Resume() {
             <div className="border border-white/20 p-6">
               <h3 className="text-xs text-white/60 mb-4 font-mono">{"[HIGHLIGHTS]"}</h3>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-start gap-3">
-                  <span className="text-white/40 mt-1">{"✦"}</span>
-                  <span>{"3+ years of software development experience"}</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-white/40 mt-1">{"✦"}</span>
-                  <span>{"Full-stack web development expertise"}</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-white/40 mt-1">{"✦"}</span>
-                  <span>{"Published research in machine learning"}</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-white/40 mt-1">{"✦"}</span>
-                  <span>{"Dean's List recipient at UTD"}</span>
-                </li>
+                {[
+                  "GPA 3.965 — CS² Honors, UT Dallas",
+                  "Cinemark Data Science Intern — clustering + market basket analysis for 300+ theaters",
+                  "Thomson Reuters SWE Intern — C# ASP.NET tax validation APIs and XSLT migration",
+                  "HackUTD 2025 (NVIDIA Track) — Top 5 Honorable Mention for AI Whiteboard",
+                  "Scholarships: Goldman Sachs Excellence in CS; Capital One Applied Experience Design",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-white/40 mt-1">{"✦"}</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div className="border border-white/20 p-6">
-              <h3 className="text-xs text-white/60 mb-4 font-mono">{"[CERTIFICATIONS]"}</h3>
+              <h3 className="text-xs text-white/60 mb-4 font-mono">{"[CORE SKILLS]"}</h3>
               <div className="space-y-2 text-sm">
-                <p>{"AWS Certified Developer"}</p>
-                <p className="text-white/60 text-xs">{"2024"}</p>
+                <p>{"Languages: C#, C/C++, Python, Java, JavaScript/TypeScript, SQL"}</p>
+                <p>{"Frameworks: Next.js, React, ASP.NET, Flask, PyTorch, TensorFlow, scikit-learn"}</p>
+                <p>{"Data/Infra: PostgreSQL, Supabase, SQL Server, Azure, Vercel"}</p>
+                <p>{"Design: Figma, UX Research, Interaction Design"}</p>
               </div>
             </div>
           </div>
