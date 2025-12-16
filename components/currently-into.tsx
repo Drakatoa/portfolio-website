@@ -4,7 +4,6 @@ export function CurrentlyInto() {
   return (
     <section className="px-6 py-20 border-t border-white/20">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
         <div className="mb-8">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tighter">{"FUN STUFF"}</h2>
           <div className="h-px w-full bg-white/20" />
@@ -13,7 +12,6 @@ export function CurrentlyInto() {
         <div className="border border-white/20 p-6 md:p-8">
           <h3 className="text-xs text-white/60 mb-6">{"[CURRENTLY INTO]"}</h3>
           <div className="grid md:grid-cols-2 gap-12">
-            {/* Games */}
             <div>
               <p className="text-white/40 text-xs mb-4 uppercase tracking-wider">{"Recent games I've been playing"}</p>
               <div className="flex gap-6">
@@ -50,7 +48,6 @@ export function CurrentlyInto() {
               </div>
             </div>
 
-            {/* Music */}
             <div>
               <p className="text-white/40 text-xs mb-4 uppercase tracking-wider">
                 {"What I'm listening to "}

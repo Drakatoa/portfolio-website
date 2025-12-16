@@ -6,7 +6,6 @@ import { Github, Linkedin, Mail, FileText } from "lucide-react"
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-visible pt-20">
-      {/* Grid background */}
       <div
         className="absolute inset-0 pointer-events-none mix-blend-normal"
         style={{
@@ -50,9 +49,7 @@ export function Hero() {
 
       <div className="relative z-10 w-full max-w-7xl px-6">
         <div className="flex items-center justify-between gap-12">
-          {/* Left side content */}
           <div className="relative flex-1 pl-12 md:pl-20 lg:pl-28">
-            {/* Vertical portfolio text */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8">
               <div
                 className="text-7xl md:text-7xl font-bold text-white/20 tracking-wider"
@@ -62,17 +59,14 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Main title */}
             <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 leading-none">RAJIT GOEL</h1>
 
-            {/* Role badges */}
             <div className="flex items-center gap-4 mb-8">
               <span className="border border-white px-4 py-2 text-sm">DESIGNER</span>
               <span className="text-white/60">+</span>
               <span className="border border-white px-4 py-2 text-sm">DEVELOPER</span>
             </div>
 
-            {/* Social links */}
             <div className="flex items-center gap-6 mb-12">
               <a
                 href="https://github.com/Drakatoa"
@@ -116,13 +110,11 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Bio text */}
             <div className="space-y-3 mb-8 text-white/80 text-sm">
               <p>{"> BUILDING DIGITAL EXPERIENCES"}</p>
               <p>{"> FOCUSED ON COOL, USABLE STUFF"}</p>
             </div>
 
-            {/* Divider with diamond */}
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px w-12 bg-white/40" />
               <span className="text-lg">✦</span>
@@ -132,10 +124,8 @@ export function Hero() {
             
           </div>
 
-          {/* Right side - Profile image in parallelogram */}
           <div className="flex-1 flex items-center justify-end">
             <div className="relative w-[600px] h-[400px] overflow-visible z-0 group cursor-pointer">
-              {/* Vertical PERSONA text */}
               <div className="absolute -left-40 top-1/2 -translate-y-1/2">
                 <div
                   className="text-7xl md:text-7xl font-bold text-white/20 tracking-wider"
@@ -145,7 +135,6 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Border frame using SVG */}
               <svg
                 className="pointer-events-none absolute inset-0 translate-x-8 translate-y-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.35)] z-10 transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)] group-hover:translate-x-10 group-hover:translate-y-12"
                 width="100%"
@@ -179,7 +168,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Corner decorations */}
       <div className="absolute top-24 left-6 text-xs text-white/40">{"[001]"}</div>
       <div className="absolute top-24 right-6 text-xs text-white/40">{"[INIT]"}</div>
       <div className="absolute bottom-6 left-6 text-xs text-white/40">{"[SCROLL]"}</div>

@@ -38,7 +38,6 @@ export function ProjectSlide({
 
   return (
     <div className="relative w-full min-h-screen bg-black overflow-hidden text-white selection:bg-white selection:text-black">
-      {/* Background Image - Desktop only, hidden on mobile */}
       <div
         className="hidden lg:block absolute top-0 right-0 bottom-0 left-[45%] z-0"
         style={{
@@ -54,7 +53,6 @@ export function ProjectSlide({
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent mix-blend-multiply" />
       </div>
 
-      {/* Pagination - Absolutely positioned to bottom right */}
       <div className="absolute bottom-8 right-8 z-20 pointer-events-auto">
         <div className="flex items-center gap-4 text-base md:text-lg font-black bg-black/80 backdrop-blur-sm border border-white/30 px-5 py-3">
           <button
@@ -78,18 +76,12 @@ export function ProjectSlide({
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10 w-full min-h-screen flex flex-col justify-between p-6 md:p-8 lg:p-16">
-        {/* Content Container */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 flex-1">
-          {/* Left Column - Project Info */}
           <div className="w-full lg:w-[55%] flex flex-col">
-            {/* Projects Header */}
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tighter">{"PROJECTS"}</h2>
-            {/* Top border */}
             <div className="h-px w-full bg-white mb-6" />
 
-            {/* Title with trapezoid */}
             <div className="relative mb-6 lg:mb-8" style={{ width: "fit-content", maxWidth: "100%" }}>
               <svg
                 className="absolute inset-0 pointer-events-none"
@@ -117,7 +109,6 @@ export function ProjectSlide({
               </div>
             </div>
 
-            {/* Tags section */}
             <div className="mb-6 lg:mb-8">
               <p className="text-xs font-black tracking-widest mb-3 md:mb-4">PROJECT TAGS</p>
               <div className="flex flex-wrap gap-2">
@@ -132,13 +123,11 @@ export function ProjectSlide({
               </div>
             </div>
 
-            {/* Description */}
             <div className="mb-8 max-w-full lg:max-w-xl">
               <p className="text-xs font-black tracking-widest mb-3 md:mb-4">PROJECT DESCRIPTION</p>
               <p className="text-white/70 text-sm md:text-base leading-relaxed">{description}</p>
             </div>
 
-            {/* Buttons - Now inline with content flow */}
             <div className="flex flex-col gap-3 mt-auto">
               <a href={projectUrl} target="_blank" rel="noopener noreferrer" className="group relative w-fit transition-transform hover:translate-x-2">
                 <svg
@@ -223,7 +212,6 @@ export function ProjectSlide({
             </div>
           </div>
 
-          {/* Right Column - Image visible on mobile */}
           <div className="w-full lg:hidden relative h-64 md:h-80">
             <div
               className="absolute inset-0"
@@ -242,7 +230,6 @@ export function ProjectSlide({
         </div>
       </div>
 
-      {/* Video Modal */}
       {showVideoModal && videoUrl && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"

@@ -8,7 +8,6 @@ export function About() {
         </div>
 
         <div className="space-y-8">
-          {/* Main about */}
           <div className="border border-white/20 p-6">
             <p className="text-lg leading-relaxed mb-4">
               I'm Rajit Goel, a Computer Science student at UT Dallas. My work sits at the intersection of
@@ -23,7 +22,6 @@ export function About() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {/* More about me */}
             <div className="border border-white/20 p-6">
               <h3 className="text-xs text-white/60 mb-4">{"[MORE ABOUT ME]"}</h3>
               <p className="text-sm leading-relaxed">
@@ -33,7 +31,6 @@ export function About() {
               </p>
             </div>
 
-            {/* Education */}
             <div className="border border-white/20 p-6">
               <h3 className="text-xs text-white/60 mb-4">{"[EDUCATION]"}</h3>
               <p className="text-lg font-bold mb-1">{"University of Texas at Dallas"}</p>
