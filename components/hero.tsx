@@ -139,7 +139,7 @@ export function Hero() {
               <div className="absolute -left-40 top-1/2 -translate-y-1/2">
                 <div
                   className="text-7xl md:text-7xl font-bold text-white/20 tracking-wider"
-                  style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                  style={{ writingMode: "vertical-rl"}}
                 >
                   {"> PERSONA"}
                 </div>

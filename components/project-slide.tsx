@@ -140,7 +140,7 @@ export function ProjectSlide({
 
             {/* Buttons - Now inline with content flow */}
             <div className="flex flex-col gap-3 mt-auto">
-              <a href={projectUrl} className="group relative w-fit transition-transform hover:translate-x-2">
+              <a href={projectUrl} target="_blank" rel="noopener noreferrer" className="group relative w-fit transition-transform hover:translate-x-2">
                 <svg
                   className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
                   viewBox="0 0 280 50"

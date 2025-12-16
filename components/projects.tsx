@@ -42,7 +42,7 @@ export function Projects() {
       status: "CASE STUDY",
       image: "/placeholder.jpg",
       links: {
-        project: "https://www.behance.net/rajitgoel",
+        project: "https://aed-preface.vercel.app/",
         code: "#",
         caseStudy: "/case-studies/preface",
       },

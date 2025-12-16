@@ -24,3 +24,7 @@ Thumbs.db
 *.swo
 *.tmp
 
+# Claude Code
+.claude
+.claudesync
+
