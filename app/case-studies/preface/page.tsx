@@ -724,7 +724,7 @@ export default function PrefaceCaseStudy() {
             onClick={() => openLightbox("branding", 0)}
           >
             <Image
-              src="/logoDesignsAndColors.png"
+              src="/LogoDesignsAndColors.png"
               alt="Logo designs and color palette"
               fill
                   quality={75}
