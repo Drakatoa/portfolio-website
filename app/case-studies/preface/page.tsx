@@ -1,10 +1,169 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowLeft, ArrowUpRight } from "lucide-react"
+import { ArrowLeft, ArrowUpRight, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import Link from "next/link"
+import { useState, useEffect } from "react"
 
 export default function PrefaceCaseStudy() {
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [currentSection, setCurrentSection] = useState<string>("")
+  const [zoomLevel, setZoomLevel] = useState(1)
+  const [panPosition, setPanPosition] = useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+
+  // Define image groups by section
+  const imageSections = {
+    research: [
+      { src: "/interview questions.png", alt: "Interview questions and research process" },
+      { src: "/surveypercentages.png", alt: "Survey results and percentages" },
+      { src: "/website-research-1.png", alt: "Competitor website research" },
+    ],
+    empathy: [
+      { src: "/empathy-maps.png", alt: "Empathy map showing candidate experiences" },
+      { src: "/gridmaps.png", alt: "2x2 maps and analysis" },
+    ],
+    journey: [
+      { src: "/journeymappart1.png", alt: "User journey map part 1" },
+      { src: "/journeymappart2.png", alt: "User journey map part 2" },
+      { src: "/journeymappart3.png", alt: "User journey map part 3" },
+    ],
+    wireframes: [
+      { src: "/initialwireframing-and-inspirations.png", alt: "Initial wireframing and inspirations" },
+      { src: "/paper-wireframes-part1.png", alt: "Paper wireframe part 1" },
+      { src: "/paper-wireframes-part2.png", alt: "Paper wireframe part 2" },
+      { src: "/paper-wireframes-part3.png", alt: "Paper wireframe part 3" },
+      { src: "/paper-wireframes-part4.png", alt: "Paper wireframe part 4" },
+      { src: "/paper-wireframes-part5.png", alt: "Paper wireframe part 5" },
+    ],
+    iterations: [
+      { src: "/HiFiDigitalDesigns.png", alt: "High-fidelity digital designs" },
+    ],
+    highfidelity: [
+      { src: "/FinalScreen1.png", alt: "Final screen 1" },
+      { src: "/FinalScreen2.png", alt: "Final screen 2" },
+      { src: "/FinalScreen3.png", alt: "Final screen 3" },
+      { src: "/FinalScreen4.png", alt: "Final screen 4" },
+      { src: "/FinalScreen6.png", alt: "Final screen 6" },
+      { src: "/FinalScreen7.png", alt: "Final screen 7" },
+      { src: "/FinalScreen8.png", alt: "Final screen 8" },
+      { src: "/FinalScreen9.png", alt: "Final screen 9" },
+      { src: "/FinalScreen10.png", alt: "Final screen 10" },
+      { src: "/FinalScreen11.png", alt: "Final screen 11" },
+    ],
+    branding: [
+      { src: "/logoDesignsAndColors.png", alt: "Logo designs and color palette" },
+    ],
+  }
+
+  const openLightbox = (section: string, index: number) => {
+    setCurrentSection(section)
+    setCurrentImageIndex(index)
+    setLightboxOpen(true)
+    setZoomLevel(1)
+    setPanPosition({ x: 0, y: 0 })
+  }
+
+  const closeLightbox = () => {
+    setLightboxOpen(false)
+    setZoomLevel(1)
+    setPanPosition({ x: 0, y: 0 })
+  }
+
+  const nextImage = () => {
+    const sectionImages = imageSections[currentSection as keyof typeof imageSections]
+    setCurrentImageIndex((prev) => (prev + 1) % sectionImages.length)
+    setZoomLevel(1)
+    setPanPosition({ x: 0, y: 0 })
+  }
+
+  const prevImage = () => {
+    const sectionImages = imageSections[currentSection as keyof typeof imageSections]
+    setCurrentImageIndex((prev) => (prev - 1 + sectionImages.length) % sectionImages.length)
+    setZoomLevel(1)
+    setPanPosition({ x: 0, y: 0 })
+  }
+
+  const zoomIn = () => {
+    setZoomLevel((prev) => Math.min(prev + 0.25, 3))
+  }
+
+  const zoomOut = () => {
+    setZoomLevel((prev) => Math.max(prev - 0.25, 0.5))
+  }
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (zoomLevel > 1) {
+      setIsDragging(true)
+      setDragStart({ x: e.clientX - panPosition.x, y: e.clientY - panPosition.y })
+    }
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging && zoomLevel > 1) {
+      setPanPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y,
+      })
+    }
+  }
+
+  const handleMouseUp = () => {
+    setIsDragging(false)
+  }
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault()
+
+    if (e.shiftKey && zoomLevel > 1) {
+      // Shift + scroll for panning horizontally
+      setPanPosition((prev) => ({
+        ...prev,
+        x: prev.x - e.deltaY,
+      }))
+    } else if (e.ctrlKey && zoomLevel > 1) {
+      // Ctrl + scroll for panning vertically (when zoomed)
+      setPanPosition((prev) => ({
+        ...prev,
+        y: prev.y - e.deltaY,
+      }))
+    } else {
+      // Regular scroll for zooming
+      const zoomDelta = -e.deltaY * 0.001
+      setZoomLevel((prev) => {
+        const newZoom = Math.max(0.5, Math.min(3, prev + zoomDelta))
+        return newZoom
+      })
+    }
+  }
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxOpen) return
+
+      if (e.key === "Escape") closeLightbox()
+      if (e.key === "ArrowLeft") prevImage()
+      if (e.key === "ArrowRight") nextImage()
+      if (e.key === "+" || e.key === "=") zoomIn()
+      if (e.key === "-") zoomOut()
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [lightboxOpen, currentSection, currentImageIndex])
+
+  // Prevent body scroll when lightbox is open
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+  }, [lightboxOpen])
+
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
@@ -30,19 +189,33 @@ export default function PrefaceCaseStudy() {
           <h1 className="text-6xl md:text-8xl font-bold mb-12 tracking-tighter">PREFACE</h1>
 
           <div className="relative aspect-[21/9] mb-12 border border-white/20 overflow-hidden">
-            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-              <p className="text-sm text-white/40">
-                [HERO BRANDING IMAGE - Logo, key visual, or main product shot]
-              </p>
-            </div>
+            <Image
+              src="/prefaceheader.png"
+              alt="Preface branding"
+              fill
+                  quality={75}
+              className="object-contain"
+            />
           </div>
 
-          <div className="max-w-4xl">
-            <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+          <div className="max-w-full flex items-start gap-8">
+            <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl">
               A recruiting platform that helps employers reach the right candidates faster by replacing vague
               applications with role-specific learning and proof. Candidates complete advanced courses/assessments,
               earn a certificate, and employers can review a clearer summary of skills and readiness before interviews.
             </p>
+            <div className="flex-shrink-0 ml-30">
+              <p className="text-xs font-black tracking-widest text-white/60 mb-3">IN PARTNERSHIP WITH</p>
+              <div className="ml-3.5 bg-white p-1 border border-white/10 w-32 h-32 flex items-center justify-center">
+                <Image
+                  src="/fisher_investments_logo.jpg"
+                  alt="Fisher Investments"
+                  width={100}
+                  height={100}
+                  className="object-contain"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -54,12 +227,12 @@ export default function PrefaceCaseStudy() {
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">TEAM MEMBERS</h2>
               <div className="space-y-4">
                 <div className="border-l-2 border-white pl-4">
-                  <p className="font-bold text-lg">Burak Bas</p>
-                  <p className="text-sm text-white/60">Researcher, Filmmaking, Graphic Design</p>
-                </div>
-                <div className="border-l-2 border-white pl-4">
                   <p className="font-bold text-lg">Rajit Goel</p>
                   <p className="text-sm text-white/60">Wireframing, Prototyper, Coder</p>
+                </div>
+                <div className="border-l-2 border-white pl-4">
+                  <p className="font-bold text-lg">Burak Bas</p>
+                  <p className="text-sm text-white/60">Researcher, Filmmaking, Graphic Design</p>
                 </div>
                 <div className="border-l-2 border-white pl-4">
                   <p className="font-bold text-lg">Silas Solomon</p>
@@ -67,16 +240,16 @@ export default function PrefaceCaseStudy() {
                 </div>
                 <div className="border-l-2 border-white pl-4">
                   <p className="font-bold text-lg">Nathan Lee</p>
-                  <p className="text-sm text-white/60">Storyteller, Logistics</p>
+                  <p className="text-sm text-white/60">Storyteller, Logistics, Logo Designer</p>
                 </div>
                 <div className="border-l-2 border-white pl-4">
-                  <p className="font-bold text-lg">Cole</p>
+                  <p className="font-bold text-lg">Cole Jesberg</p>
                   <p className="text-sm text-white/60">Synthesizer</p>
                 </div>
               </div>
               <div className="mt-8 pt-8 border-t border-white/20">
                 <p className="text-sm text-white/60">TEAM NAME</p>
-                <p className="font-bold text-lg">Five Clovers</p>
+                <p className="font-bold text-lg">Five-Leaf Clover</p>
               </div>
             </div>
 
@@ -90,12 +263,14 @@ export default function PrefaceCaseStudy() {
                   "FigJam",
                   "Adobe Photoshop",
                   "Adobe Premiere Pro",
+                  "Adobe Illustrator",
+                  "Next.js",
+                  "TypeScript",
+                  "React",
+                  "Vercel",
                 ].map((tool) => (
-                  <div
-                    key={tool}
-                    className="border border-white/50 px-4 py-6 text-center hover:bg-white hover:text-black transition-colors"
-                  >
-                    {tool}
+                  <div key={tool} className="border border-white/30 p-4 hover:bg-white hover:text-black transition-colors cursor-default">
+                    <p className="text-sm font-medium">{tool}</p>
                   </div>
                 ))}
               </div>
@@ -167,37 +342,45 @@ export default function PrefaceCaseStudy() {
 
           <div className="mb-16">
             <p className="text-lg text-white/80 mb-12 max-w-4xl">
-              A look behind the scenes of our research, classroom collaboration, FigJam survey selection, and slide
-              decks that shaped our insights.
+              We started by surveying candidates about their job search frustrations. 87% said they relied on LinkedIn, 80% felt ghosted by long response times, and 40% struggled just finding relevant opportunities. Our interview questions dug deeper into what actually blocks people during hiring. We also analyzed how companies like Fidelity, Fisher Investments, Charles Schwab, and Raymond James present career info on their sites, looking at what they emphasize and where candidates might get lost.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-16">
-              <div className="relative aspect-video border border-white/20 overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                  <p className="text-sm text-white/40 text-center px-4">
-                    [FIGJAM BOARD IMAGE]
-                    <br />
-                    Research artifacts
-                  </p>
-                </div>
+            <div className="grid md:grid-cols-2 gap-6 mb-16">
+              <div
+                className="relative aspect-video border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                onClick={() => openLightbox("research", 0)}
+              >
+                <Image
+                  src="/interview questions.png"
+                  alt="Interview questions and research process"
+                  fill
+                  quality={75}
+                  className="object-contain"
+                />
               </div>
-              <div className="relative aspect-video border border-white/20 overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                  <p className="text-sm text-white/40 text-center px-4">
-                    [WHITEBOARD IMAGE]
-                    <br />
-                    Pen & paper wireframes
-                  </p>
-                </div>
+              <div
+                className="relative aspect-video border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                onClick={() => openLightbox("research", 1)}
+              >
+                <Image
+                  src="/surveypercentages.png"
+                  alt="Survey results and percentages"
+                  fill
+                  quality={75}
+                  className="object-contain"
+                />
               </div>
-              <div className="relative aspect-video border border-white/20 overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                  <p className="text-sm text-white/40 text-center px-4">
-                    [RESEARCH DATA]
-                    <br />
-                    Survey results
-                  </p>
-                </div>
+              <div
+                className="relative aspect-video border border-white/20 overflow-hidden md:col-span-2 cursor-pointer hover:border-white/40 transition-colors"
+                onClick={() => openLightbox("research", 2)}
+              >
+                <Image
+                  src="/website-research-1.png"
+                  alt="Competitor website research"
+                  fill
+                  quality={75}
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
@@ -245,23 +428,78 @@ export default function PrefaceCaseStudy() {
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter">USER EMPATHY</h2>
 
           <div className="space-y-8">
-            <div className="relative aspect-[16/9] border border-white/20 overflow-hidden">
-              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                <p className="text-lg text-white/40 text-center px-4">
-                  [EMPATHY MAP IMAGE]
-                  <br />
-                  Says / Thinks / Feels / Does quadrants
-                </p>
+            <div>
+              <p className="text-lg text-white/80 mb-6">
+                An empathy map helped us summarize what candidates experience during hiring: what they see, hear, think, feel, say, and do. We used it to keep our design focused on real pain points and guide Preface's features toward clearer preparation, proof, and communication.
+              </p>
+              <div
+                className="relative aspect-video border border-white/20 overflow-hidden mb-8 cursor-pointer hover:border-white/40 transition-colors"
+                onClick={() => openLightbox("empathy", 0)}
+              >
+                <Image
+                  src="/empathy-maps.png"
+                  alt="Empathy map showing candidate experiences"
+                  fill
+                  quality={75}
+                  className="object-contain"
+                />
+              </div>
+              <div
+                className="relative aspect-video border border-white/20 overflow-hidden mb-8 cursor-pointer hover:border-white/40 transition-colors"
+                onClick={() => openLightbox("empathy", 1)}
+              >
+                <Image
+                  src="/gridmaps.png"
+                  alt="2x2 maps and analysis"
+                  fill
+                  quality={75}
+                  className="object-contain"
+                />
               </div>
             </div>
 
-            <div className="relative aspect-[16/9] border border-white/20 overflow-hidden">
-              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                <p className="text-lg text-white/40 text-center px-4">
-                  [USER JOURNEY MAP]
-                  <br />
-                  10-step candidate journey from discovery to hire
-                </p>
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">THE USER JOURNEY MAP</h3>
+              <p className="text-lg text-white/80 mb-6">
+                10-step candidate journey from discovery to hire
+              </p>
+              <div className="space-y-4">
+                <div
+                  className="relative aspect-[21/9] border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                  onClick={() => openLightbox("journey", 0)}
+                >
+                  <Image
+                    src="/journeymappart1.png"
+                    alt="User journey map part 1"
+                    fill
+                  quality={75}
+                    className="object-contain"
+                  />
+                </div>
+                <div
+                  className="relative aspect-[21/9] border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                  onClick={() => openLightbox("journey", 1)}
+                >
+                  <Image
+                    src="/journeymappart2.png"
+                    alt="User journey map part 2"
+                    fill
+                  quality={75}
+                    className="object-contain"
+                  />
+                </div>
+                <div
+                  className="relative aspect-[21/9] border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                  onClick={() => openLightbox("journey", 2)}
+                >
+                  <Image
+                    src="/journeymappart3.png"
+                    alt="User journey map part 3"
+                    fill
+                  quality={75}
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -333,65 +571,138 @@ export default function PrefaceCaseStudy() {
           <div className="mb-16">
             <div className="mb-8 pb-4 border-b border-white/20">
               <h3 className="text-2xl md:text-3xl font-bold tracking-tight">01 // WIREFRAMES</h3>
+              <p className="text-white/70 mt-4">
+                Our initial wireframes mapped the core Preface flow in a simple layout, helping us quickly test structure, navigation, and key features before investing time in high fidelity design.
+              </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="relative aspect-[3/4] border border-white/20 overflow-hidden">
-                  <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                    <p className="text-sm text-white/40 text-center px-2">
-                      [PEN & PAPER
-                      <br />
-                      WIREFRAME {i}]
-                    </p>
-                  </div>
+            <div className="space-y-6">
+              <div
+                className="relative aspect-video border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                onClick={() => openLightbox("wireframes", 0)}
+              >
+                <Image
+                  src="/initialwireframing-and-inspirations.png"
+                  alt="Initial wireframing and inspirations"
+                  fill
+                  quality={75}
+                  className="object-contain"
+                />
+              </div>
+
+              {/* First row - 3 images (consistent portrait ratio) */}
+              <div className="grid grid-cols-3 gap-6">
+                <div
+                  className="relative aspect-[3/4] border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                  onClick={() => openLightbox("wireframes", 1)}
+                >
+                  <Image
+                    src="/paper-wireframes-part1.png"
+                    alt="Paper wireframe part 1"
+                    fill
+                    quality={75}
+                    className="object-contain"
+                  />
                 </div>
-              ))}
+                <div
+                  className="relative aspect-[3/4] border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                  onClick={() => openLightbox("wireframes", 2)}
+                >
+                  <Image
+                    src="/paper-wireframes-part2.png"
+                    alt="Paper wireframe part 2"
+                    fill
+                    quality={75}
+                    className="object-contain"
+                  />
+                </div>
+                <div
+                  className="relative aspect-[3/4] border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                  onClick={() => openLightbox("wireframes", 3)}
+                >
+                  <Image
+                    src="/paper-wireframes-part3.png"
+                    alt="Paper wireframe part 3"
+                    fill
+                    quality={75}
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Second row - 2 images (wide + small portrait) aligned at bottom */}
+              <div className="grid grid-cols-3 gap-6 items-end">
+                <div
+                  className="relative aspect-[4/3] col-span-2 border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                  onClick={() => openLightbox("wireframes", 4)}
+                >
+                  <Image
+                    src="/paper-wireframes-part4.png"
+                    alt="Paper wireframe part 4"
+                    fill
+                    quality={75}
+                    className="object-contain"
+                  />
+                </div>
+                <div
+                  className="relative aspect-[3/4] border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                  onClick={() => openLightbox("wireframes", 5)}
+                >
+                  <Image
+                    src="/paper-wireframes-part5.png"
+                    alt="Paper wireframe part 5"
+                    fill
+                    quality={75}
+                    className="object-contain"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="mb-16">
             <div className="mb-8 pb-4 border-b border-white/20">
-              <h3 className="text-2xl md:text-3xl font-bold tracking-tight">02 // LOW-FIDELITY PROTOTYPES</h3>
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight">02 // ITERATING ON FEATURES</h3>
+              <p className="text-white/70 mt-4">
+                We iterated toward the most impactful features by focusing on what candidates said blocked them most: unclear expectations, lack of human connection, and unpredictable communication.
+              </p>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[1, 2].map((i) => (
-                <div key={i} className="relative aspect-video border border-white/20 overflow-hidden">
-                  <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                    <p className="text-sm text-white/40 text-center px-4">
-                      [LOW-FI PROTOTYPE {i}]<br />
-                      Early digital wireframes
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div
+              className="relative aspect-video border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+              onClick={() => openLightbox("iterations", 0)}
+            >
+              <Image
+                src="/HiFiDigitalDesigns.png"
+                alt="High-fidelity digital designs"
+                fill
+                  quality={75}
+                className="object-contain"
+              />
             </div>
           </div>
 
           <div className="mb-16">
             <div className="mb-8 pb-4 border-b border-white/20">
               <h3 className="text-2xl md:text-3xl font-bold tracking-tight">03 // HIGH-FIDELITY SCREENS</h3>
+              <p className="text-white/70 mt-4">
+                These high-fidelity screens show the full Preface flow from job discovery → skill proof → shareable results.
+              </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
-              {["Job Discovery Page", "Course Path Selection", "Skill Proof Dashboard", "Certificate View"].map(
-                (label, i) => (
-                  <div key={i} className="relative aspect-video border border-white/20 overflow-hidden">
-                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                      <p className="text-sm text-white/40 text-center px-4">
-                        [{label.toUpperCase()}]<br />
-                        Final design mockup
-                      </p>
-                    </div>
-                  </div>
-                ),
-              )}
-            </div>
-          </div>
-
-          <div className="relative aspect-[21/9] border border-white/20 overflow-hidden">
-            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-              <p className="text-sm text-white/40 text-center px-4">
-                [FULL SCREENS SHOWCASE - Multiple screens side by side]
-              </p>
+              {[1, 2, 3, 4, 6, 7, 8, 9, 10, 11].map((num, idx) => (
+                <div
+                  key={num}
+                  className="relative aspect-video border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+                  onClick={() => openLightbox("highfidelity", idx)}
+                >
+                  <Image
+                    src={`/FinalScreen${num}.png`}
+                    alt={`Final screen ${num}`}
+                    fill
+                  quality={75}
+                    className="object-contain"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -404,43 +715,21 @@ export default function PrefaceCaseStudy() {
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-12 tracking-tighter">VISUAL IDENTITY</h2>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            <div className="relative aspect-video border border-white/20 overflow-hidden">
-              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                <p className="text-sm text-white/40 text-center px-4">
-                  [BRAND COLORS / LOGO VARIATIONS]
-                </p>
-              </div>
-            </div>
-            <div className="relative aspect-video border border-white/20 overflow-hidden">
-              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                <p className="text-sm text-white/40 text-center px-4">
-                  [TYPOGRAPHY / STYLE GUIDE]
-                </p>
-              </div>
-            </div>
-            <div className="relative aspect-video border border-white/20 overflow-hidden">
-              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                <p className="text-sm text-white/40 text-center px-4">
-                  [ICONOGRAPHY / UI ELEMENTS]
-                </p>
-              </div>
-            </div>
-            <div className="relative aspect-video border border-white/20 overflow-hidden">
-              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-                <p className="text-sm text-white/40 text-center px-4">
-                  [MARKETING MATERIALS]
-                </p>
-              </div>
-            </div>
-          </div>
+          <p className="text-lg text-white/80 mb-8">
+            For Preface's brand identity, we aimed for a look that feels credible enough for finance but still welcoming for users. The purple based palette and soft gradients helped us balance "professional" with "approachable," so the product feels trustworthy without looking cold or corporate.
+          </p>
 
-          <div className="relative aspect-[21/9] border border-white/20 overflow-hidden">
-            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-              <p className="text-sm text-white/40 text-center px-4">
-                [FULL BRANDING SHOWCASE - Mockups, applications, etc.]
-              </p>
-            </div>
+          <div
+            className="relative aspect-video border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"
+            onClick={() => openLightbox("branding", 0)}
+          >
+            <Image
+              src="/logoDesignsAndColors.png"
+              alt="Logo designs and color palette"
+              fill
+                  quality={75}
+              className="object-contain"
+            />
           </div>
         </div>
       </section>
@@ -627,6 +916,114 @@ export default function PrefaceCaseStudy() {
           <p className="text-xs text-white/40">{"© 2025 RAJIT GOEL"}</p>
         </div>
       </footer>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && currentSection && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          <div className="relative w-full h-full flex items-center justify-center p-4">
+            {/* Close Button */}
+            <button
+              onClick={closeLightbox}
+              className="absolute top-6 right-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-white/20"
+              aria-label="Close lightbox"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Navigation Buttons */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                prevImage()
+              }}
+              className="absolute left-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-white/20"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="w-8 h-8" />
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                nextImage()
+              }}
+              className="absolute right-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-white/20"
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-8 h-8" />
+            </button>
+
+            {/* Zoom Controls */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-black/50 p-2 rounded-full border border-white/20">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  zoomOut()
+                }}
+                className="text-white/80 hover:text-white transition-colors p-2"
+                aria-label="Zoom out"
+              >
+                <ZoomOut className="w-5 h-5" />
+              </button>
+              <span className="text-white/80 text-sm font-medium min-w-[60px] text-center">
+                {Math.round(zoomLevel * 100)}%
+              </span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  zoomIn()
+                }}
+                className="text-white/80 hover:text-white transition-colors p-2"
+                aria-label="Zoom in"
+              >
+                <ZoomIn className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Image Counter */}
+            <div className="absolute top-6 left-6 z-50 bg-black/50 px-4 py-2 rounded-full border border-white/20">
+              <span className="text-white/80 text-sm font-medium">
+                {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
+              </span>
+            </div>
+
+            {/* Image Container */}
+            <div
+              className="relative max-w-7xl max-h-[85vh] overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onWheel={handleWheel}
+              style={{
+                cursor: zoomLevel > 1 ? (isDragging ? "grabbing" : "grab") : "default",
+              }}
+            >
+              <div
+                style={{
+                  transform: `scale(${zoomLevel}) translate(${panPosition.x / zoomLevel}px, ${panPosition.y / zoomLevel}px)`,
+                  transition: isDragging ? "none" : "transform 0.2s ease-out",
+                  transformOrigin: "center center",
+                }}
+              >
+                <Image
+                  src={imageSections[currentSection as keyof typeof imageSections][currentImageIndex].src}
+                  alt={imageSections[currentSection as keyof typeof imageSections][currentImageIndex].alt}
+                  width={1920}
+                  height={1080}
+                  className="object-contain w-auto h-auto max-w-full max-h-[85vh]"
+                  quality={90}
+                  draggable={false}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

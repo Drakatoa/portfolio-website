@@ -9,7 +9,7 @@ export function Projects() {
   const projects = [
     {
       id: "001",
-      title: "IDEATE - AN AI-POWERED WHITEBOARD",
+      title: "IDEATE - AI WHITEBOARD",
       description:
         "An ideation platform that turns hand-drawn sketches and written concepts into structured product blueprints. It generates flowcharts, business pitches, competitive analyses, and 90-day roadmaps using NVIDIA Nemotron's vision and text models. Built the interactive whiteboard with Canvas API for precise drawing and shape recognition, plus Next.js REST APIs for sketch analysis and Mermaid diagram generation. Won top-5 at HackUTD 2025 for the NVIDIA track.",
       tech: ["Next.js 16", "TypeScript", "PostgreSQL", "Supabase", "Nemotron", "Canvas API"],
@@ -43,7 +43,7 @@ export function Projects() {
       image: "/placeholder.jpg",
       links: {
         project: "https://aed-preface.vercel.app/",
-        code: "#",
+        code: "https://github.com/Drakatoa/aed-preface-atcm4341",
         caseStudy: "/case-studies/preface",
       },
     },

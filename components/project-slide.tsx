@@ -53,7 +53,7 @@ export function ProjectSlide({
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent mix-blend-multiply" />
       </div>
 
-      <div className="absolute bottom-8 right-8 z-20 pointer-events-auto">
+      <div className="absolute bottom-4 right-8 z-20 pointer-events-auto">
         <div className="flex items-center gap-4 text-base md:text-lg font-black bg-black/80 backdrop-blur-sm border border-white/30 px-5 py-3">
           <button
             onClick={onPrev}
@@ -125,7 +125,9 @@ export function ProjectSlide({
 
             <div className="mb-8 max-w-full lg:max-w-xl">
               <p className="text-xs font-black tracking-widest mb-3 md:mb-4">PROJECT DESCRIPTION</p>
-              <p className="text-white/70 text-sm md:text-base leading-relaxed">{description}</p>
+              <div className="h-32 md:h-40 overflow-y-auto pr-3 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-white/10 [&::-webkit-scrollbar-thumb]:bg-white/30 hover:[&::-webkit-scrollbar-thumb]:bg-white/50 [&::-webkit-scrollbar-thumb]:rounded-full">
+                <p className="text-white/70 text-sm md:text-base leading-relaxed">{description}</p>
+              </div>
             </div>
 
             <div className="flex flex-col gap-3 mt-auto">
@@ -147,68 +149,68 @@ export function ProjectSlide({
                 </div>
               </a>
 
-              {videoUrl && (
-                <button
-                  onClick={() => setShowVideoModal(true)}
-                  className="group relative w-fit transition-transform hover:translate-x-2"
-                >
-                  <svg
-                    className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                    viewBox="0 0 240 50"
-                    preserveAspectRatio="none"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                    }}
+              <div className="flex gap-3">
+                {videoUrl && (
+                  <button
+                    onClick={() => setShowVideoModal(true)}
+                    className="group relative w-fit transition-transform hover:translate-x-2"
                   >
-                    <polygon points="0,0 240,0 220,50 0,50" fill="white" className="transition-all" />
-                  </svg>
-                  <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
-                    <span>WATCH DEMO</span>
-                    <Play className="w-5 h-5 transition-transform group-hover:scale-110" />
-                  </div>
-                </button>
-              )}
+                    <svg
+                      className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                      viewBox="0 0 240 50"
+                      preserveAspectRatio="none"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <polygon points="0,0 240,0 220,50 0,50" fill="white" className="transition-all" />
+                    </svg>
+                    <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
+                      <span>WATCH DEMO</span>
+                      <Play className="w-5 h-5 transition-transform group-hover:scale-110" />
+                    </div>
+                  </button>
+                )}
 
-              {caseStudyUrl && (
-                <a href={caseStudyUrl} className="group relative w-fit transition-transform hover:translate-x-2">
-                  <svg
-                    className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                    viewBox="0 0 240 50"
-                    preserveAspectRatio="none"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  >
-                    <polygon points="0,0 240,0 220,50 0,50" fill="white" className="transition-all" />
-                  </svg>
-                  <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
-                    <span>CASE STUDY</span>
-                    <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </div>
-                </a>
-              )}
-
-              {!caseStudyUrl && (
-                <a href={codeUrl} className="group relative w-fit transition-transform hover:translate-x-2">
-                  <svg
-                    className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                    viewBox="0 0 160 50"
-                    preserveAspectRatio="none"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  >
-                    <polygon points="0,0 160,0 147,50 0,50" fill="white" className="transition-all" />
-                  </svg>
-                  <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
-                    <span>CODE</span>
-                    <Code className="w-5 h-5 transition-transform group-hover:rotate-12" />
-                  </div>
-                </a>
-              )}
+                {caseStudyUrl ? (
+                  <a href={caseStudyUrl} className="group relative w-fit transition-transform hover:translate-x-2">
+                    <svg
+                      className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                      viewBox="0 0 240 50"
+                      preserveAspectRatio="none"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <polygon points="0,0 240,0 220,50 0,50" fill="white" className="transition-all" />
+                    </svg>
+                    <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
+                      <span>CASE STUDY</span>
+                      <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </div>
+                  </a>
+                ) : (
+                  <a href={codeUrl} className="group relative w-fit transition-transform hover:translate-x-2">
+                    <svg
+                      className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                      viewBox="0 0 160 50"
+                      preserveAspectRatio="none"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <polygon points={videoUrl ? "20,0 160,0 147,50 0,50" : "0,0 160,0 147,50 0,50"} fill="white" className="transition-all" />
+                    </svg>
+                    <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
+                      <span>CODE</span>
+                      <Code className="w-5 h-5 transition-transform group-hover:rotate-12" />
+                    </div>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
 
