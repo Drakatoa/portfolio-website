@@ -35,6 +35,11 @@ export function ProjectSlide({
   videoUrl,
 }: ProjectSlideProps) {
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const isEmbedVideo = videoUrl?.includes("drive.google.com") ?? false
+  const hasCaseStudy = !!caseStudyUrl
+  const hasCode = !!codeUrl && codeUrl !== "#"
+  const showCodeWithPrimary = hasCaseStudy && hasCode
+  const videoButtonLabel = hasCaseStudy ? "WATCH PROMO" : "WATCH SPEEDRUN"
 
   return (
     <div className="relative w-full min-h-screen bg-black overflow-hidden text-white selection:bg-white selection:text-black">
@@ -48,7 +53,7 @@ export function ProjectSlide({
           src={imageUrl || "/placeholder.svg"}
           alt={title}
           fill
-          className="w-full h-full object-cover opacity-90 grayscale contrast-110"
+          className="w-full h-full object-cover opacity-90 contrast-110"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent mix-blend-multiply" />
       </div>
@@ -131,25 +136,52 @@ export function ProjectSlide({
             </div>
 
             <div className="flex flex-col gap-3 mt-auto">
-              <a href={projectUrl} target="_blank" rel="noopener noreferrer" className="group relative w-fit transition-transform hover:translate-x-2">
-                <svg
-                  className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                  viewBox="0 0 280 50"
-                  preserveAspectRatio="none"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                  }}
+              <div className="flex gap-3 flex-wrap">
+                <a
+                  href={projectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-fit transition-transform hover:translate-x-2"
                 >
-                  <polygon points="0,0 280,0 257,50 0,50" fill="white" className="transition-all" />
-                </svg>
-                <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
-                  <span>VIEW PROJECT</span>
-                  <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </div>
-              </a>
+                  <svg
+                    className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                    viewBox="0 0 280 50"
+                    preserveAspectRatio="none"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  >
+                    <polygon points="0,0 280,0 257,50 0,50" fill="white" className="transition-all" />
+                  </svg>
+                  <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
+                    <span>VIEW PROJECT</span>
+                    <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </div>
+                </a>
 
-              <div className="flex gap-3">
+                {showCodeWithPrimary && (
+                  <a href={codeUrl} className="group relative w-fit transition-transform hover:translate-x-2">
+                    <svg
+                      className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                      viewBox="0 0 160 50"
+                      preserveAspectRatio="none"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <polygon points="0,0 160,0 147,50 0,50" fill="white" className="transition-all" />
+                    </svg>
+                    <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
+                      <span>CODE</span>
+                      <Code className="w-5 h-5 transition-transform group-hover:rotate-12" />
+                    </div>
+                  </a>
+                )}
+              </div>
+
+              <div className="flex gap-3 flex-wrap">
                 {videoUrl && (
                   <button
                     onClick={() => setShowVideoModal(true)}
@@ -166,14 +198,14 @@ export function ProjectSlide({
                     >
                       <polygon points="0,0 240,0 220,50 0,50" fill="white" className="transition-all" />
                     </svg>
-                    <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
-                      <span>WATCH DEMO</span>
+                    <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tetter text-black">
+                      <span>{videoButtonLabel}</span>
                       <Play className="w-5 h-5 transition-transform group-hover:scale-110" />
                     </div>
                   </button>
                 )}
 
-                {caseStudyUrl ? (
+                {hasCaseStudy && (
                   <a href={caseStudyUrl} className="group relative w-fit transition-transform hover:translate-x-2">
                     <svg
                       className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
@@ -191,7 +223,9 @@ export function ProjectSlide({
                       <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </div>
                   </a>
-                ) : (
+                )}
+
+                {!hasCaseStudy && hasCode && (
                   <a href={codeUrl} className="group relative w-fit transition-transform hover:translate-x-2">
                     <svg
                       className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
@@ -202,7 +236,7 @@ export function ProjectSlide({
                         height: "100%",
                       }}
                     >
-                      <polygon points={videoUrl ? "20,0 160,0 147,50 0,50" : "0,0 160,0 147,50 0,50"} fill="white" className="transition-all" />
+                      <polygon points="0,0 160,0 147,50 0,50" fill="white" className="transition-all" />
                     </svg>
                     <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black">
                       <span>CODE</span>
@@ -225,7 +259,7 @@ export function ProjectSlide({
                 src={imageUrl || "/placeholder.svg"}
                 alt={title}
                 fill
-                className="w-full h-full object-cover opacity-90 grayscale contrast-110"
+                className="w-full h-full object-cover opacity-90 contrast-110"
               />
             </div>
           </div>
@@ -246,14 +280,20 @@ export function ProjectSlide({
               <X className="w-8 h-8" />
             </button>
             <div className="relative aspect-video bg-black border border-white/20">
-              <video
-                src={videoUrl}
-                controls
-                autoPlay
-                className="w-full h-full"
-              >
-                Your browser does not support the video tag.
-              </video>
+              {isEmbedVideo ? (
+                <iframe
+                  src={videoUrl}
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  className="w-full h-full"
+                  loading="lazy"
+                  title={`${title} video`}
+                />
+              ) : (
+                <video src={videoUrl} controls autoPlay className="w-full h-full">
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </div>
           </div>
         </div>

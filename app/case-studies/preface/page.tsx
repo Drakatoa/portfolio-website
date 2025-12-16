@@ -342,7 +342,7 @@ export default function PrefaceCaseStudy() {
 
           <div className="mb-16">
             <p className="text-lg text-white/80 mb-12 max-w-4xl">
-              We started by surveying candidates about their job search frustrations. 87% said they relied on LinkedIn, 80% felt ghosted by long response times, and 40% struggled just finding relevant opportunities. Our interview questions dug deeper into what actually blocks people during hiring. We also analyzed how companies like Fidelity, Fisher Investments, Charles Schwab, and Raymond James present career info on their sites, looking at what they emphasize and where candidates might get lost.
+              Here's a look behind the scenes of some of our research, both in-class and out of class. (FigJam was a lifesaver for this project!) We started by surveying candidates about their job search frustrations. 87% said they relied on LinkedIn, 80% felt ghosted by long response times, and 40% struggled just finding relevant opportunities. Our interview questions dug deeper into what actually blocks people during hiring. We also analyzed how companies like Fidelity, Fisher Investments, Charles Schwab, and Raymond James present career info on their sites, looking at what they emphasize and where candidates might get lost.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 mb-16">
@@ -430,7 +430,7 @@ export default function PrefaceCaseStudy() {
           <div className="space-y-8">
             <div>
               <p className="text-lg text-white/80 mb-6">
-                An empathy map helped us summarize what candidates experience during hiring: what they see, hear, think, feel, say, and do. We used it to keep our design focused on real pain points and guide Preface's features toward clearer preparation, proof, and communication.
+                We built empathy maps for different types of candidates to understand how the hiring process actually feels. They show what people see and hear in their search, and how they think, feel, speak, and act when they apply for roles. We also created 2x2 grids that chart traits like confidence, experience, and hope so we could design for real mindsets instead of averages.
               </p>
               <div
                 className="relative aspect-video border border-white/20 overflow-hidden mb-8 cursor-pointer hover:border-white/40 transition-colors"
@@ -461,7 +461,7 @@ export default function PrefaceCaseStudy() {
             <div>
               <h3 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">THE USER JOURNEY MAP</h3>
               <p className="text-lg text-white/80 mb-6">
-                10-step candidate journey from discovery to hire
+                15-step candidate journey from discovery to hire
               </p>
               <div className="space-y-4">
                 <div
@@ -572,7 +572,7 @@ export default function PrefaceCaseStudy() {
             <div className="mb-8 pb-4 border-b border-white/20">
               <h3 className="text-2xl md:text-3xl font-bold tracking-tight">01 // WIREFRAMES</h3>
               <p className="text-white/70 mt-4">
-                Our initial wireframes mapped the core Preface flow in a simple layout, helping us quickly test structure, navigation, and key features before investing time in high fidelity design.
+                Our early sketches tried a lot of ideas, including a dating app style matching concept and an Action Center for tracking every step. Exploring those versions made it clear that extra dashboards would slow HR teams down instead of helping them. That pushed us toward the simpler course based flow I described earlier in our solution section.
               </p>
             </div>
             <div className="space-y-6">
@@ -661,9 +661,9 @@ export default function PrefaceCaseStudy() {
 
           <div className="mb-16">
             <div className="mb-8 pb-4 border-b border-white/20">
-              <h3 className="text-2xl md:text-3xl font-bold tracking-tight">02 // ITERATING ON FEATURES</h3>
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight">02 // FIGMA HIGH FIDELITY SCREENS</h3>
               <p className="text-white/70 mt-4">
-                We iterated toward the most impactful features by focusing on what candidates said blocked them most: unclear expectations, lack of human connection, and unpredictable communication.
+                These high fidelity screens in Figma helped us explore different feature sets and layouts before building anything. They kept us focused on what actually blocked candidates in their search, like unclear expectations, weak human connection, and unpredictable communication. Designing these flows also made it clear that employers needed a simple way to scan assessment scores, compare candidates at a glance, and see who was truly prepared. It pushed us to frame the experience as a benefit for candidates beyond one company, since they could show their certificates on LinkedIn and carry that proof with them.
               </p>
             </div>
             <div
@@ -682,9 +682,9 @@ export default function PrefaceCaseStudy() {
 
           <div className="mb-16">
             <div className="mb-8 pb-4 border-b border-white/20">
-              <h3 className="text-2xl md:text-3xl font-bold tracking-tight">03 // HIGH-FIDELITY SCREENS</h3>
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight">03 // BUILT PRODUCT SCREENS</h3>
               <p className="text-white/70 mt-4">
-                These high-fidelity screens show the full Preface flow from job discovery → skill proof → shareable results.
+                These are the final product screens from the live site we built with TypeScript and Next.js. Together they show the full Preface flow from job discovery to skill proof to shareable results.
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
@@ -716,7 +716,7 @@ export default function PrefaceCaseStudy() {
           <h2 className="text-3xl md:text-5xl font-bold mb-12 tracking-tighter">VISUAL IDENTITY</h2>
 
           <p className="text-lg text-white/80 mb-8">
-            For Preface's brand identity, we aimed for a look that feels credible enough for finance but still welcoming for users. The purple based palette and soft gradients helped us balance "professional" with "approachable," so the product feels trustworthy without looking cold or corporate.
+            For Preface's brand identity, we aimed for a look that feels credible enough for finance but still welcoming for users. The purple based palette and soft gradients helped us balance "professional" with "approachable," so the product feels trustworthy without looking cold or corporate. For the logo, we moved from quick sketches to a simple mark that mixes the P with subtle check and X cues, so it hints at preparation, proof, and completion while staying clear at small sizes across the app, certificates, and profiles.
           </p>
 
           <div
@@ -893,13 +893,14 @@ export default function PrefaceCaseStudy() {
 
           <h3 className="text-3xl md:text-4xl font-bold mb-8 tracking-tighter">PROMOTIONAL VIDEO</h3>
           <div className="relative aspect-video border border-white/20 overflow-hidden">
-            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.05)_49%,rgba(255,255,255,0.05)_51%,transparent_52%)] flex items-center justify-center">
-              <p className="text-lg text-white/40 text-center px-4">
-                [VIDEO EMBED]
-                <br />
-                Preface promotional video
-              </p>
-            </div>
+            <iframe
+              src="https://drive.google.com/file/d/1EEE9ZcNRo40xqruDH688TkFfKuZ9k0vG/preview"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              className="w-full h-full"
+              loading="lazy"
+              title="Preface promotional video"
+            />
           </div>
         </div>
       </section>

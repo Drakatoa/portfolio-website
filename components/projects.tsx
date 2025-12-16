@@ -9,6 +9,35 @@ export function Projects() {
   const projects = [
     {
       id: "001",
+      title: "PREFACE",
+      description:
+        "A capstone project with Fisher Investments reimagining how hiring works. Instead of cover letters, applicants complete interactive, role-specific courses that build real skills and earn verifiable certificates. Employers get detailed assessment breakdowns across technical proficiency, soft skills, and values alignment. Built high-fidelity Figma prototypes and React components for the applicant dashboard and HR portal.",
+      tech: ["Next.js", "TypeScript", "React", "Figma", "UX Research"],
+      status: "CASE STUDY",
+      image: "/prefaceproject.png",
+      links: {
+        project: "https://aed-preface.vercel.app/",
+        code: "https://github.com/Drakatoa/aed-preface-atcm4341",
+        caseStudy: "/case-studies/preface",
+        videoUrl: "https://drive.google.com/file/d/1EEE9ZcNRo40xqruDH688TkFfKuZ9k0vG/preview",
+      },
+    },
+    {
+      id: "002",
+      title: "PROJECT PAWKOUR",
+      description:
+        "A third-person parkour game built in Unity where you control a cat escaping from a secret laboratory. Features fluid movement including running, jumping, dashing, and wall-running through a low-poly lab environment. Custom C# scripts handle physics-based movement, dynamic camera following, and adaptive music that intensifies with player velocity. Team project that combined animation, UI design, lighting, and custom audio composition.",
+      tech: ["Unity", "C#", "OpenGL", "Figma"],
+      status: "COMPLETE",
+      image: "/projectpawkour.png",
+      links: {
+        project: "https://drive.google.com/file/d/1-pmvv_ZrK1DE11ah-lo9y2lI_5p6kzeo/view?usp=sharing",
+        code: "https://github.com/Drakatoa/Project-Pawkour",
+        videoUrl: "https://drive.google.com/file/d/1mvEWaFJAOHNpSeNnPKCat9HdkTO29SjV/preview",
+      },
+    },
+    {
+      id: "003",
       title: "IDEATE - AI WHITEBOARD",
       description:
         "An ideation platform that turns hand-drawn sketches and written concepts into structured product blueprints. It generates flowcharts, business pitches, competitive analyses, and 90-day roadmaps using NVIDIA Nemotron's vision and text models. Built the interactive whiteboard with Canvas API for precise drawing and shape recognition, plus Next.js REST APIs for sketch analysis and Mermaid diagram generation. Won top-5 at HackUTD 2025 for the NVIDIA track.",
@@ -21,7 +50,7 @@ export function Projects() {
       },
     },
     {
-      id: "002",
+      id: "004",
       title: "AURALIS",
       description:
         "A sound generation platform that creates studio-quality audio effects from text prompts. Uses PyTorch AudioLDM for real-time synthesis with CUDA acceleration and Google Gemini for adaptive prompt refinement. Built the frontend with Next.js and Supabase auth, plus a Flask REST API backend for low-latency audio streaming. Includes a public sound library with likes and engagement tracking.",
@@ -34,21 +63,7 @@ export function Projects() {
       },
     },
     {
-      id: "003",
-      title: "PREFACE",
-      description:
-        "A capstone project with Fisher Investments reimagining how hiring works. Instead of cover letters, applicants complete interactive, role-specific courses that build real skills and earn verifiable certificates. Employers get detailed assessment breakdowns across technical proficiency, soft skills, and values alignment. Built high-fidelity Figma prototypes and React components for the applicant dashboard and HR portal.",
-      tech: ["Figma", "React", "UX Research"],
-      status: "CASE STUDY",
-      image: "/placeholder.jpg",
-      links: {
-        project: "https://aed-preface.vercel.app/",
-        code: "https://github.com/Drakatoa/aed-preface-atcm4341",
-        caseStudy: "/case-studies/preface",
-      },
-    },
-    {
-      id: "004",
+      id: "005",
       title: "DESIGNING FOR REAL INCLUSION",
       description:
         "HCI research on nonbinary student experiences at UTD after 28% reported not feeling a sense of belonging. Conducted qualitative interviews that revealed students only found resources through informal networks and existing policies lacked enforcement. Proposed interventions including a centralized LGBTQ+ resource hub, anonymous feedback system for misgendering incidents, and inclusive event feed. Presented findings to UTD faculty and administration.",
@@ -62,7 +77,7 @@ export function Projects() {
       },
     },
     {
-      id: "005",
+      id: "006",
       title: "HACKMATE",
       description:
         "A web platform for connecting hackathon participants and forming teams. Built frontend components with React for navigation, group management tools, and contact forms integrated with backend APIs. Focused on making team formation and project collaboration feel smooth and intuitive.",
@@ -72,20 +87,6 @@ export function Projects() {
       links: {
         project: "https://github.com/Drakatoa",
         code: "https://github.com/Drakatoa",
-      },
-    },
-    {
-      id: "006",
-      title: "PROJECT PAWKOUR",
-      description:
-        "A third-person parkour game built in Unity where you control a cat escaping from a secret laboratory. Features fluid movement including running, jumping, dashing, and wall-running through a low-poly lab environment. Custom C# scripts handle physics-based movement, dynamic camera following, and adaptive music that intensifies with player velocity. Team project that combined animation, UI design, lighting, and custom audio composition.",
-      tech: ["Unity", "C#", "OpenGL", "Figma"],
-      status: "COMPLETE",
-      image: "/placeholder.jpg",
-      links: {
-        project: "/pawkour-game.zip",
-        code: "https://github.com/Drakatoa/Project-Pawkour",
-        videoUrl: "/pawkour-demo.mp4",
       },
     },
   ]
