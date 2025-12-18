@@ -2,8 +2,10 @@
 
 import Image from "next/image"
 import { Github, Linkedin, Mail, FileText } from "lucide-react"
+import { useState } from "react"
 
 export function Hero() {
+  const [showPhoto, setShowPhoto] = useState(false)
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-visible pt-20">
       <div
@@ -125,8 +127,12 @@ export function Hero() {
           </div>
 
           <div className="flex-1 flex items-center justify-end">
-            <div className="relative w-[600px] h-[400px] overflow-visible z-0 group cursor-pointer">
-              <div className="absolute -left-40 top-1/2 -translate-y-1/2">
+            <div
+              className="relative w-[600px] h-[400px] overflow-visible z-0 group cursor-pointer"
+              onMouseEnter={() => setShowPhoto(true)}
+              onMouseLeave={() => setShowPhoto(false)}
+            >
+              <div className="absolute -left-40 top-1/2 -translate-y-1/2 pointer-events-none">
                 <div
                   className="text-7xl md:text-7xl font-bold text-white/20 tracking-wider"
                   style={{ writingMode: "vertical-rl"}}
@@ -136,7 +142,11 @@ export function Hero() {
               </div>
 
               <svg
-                className="pointer-events-none absolute inset-0 translate-x-8 translate-y-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.35)] z-10 transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)] group-hover:translate-x-10 group-hover:translate-y-12"
+                className={`pointer-events-none absolute inset-0 drop-shadow-[0_0_10px_rgba(255,255,255,0.35)] z-10 transition-all duration-500 ease-out ${
+                  showPhoto
+                    ? 'translate-x-10 translate-y-12 drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]'
+                    : 'translate-x-8 translate-y-10'
+                }`}
                 width="100%"
                 height="100%"
                 viewBox="0 0 600 400"
@@ -162,7 +172,32 @@ export function Hero() {
                   fill
                   className="w-full h-full object-cover contrast-125"
                 />
+                <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${
+                  showPhoto ? 'opacity-0' : 'opacity-100'
+                }`}>
+                  <Image
+                    src="/ascii-art.png"
+                    alt="ASCII Art Profile"
+                    fill
+                    className="w-full h-full object-contain"
+                  />
+                </div>
               </div>
+              <svg
+                className="pointer-events-none absolute inset-0 z-30"
+                width="100%"
+                height="100%"
+                viewBox="0 0 600 400"
+                preserveAspectRatio="none"
+              >
+                <polygon
+                  points="48,0 600,0 552,400 0,400"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinejoin="miter"
+                />
+              </svg>
             </div>
           </div>
         </div>
