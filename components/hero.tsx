@@ -160,44 +160,46 @@ export function Hero() {
                   strokeLinejoin="miter"
                 />
               </svg>
-              <div
-                className="absolute inset-0 z-20 overflow-hidden transition-all duration-300 group-hover:scale-105"
-                style={{
-                  clipPath: "polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%)",
-                }}
-              >
-                <Image
-                  src="/IMG_2934.jpeg"
-                  alt="Rajit Goel"
-                  fill
-                  className="w-full h-full object-cover contrast-125"
-                />
-                <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${
-                  showPhoto ? 'opacity-0' : 'opacity-100'
-                }`}>
+              <div className="absolute inset-0 z-20 transition-all duration-300 group-hover:scale-105">
+                <div
+                  className="w-full h-full overflow-hidden"
+                  style={{
+                    clipPath: "polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%)",
+                  }}
+                >
                   <Image
-                    src="/ascii-art.png"
-                    alt="ASCII Art Profile"
+                    src="/IMG_2934.jpeg"
+                    alt="Rajit Goel"
                     fill
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover contrast-125"
                   />
+                  <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${
+                    showPhoto ? 'opacity-0' : 'opacity-100'
+                  }`}>
+                    <Image
+                      src="/ascii-art.png"
+                      alt="ASCII Art Profile"
+                      fill
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 </div>
+                <svg
+                  className="pointer-events-none absolute inset-0 z-30"
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 600 400"
+                  preserveAspectRatio="none"
+                >
+                  <polygon
+                    points="48,0 600,0 552,400 0,400"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinejoin="miter"
+                  />
+                </svg>
               </div>
-              <svg
-                className="pointer-events-none absolute inset-0 z-30"
-                width="100%"
-                height="100%"
-                viewBox="0 0 600 400"
-                preserveAspectRatio="none"
-              >
-                <polygon
-                  points="48,0 600,0 552,400 0,400"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinejoin="miter"
-                />
-              </svg>
             </div>
           </div>
         </div>

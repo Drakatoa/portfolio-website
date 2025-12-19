@@ -20,6 +20,7 @@ export function Projects() {
         code: "https://github.com/Drakatoa/aed-preface-atcm4341",
         caseStudy: "/case-studies/preface",
         videoUrl: "https://drive.google.com/file/d/1EEE9ZcNRo40xqruDH688TkFfKuZ9k0vG/preview",
+        videoLabel: "WATCH PROMO",
       },
     },
     {
@@ -34,6 +35,7 @@ export function Projects() {
         project: "https://drive.google.com/file/d/1-pmvv_ZrK1DE11ah-lo9y2lI_5p6kzeo/view?usp=sharing",
         code: "https://github.com/Drakatoa/Project-Pawkour",
         videoUrl: "https://drive.google.com/file/d/1mvEWaFJAOHNpSeNnPKCat9HdkTO29SjV/preview",
+        videoLabel: "WATCH SPEEDRUN",
       },
     },
     {
@@ -43,10 +45,13 @@ export function Projects() {
         "An ideation platform that turns hand-drawn sketches and written concepts into structured product blueprints. It generates flowcharts, business pitches, competitive analyses, and 90-day roadmaps using NVIDIA Nemotron's vision and text models. Built the interactive whiteboard with Canvas API for precise drawing and shape recognition, plus Next.js REST APIs for sketch analysis and Mermaid diagram generation. Won top-5 at HackUTD 2025 for the NVIDIA track.",
       tech: ["Next.js 16", "TypeScript", "PostgreSQL", "Supabase", "Nemotron", "Canvas API"],
       status: "COMPLETE",
-      image: "/project-showcase.jpg",
+      image: "/ideateproject.png",
       links: {
-        project: "https://github.com/Drakatoa",
-        code: "https://github.com/Drakatoa",
+        project: "https://ideatehackutd2025.vercel.app/",
+        code: "https://github.com/Drakatoa/ideatehackutd2025",
+        devpost: "https://devpost.com/software/ideate-mratxn",
+        videoUrl: "https://www.youtube.com/embed/2ebeNaF3sto",
+        videoLabel: "WATCH DEMO",
       },
     },
     {
@@ -56,10 +61,9 @@ export function Projects() {
         "A sound generation platform that creates studio-quality audio effects from text prompts. Uses PyTorch AudioLDM for real-time synthesis with CUDA acceleration and Google Gemini for adaptive prompt refinement. Built the frontend with Next.js and Supabase auth, plus a Flask REST API backend for low-latency audio streaming. Includes a public sound library with likes and engagement tracking.",
       tech: ["Next.js", "Flask", "PyTorch AudioLDM", "PostgreSQL", "Supabase", "Gemini API"],
       status: "IN PROGRESS",
-      image: "/neural-network-visualization-black-white.jpg",
+      image: "/auralisproject.png",
       links: {
-        project: "https://github.com/Drakatoa",
-        code: "https://github.com/Drakatoa",
+        code: "https://github.com/Drakatoa/Auralis",
       },
     },
     {
@@ -67,12 +71,10 @@ export function Projects() {
       title: "DESIGNING FOR REAL INCLUSION",
       description:
         "HCI research on nonbinary student experiences at UTD after 28% reported not feeling a sense of belonging. Conducted qualitative interviews that revealed students only found resources through informal networks and existing policies lacked enforcement. Proposed interventions including a centralized LGBTQ+ resource hub, anonymous feedback system for misgendering incidents, and inclusive event feed. Presented findings to UTD faculty and administration.",
-      tech: ["Qualitative Research", "Figma", "UX"],
+      tech: ["Qualitative Interviews", "Secondary Research", "Empathy Mapping", "User Personas", "Journey Mapping", "Survey Analysis", "Figma", "Miro"],
       status: "CASE STUDY",
-      image: "/placeholder-user.jpg",
+      image: "/deiproject.png",
       links: {
-        project: "https://www.behance.net/rajitgoel",
-        code: "#",
         caseStudy: "/case-studies/inclusion",
       },
     },
@@ -83,7 +85,7 @@ export function Projects() {
         "A web platform for connecting hackathon participants and forming teams. Built frontend components with React for navigation, group management tools, and contact forms integrated with backend APIs. Focused on making team formation and project collaboration feel smooth and intuitive.",
       tech: ["React", "CSS", "Figma"],
       status: "COMPLETE",
-      image: "/dark-abstract-tech-project-black-white.jpg",
+      image: "/hackmateproject.png",
       links: {
         project: "https://github.com/Drakatoa",
         code: "https://github.com/Drakatoa",
@@ -115,6 +117,8 @@ export function Projects() {
         codeUrl={currentProject.links.code}
         caseStudyUrl={currentProject.links.caseStudy}
         videoUrl={currentProject.links.videoUrl}
+        videoLabel={currentProject.links.videoLabel}
+        devpostUrl={currentProject.links.devpost}
         onNext={handleNext}
         onPrev={handlePrev}
       />

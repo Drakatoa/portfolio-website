@@ -226,23 +226,23 @@ export default function PrefaceCaseStudy() {
             <div>
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">TEAM MEMBERS</h2>
               <div className="space-y-4">
-                <div className="border-l-2 border-white pl-4">
+                <div className="border-l-2 border-violet-500 pl-4">
                   <p className="font-bold text-lg">Rajit Goel</p>
                   <p className="text-sm text-white/60">Wireframing, Prototyper, Coder</p>
                 </div>
-                <div className="border-l-2 border-white pl-4">
+                <div className="border-l-2 border-purple-500 pl-4">
                   <p className="font-bold text-lg">Burak Bas</p>
                   <p className="text-sm text-white/60">Researcher, Filmmaking, Graphic Design</p>
                 </div>
-                <div className="border-l-2 border-white pl-4">
+                <div className="border-l-2 border-indigo-500 pl-4">
                   <p className="font-bold text-lg">Silas Solomon</p>
                   <p className="text-sm text-white/60">Project Manager, Designer, Event Planner</p>
                 </div>
-                <div className="border-l-2 border-white pl-4">
+                <div className="border-l-2 border-blue-500 pl-4">
                   <p className="font-bold text-lg">Nathan Lee</p>
                   <p className="text-sm text-white/60">Storyteller, Logistics, Logo Designer</p>
                 </div>
-                <div className="border-l-2 border-white pl-4">
+                <div className="border-l-2 border-cyan-500 pl-4">
                   <p className="font-bold text-lg">Cole Jesberg</p>
                   <p className="text-sm text-white/60">Synthesizer</p>
                 </div>
@@ -289,7 +289,7 @@ export default function PrefaceCaseStudy() {
                 </div>
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">THE PROBLEM</h2>
                 <p className="text-sm md:text-base text-white/50 max-w-md">
-                  why are we doing this
+                  hiring is broken for everyone involved
                 </p>
               </div>
 
@@ -388,20 +388,20 @@ export default function PrefaceCaseStudy() {
           <h3 className="text-3xl md:text-4xl font-bold mb-8 tracking-tighter">KEY FINDINGS</h3>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="border border-white/50 p-8">
-              <h4 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">GHOSTING & SLOW TIMELINES</h4>
+            <div className="border border-violet-500/50 p-8 bg-violet-900/10">
+              <h4 className="text-xl md:text-2xl font-bold mb-4 tracking-tight text-violet-300">GHOSTING & SLOW TIMELINES</h4>
               <p className="text-white/70">
                 Candidates felt discouraged when companies took too long to respond or stopped responding completely.
               </p>
             </div>
-            <div className="border border-white/50 p-8">
-              <h4 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">COOKIE-CUTTER INTERVIEWS</h4>
+            <div className="border border-purple-500/50 p-8 bg-purple-900/10">
+              <h4 className="text-xl md:text-2xl font-bold mb-4 tracking-tight text-purple-300">COOKIE-CUTTER INTERVIEWS</h4>
               <p className="text-white/70">
                 Interviews often felt scripted and didn't let candidates show personality, values, or real fit.
               </p>
             </div>
-            <div className="border border-white/50 p-8">
-              <h4 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">
+            <div className="border border-indigo-500/50 p-8 bg-indigo-900/10">
+              <h4 className="text-xl md:text-2xl font-bold mb-4 tracking-tight text-indigo-300">
                 VAGUE "ENTRY-LEVEL" EXPECTATIONS
               </h4>
               <p className="text-white/70">
@@ -409,8 +409,8 @@ export default function PrefaceCaseStudy() {
                 or unrealistic.
               </p>
             </div>
-            <div className="border border-white/50 p-8">
-              <h4 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">PLATFORM DEPENDENCE</h4>
+            <div className="border border-blue-500/50 p-8 bg-blue-900/10">
+              <h4 className="text-xl md:text-2xl font-bold mb-4 tracking-tight text-blue-300">PLATFORM DEPENDENCE</h4>
               <p className="text-white/70">
                 Most candidates relied heavily on sites like LinkedIn/Indeed, which made the search feel repetitive
                 and crowded.
@@ -516,7 +516,7 @@ export default function PrefaceCaseStudy() {
                 </div>
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">THE SOLUTION</h2>
                 <p className="text-sm md:text-base text-white/50 max-w-md">
-                  how we're solving the problem
+                  proof over promises, skills over resumes
                 </p>
               </div>
 
@@ -743,7 +743,7 @@ export default function PrefaceCaseStudy() {
               </div>
               <h2 className="text-5xl md:text-7xl font-bold mb-4 tracking-tighter">PROJECT SUMMARY</h2>
               <p className="text-sm md:text-base text-white/50">
-                wrapping it all together
+                turning the hiring problem into a two sided solution
               </p>
             </div>
 
@@ -940,7 +940,12 @@ export default function PrefaceCaseStudy() {
                 e.stopPropagation()
                 prevImage()
               }}
-              className="absolute left-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-white/20"
+              disabled={currentImageIndex === 0}
+              className={`absolute left-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-white/20 ${
+                currentImageIndex === 0
+                  ? "text-white/20 cursor-not-allowed"
+                  : "text-white/80 hover:text-white"
+              }`}
               aria-label="Previous image"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -951,7 +956,12 @@ export default function PrefaceCaseStudy() {
                 e.stopPropagation()
                 nextImage()
               }}
-              className="absolute right-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-white/20"
+              disabled={currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1}
+              className={`absolute right-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-white/20 ${
+                currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1
+                  ? "text-white/20 cursor-not-allowed"
+                  : "text-white/80 hover:text-white"
+              }`}
               aria-label="Next image"
             >
               <ChevronRight className="w-8 h-8" />

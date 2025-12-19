@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export function WorkExperience() {
   const experiences = [
     {
@@ -7,6 +9,7 @@ export function WorkExperience() {
       description:
         "Analyzed theater demographic data across 300+ locations to identify trends in food and beverage performance. Built K-Means clustering models to segment theaters and compared KPIs like per capita spending and occupancy across clusters. Did market basket analysis to find high-value product pairings and improve combo recommendations. Also worked on the 'Pop & Top' initiative using guest surveys and international sales data. Designed executive presentations in Power BI and matplotlib to translate complex findings into actionable insights.",
       technologies: ["Python", "pandas", "scikit-learn", "SQL", "Power BI", "Excel"],
+      logo: "/cinemarklogo.png",
     },
     {
       title: "Software Engineer Intern",
@@ -15,6 +18,7 @@ export function WorkExperience() {
       description:
         "Developed REST APIs in C# ASP.NET for tax form validation that cut processing time by 10-15%. Refactored validation logic into modular components, reducing turnaround from weeks to near real-time. Queried large datasets in SQL Server and converted legacy XML rules into modern XSLT for better integration. Collaborated with a global Agile team across Canada, India, Mexico, and Russia.",
       technologies: ["C#", "ASP.NET", "SQL Server", "XSLT", "Git", "Agile/Scrum"],
+      logo: "/thomsonlogo.png",
     }
   ]
 
@@ -31,7 +35,7 @@ export function WorkExperience() {
 
         <div className="space-y-8">
           {experiences.map((exp, index) => (
-            <div key={index} className="border border-white/20 p-6 md:p-8 hover:border-white/40 transition-colors">
+            <div key={index} className="border border-white/20 p-6 md:p-8 hover:border-white/40 transition-colors relative">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                 <div>
                   <h3 className="text-xl md:text-2xl font-bold mb-1">{exp.title}</h3>
@@ -44,7 +48,7 @@ export function WorkExperience() {
 
               <p className="text-white/80 leading-relaxed mb-4">{exp.description}</p>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {exp.technologies.map((tech) => (
                   <span key={tech} className="border border-white/40 px-3 py-1 text-xs">
                     {tech}
@@ -52,8 +56,18 @@ export function WorkExperience() {
                 ))}
               </div>
 
-              <div className="mt-4 text-xs text-white/40">
-                {"[" + String(index + 1).padStart(3, "0") + "]"}
+              <div className="flex items-end justify-between">
+                <div className="text-xs text-white/40">
+                  {"[" + String(index + 1).padStart(3, "0") + "]"}
+                </div>
+                <div className="relative w-24 h-12">
+                  <Image
+                    src={exp.logo}
+                    alt={`${exp.company} logo`}
+                    fill
+                    className="object-contain opacity-75"
+                  />
+                </div>
               </div>
             </div>
           ))}
