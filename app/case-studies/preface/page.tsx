@@ -248,6 +248,10 @@ export default function PrefaceCaseStudy() {
                 </div>
               </div>
               <div className="mt-8 pt-8 border-t border-white/20">
+                <p className="text-sm text-white/60">COURSE</p>
+                <p className="font-bold text-lg">Applied Experience Design</p>
+              </div>
+              <div className="mt-8 pt-8 border-t border-white/20">
                 <p className="text-sm text-white/60">TEAM NAME</p>
                 <p className="font-bold text-lg">Five-Leaf Clover</p>
               </div>
@@ -257,13 +261,10 @@ export default function PrefaceCaseStudy() {
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">TOOLS USED</h2>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  "Pen and Paper",
                   "Canva",
                   "Figma",
                   "FigJam",
-                  "Adobe Photoshop",
                   "Adobe Premiere Pro",
-                  "Adobe Illustrator",
                   "Next.js",
                   "TypeScript",
                   "React",
@@ -273,6 +274,24 @@ export default function PrefaceCaseStudy() {
                     <p className="text-sm font-medium">{tool}</p>
                   </div>
                 ))}
+              </div>
+              <div className="mt-8 pt-8 border-t border-white/20">
+                <h2 className="text-xl md:text-2xl font-bold mb-4 tracking-tighter">METHODS USED</h2>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    "User Interviews",
+                    "Surveys",
+                    "Competitor Research",
+                    "Empathy Mapping",
+                    "User Journey Mapping",
+                    "Wireframing",
+                    "High-Fidelity Prototyping",
+                  ].map((method) => (
+                    <div key={method} className="border border-white/30 p-4 hover:bg-white hover:text-black transition-colors cursor-default">
+                      <p className="text-sm font-medium">{method}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

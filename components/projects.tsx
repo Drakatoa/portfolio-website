@@ -25,6 +25,22 @@ export function Projects() {
     },
     {
       id: "002",
+      title: "AEGIS",
+      description:
+        "A lightweight browser extension that puts trust and privacy back in the user's hands. Provides real-time website safety scores based on aggregated reviews and sentiment analysis, community-powered threat reporting for flagging dangerous sites automated scanners might miss, and smart autofill that creates profiles (Personal vs Work) and restricts sensitive data to trusted sites only. Built with vanilla JavaScript for performance under 500KB.",
+      tech: ["Vanilla JavaScript", "Supabase", "Email.js", "Chrome Extensions API", "Figma"],
+      status: "CASE STUDY",
+      image: "/aegisproject.png",
+      links: {
+        project: "https://drive.google.com/file/d/1r0OKNek3FWYNxlZFuWaseIb7fTSuNMB1/view?usp=sharing",
+        code: "https://github.com/Drakatoa/Aegis",
+        caseStudy: "/case-studies/aegis",
+        videoUrl: "https://www.youtube.com/embed/5ndbzVFQ15c",
+        videoLabel: "WATCH DEMO",
+      },
+    },
+    {
+      id: "003",
       title: "PROJECT PAWKOUR",
       description:
         "A third-person parkour game built in Unity where you control a cat escaping from a secret laboratory. Features fluid movement including running, jumping, dashing, and wall-running through a low-poly lab environment. Custom C# scripts handle physics-based movement, dynamic camera following, and adaptive music that intensifies with player velocity. Team project that combined animation, UI design, lighting, and custom audio composition.",
@@ -36,22 +52,6 @@ export function Projects() {
         code: "https://github.com/Drakatoa/Project-Pawkour",
         videoUrl: "https://drive.google.com/file/d/1mvEWaFJAOHNpSeNnPKCat9HdkTO29SjV/preview",
         videoLabel: "WATCH SPEEDRUN",
-      },
-    },
-    {
-      id: "003",
-      title: "IDEATE - AI WHITEBOARD",
-      description:
-        "An ideation platform that turns hand-drawn sketches and written concepts into structured product blueprints. It generates flowcharts, business pitches, competitive analyses, and 90-day roadmaps using NVIDIA Nemotron's vision and text models. Built the interactive whiteboard with Canvas API for precise drawing and shape recognition, plus Next.js REST APIs for sketch analysis and Mermaid diagram generation. Won top-5 at HackUTD 2025 for the NVIDIA track.",
-      tech: ["Next.js 16", "TypeScript", "PostgreSQL", "Supabase", "Nemotron", "Canvas API"],
-      status: "COMPLETE",
-      image: "/ideateproject.png",
-      links: {
-        project: "https://ideatehackutd2025.vercel.app/",
-        code: "https://github.com/Drakatoa/ideatehackutd2025",
-        devpost: "https://devpost.com/software/ideate-mratxn",
-        videoUrl: "https://www.youtube.com/embed/2ebeNaF3sto",
-        videoLabel: "WATCH DEMO",
       },
     },
     {
@@ -68,10 +68,26 @@ export function Projects() {
     },
     {
       id: "005",
-      title: "DESIGNING FOR REAL INCLUSION",
+      title: "IDEATE - AI WHITEBOARD",
+      description:
+        "An ideation platform that turns hand-drawn sketches and written concepts into structured product blueprints. It generates flowcharts, business pitches, competitive analyses, and 90-day roadmaps using NVIDIA Nemotron's vision and text models. Built the interactive whiteboard with Canvas API for precise drawing and shape recognition, plus Next.js REST APIs for sketch analysis and Mermaid diagram generation. Won top-5 at HackUTD 2025 for the NVIDIA track.",
+      tech: ["Next.js 16", "TypeScript", "PostgreSQL", "Supabase", "Nemotron", "Canvas API"],
+      status: "COMPLETE",
+      image: "/ideateproject.png",
+      links: {
+        project: "https://ideatehackutd2025.vercel.app/",
+        code: "https://github.com/Drakatoa/ideatehackutd2025",
+        devpost: "https://devpost.com/software/ideate-mratxn",
+        videoUrl: "https://www.youtube.com/embed/2ebeNaF3sto",
+        videoLabel: "WATCH DEMO",
+      },
+    },
+    {
+      id: "006",
+      title: "DESIGN FOR INCLUSION",
       description:
         "HCI research on nonbinary student experiences at UTD after 28% reported not feeling a sense of belonging. Conducted qualitative interviews that revealed students only found resources through informal networks and existing policies lacked enforcement. Proposed interventions including a centralized LGBTQ+ resource hub, anonymous feedback system for misgendering incidents, and inclusive event feed. Presented findings to UTD faculty and administration.",
-      tech: ["Qualitative Interviews", "Secondary Research", "Empathy Mapping", "User Personas", "Journey Mapping", "Survey Analysis", "Figma", "Miro"],
+      tech: ["User Research", "Figma", "Miro"],
       status: "CASE STUDY",
       image: "/deiproject.png",
       links: {
@@ -79,7 +95,7 @@ export function Projects() {
       },
     },
     {
-      id: "006",
+      id: "007",
       title: "HACKMATE",
       description:
         "A web platform for connecting hackathon participants and forming teams. Built frontend components with React for navigation, group management tools, and contact forms integrated with backend APIs. Focused on making team formation and project collaboration feel smooth and intuitive.",
@@ -89,6 +105,18 @@ export function Projects() {
       links: {
         project: "https://github.com/Drakatoa",
         code: "https://github.com/Drakatoa",
+      },
+    },
+    {
+      id: "008",
+      title: "HOMETOWN OLYMPICS: NEW DELHI",
+      description:
+        "A visual identity system for a hypothetical 2024 Olympics hosted in New Delhi. The design celebrates India's vibrant culture through a lotus-inspired logo that merges the national flower with the Olympic torch. Drew from New Delhi's rich heritage including Mughal architecture, street markets, and festivals like Diwali and Holi. Created cohesive branding with traditional Indian textile patterns in saffron, maroon, gold, and purple to reflect courage, passion, and royalty.",
+      tech: ["Figma", "Graphic Design", "Branding"],
+      status: "CASE STUDY",
+      image: "/delhiproject.png",
+      links: {
+        caseStudy: "/case-studies/delhi-olympics",
       },
     },
   ]

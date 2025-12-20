@@ -46,21 +46,6 @@ export function ProjectSlide({
 
   return (
     <div className="relative w-full min-h-screen bg-black overflow-hidden text-white selection:bg-white selection:text-black">
-      <div
-        className="hidden lg:block absolute top-0 right-0 bottom-0 left-[45%] z-0"
-        style={{
-          clipPath: "polygon(35% 0, 100% 0, 100% 85%, 0% 100%)",
-        }}
-      >
-        <Image
-          src={imageUrl || "/placeholder.svg"}
-          alt={title}
-          fill
-          className="w-full h-full object-cover opacity-90 contrast-110"
-        />
-        <div/>
-      </div>
-
       <div className="absolute bottom-4 right-8 z-20 pointer-events-auto">
         <div className="flex items-center gap-4 text-base md:text-lg font-black bg-black/80 backdrop-blur-sm border border-white/30 px-5 py-3">
           <button
@@ -85,10 +70,40 @@ export function ProjectSlide({
       </div>
 
       <div className="relative z-10 w-full min-h-screen flex flex-col justify-between p-6 md:p-8 lg:p-16">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 flex-1">
+        {/* Header that spans full width */}
+        {title === "AEGIS" ? (
+          <div className="w-full lg:mb-8">
+            <div className="flex items-center justify-between">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter">{"PROJECTS"}</h2>
+              {/* <a
+                href="https://megamitensei.fandom.com/wiki/Aigis"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-auto h-auto hover:opacity-80 transition-opacity"
+              > */}
+                <Image
+                  src="/aigis-easter-egg.png"
+                  alt="Aigis easter egg"
+                  width={400}
+                  height={400}
+                  className="object-contain w-auto h-auto max-h-[120px] md:max-h-[150px]"
+                  quality={100}
+                />
+              {/* </a> */}
+            </div>
+            <div className="h-px w-full bg-white" />
+          </div>
+        ) : (
+          <div className="w-full mb-6 lg:mb-8">
+            <div className="flex items-center justify-between">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6">{"PROJECTS"}</h2>
+            </div>
+            <div className="h-px w-full bg-white" />
+          </div>
+        )}
+
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 flex-1">
           <div className="w-full lg:w-[55%] flex flex-col">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tighter">{"PROJECTS"}</h2>
-            <div className="h-px w-full bg-white mb-6" />
 
             <div className="relative mb-6 lg:mb-8" style={{ width: "fit-content", maxWidth: "100%" }}>
               <svg
@@ -119,11 +134,11 @@ export function ProjectSlide({
 
             <div className="mb-6 lg:mb-8">
               <p className="text-xs font-black tracking-widest mb-3 md:mb-4">PROJECT TAGS</p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex gap-2 overflow-x-auto pb-2 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-white/10 [&::-webkit-scrollbar-thumb]:bg-white/30 hover:[&::-webkit-scrollbar-thumb]:bg-white/50 [&::-webkit-scrollbar-thumb]:rounded-full">
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs border border-white/50 px-3 py-2 bg-black text-white hover:bg-white hover:text-black transition-colors"
+                    className="text-xs border border-white/50 px-3 py-2 bg-black text-white hover:bg-white hover:text-black transition-colors whitespace-nowrap flex-shrink-0"
                   >
                     {tag}
                   </span>
@@ -138,9 +153,9 @@ export function ProjectSlide({
               </div>
             </div>
 
-            <div className="flex gap-3 mt-auto">
+            <div className="flex gap-3 mt-auto h-[120px] items-end">
               {/* Column 1 */}
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 justify-end">
                 {hasProject && (
                   <a
                     href={projectUrl}
@@ -191,7 +206,7 @@ export function ProjectSlide({
               </div>
 
               {/* Column 2 */}
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 justify-end">
                 {hasCode && (
                   <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="group relative w-fit transition-transform hover:translate-x-2">
                     <svg
@@ -207,7 +222,7 @@ export function ProjectSlide({
                     </svg>
                     <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
                       <span>CODE</span>
-                      <Code className="w-5 h-5 transition-transform group-hover:rotate-12" />
+                      <Code className="w-5 h-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
                     </div>
                   </a>
                 )}
@@ -255,18 +270,122 @@ export function ProjectSlide({
             </div>
           </div>
 
-          <div className="w-full lg:hidden relative h-64 md:h-80">
-            <div
-              className="absolute inset-0"
+          {/* Parallelogram shaped image - Desktop */}
+          <div className="hidden lg:flex w-full lg:w-[45%] relative mr-16 items-center">
+            <div className="relative w-full h-[350px] max-h-[calc(100vh-250px)] xl:h-[420px] 2xl:h-[550px] max-w-[750px]">
+              {/* Offset outline - rendered first (below) */}
+              <svg
+                className="absolute pointer-events-none z-0"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  left: "30px",
+                  top: "30px",
+                }}
+              >
+                <polygon
+                  points="8,0 100,0 92,100 0,100"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="0.6"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+
+              {/* Main image border - only for Auralis */}
+              {(title === "AURALIS" || title === "IDEATE - AI WHITEBOARD") && (
+                <svg
+                  className="absolute pointer-events-none z-20"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <polygon
+                    points="8,0 100,0 92,100 0,100"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="0.3"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                </svg>
+              )}
+
+              {/* Image */}
+              <div
+                className="absolute inset-0 z-10"
+                style={{
+                  clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
+                }}
+              >
+                <Image
+                  src={imageUrl || "/placeholder.svg"}
+                  alt={title}
+                  fill
+                  className="object-cover opacity-100 contrast-110"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Parallelogram shaped image - Mobile */}
+          <div className="lg:hidden relative w-full h-64 md:h-80">
+            {/* Offset outline - rendered first (below) */}
+            <svg
+              className="absolute pointer-events-none z-0"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
               style={{
-                clipPath: "polygon(10% 0, 100% 0, 100% 85%, 0% 100%)",
+                width: "100%",
+                height: "100%",
+                left: "20px",
+                top: "30px",
+              }}
+            >
+              <polygon
+                points="6,0 100,0 94,100 0,100"
+                fill="none"
+                stroke="white"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
+
+            {/* Main image border */}
+            <svg
+              className="absolute pointer-events-none z-20"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <polygon
+                points="6,0 100,0 94,100 0,100"
+                fill="none"
+                stroke="white"
+                strokeWidth="0.5"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
+
+            {/* Image */}
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)",
               }}
             >
               <Image
                 src={imageUrl || "/placeholder.svg"}
                 alt={title}
                 fill
-                className="w-full h-full object-cover opacity-90 contrast-110"
+                className="object-cover opacity-100 contrast-110"
               />
             </div>
           </div>

@@ -16,8 +16,8 @@ const courierPrime = Courier_Prime({
 })
 
 export const metadata: Metadata = {
-  title: "RAJIT GOEL ✦ UTD",
-  description: "Portfolio of Rajit Goel",
+  title: "RAJIT ✦ GOEL",
+  description: "Rajit's Portfolio Website",
 }
 
 export default function RootLayout({

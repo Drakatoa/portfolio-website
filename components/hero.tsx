@@ -102,7 +102,9 @@ export function Hero() {
                 <span className="text-xs">EMAIL</span>
               </a>
               <a
-                href="/resume.pdf"
+                href="/rajit-goel-cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex flex-col items-center gap-2 hover:opacity-70 transition-opacity"
               >
                 <div className="border border-white p-3 group-hover:bg-white group-hover:text-black transition-colors">

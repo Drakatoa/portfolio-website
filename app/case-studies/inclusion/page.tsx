@@ -180,7 +180,7 @@ export default function InclusionCaseStudy() {
             </p>
             <div className="inline-block bg-purple-500/20 border border-purple-500/30 px-6 py-3">
               <p className="text-sm font-bold tracking-wide">
-                RESEARCH FOCUS: Nonbinary Inclusion at Universities
+                FOCUS: Nonbinary Inclusion at Universities
               </p>
             </div>
           </div>
@@ -191,33 +191,27 @@ export default function InclusionCaseStudy() {
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="grid md:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">RESEARCH ROLE</h2>
-              <div className="space-y-4">
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">PROJECT DETAILS</h2>
+              <div className="space-y-6">
                 <div className="border-l-2 border-purple-500 pl-4">
-                  <p className="font-bold text-lg">Rajit Goel</p>
-                  <p className="text-sm text-white/60">Lead Researcher, UX Designer, Interview Facilitator</p>
+                  <p className="text-sm text-white/60 mb-1">ROLE</p>
+                  <p className="font-bold text-lg">Lead Researcher, UX Designer, Interview Facilitator</p>
                 </div>
-              </div>
-              <div className="mt-8 pt-8 border-t border-white/20">
-                <p className="text-sm text-white/60">COURSE</p>
-                <p className="font-bold text-lg">Design Research</p>
-              </div>
-              <div className="mt-8 pt-8 border-t border-white/20">
-                <p className="text-sm text-white/60">UNIVERSITY</p>
-                <p className="font-bold text-lg">University of Texas at Dallas</p>
+                <div className="border-l-2 border-pink-500 pl-4">
+                  <p className="text-sm text-white/60 mb-1">COURSE</p>
+                  <p className="font-bold text-lg">Design Research</p>
+                </div>
+                <div className="border-l-2 border-blue-500 pl-4">
+                  <p className="text-sm text-white/60 mb-1">PROJECT TYPE</p>
+                  <p className="font-bold text-lg">Research & UX Design</p>
+                </div>
               </div>
             </div>
 
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">METHODS & TOOLS</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">TOOLS USED</h2>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  "Qualitative Interviews",
-                  "Secondary Research",
-                  "Empathy Mapping",
-                  "User Personas",
-                  "Journey Mapping",
-                  "Survey Analysis",
                   "Figma",
                   "Miro",
                 ].map((tool) => (
@@ -225,6 +219,22 @@ export default function InclusionCaseStudy() {
                     <p className="text-sm font-medium">{tool}</p>
                   </div>
                 ))}
+              </div>
+              <div className="mt-8 pt-8 border-t border-white/20">
+                <h2 className="text-xl md:text-2xl font-bold mb-4 tracking-tighter">METHODS USED</h2>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    "Secondary Research",
+                    "Qualitative Interviews",
+                    "Empathy Mapping",
+                    "Persona Development",
+                    "User Journey Mapping",
+                  ].map((method) => (
+                    <div key={method} className="border border-white/30 p-4 hover:bg-white hover:text-black transition-colors cursor-default">
+                      <p className="text-sm font-medium">{method}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

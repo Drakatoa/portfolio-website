@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export function About() {
   return (
     <section id="about" className="min-h-screen flex items-center justify-center px-6 py-20 border-t border-white/20">
@@ -17,7 +19,7 @@ export function About() {
             <p className="text-lg leading-relaxed">
               I've worked on everything from tax validation at Thomson Reuters to food and beverage analytics
               at Cinemark to solving problems on campus with clever design. Right now, I'm focused on projects that blend multimodal AI with practical interaction
-              design, and I'm always thinking about how to make technology more accessible and human.
+              design, and I'm always thinking about how to make technology more accessible and enjoyable.
             </p>
           </div>
 
@@ -31,12 +33,21 @@ export function About() {
               </p>
             </div>
 
-            <div className="border border-white/20 p-6">
+            <div className="border border-white/20 p-6 relative">
               <h3 className="text-xs text-white/60 mb-4">{"[EDUCATION]"}</h3>
               <p className="text-lg font-bold mb-1">{"University of Texas at Dallas"}</p>
               <p className="text-sm text-white/60 mb-2">{"B.S. Computer Science, CS² Honors"}</p>
               <p className="text-sm text-white/60">{"Certificate in Applied Experience Design and Research"}</p>
               <p className="text-xs text-white/40 mt-3">{"Expected Graduation: May 2026"}</p>
+
+              <div className="absolute bottom-6 right-6 w-24 h-12">
+                <Image
+                  src="/utdlogo.png"
+                  alt="UT Dallas logo"
+                  fill
+                  className="object-contain opacity-75"
+                />
+              </div>
             </div>
           </div>
         </div>
