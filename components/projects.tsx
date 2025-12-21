@@ -32,7 +32,7 @@ export function Projects() {
       status: "CASE STUDY",
       image: "/aegisproject.png",
       links: {
-        project: "https://drive.google.com/file/d/1r0OKNek3FWYNxlZFuWaseIb7fTSuNMB1/view?usp=sharing",
+        // project: "https://drive.google.com/file/d/1r0OKNek3FWYNxlZFuWaseIb7fTSuNMB1/view?usp=sharing",
         code: "https://github.com/Drakatoa/Aegis",
         caseStudy: "/case-studies/aegis",
         videoUrl: "https://www.youtube.com/embed/5ndbzVFQ15c",
@@ -48,7 +48,7 @@ export function Projects() {
       status: "COMPLETE",
       image: "/projectpawkour.png",
       links: {
-        project: "https://drive.google.com/file/d/1-pmvv_ZrK1DE11ah-lo9y2lI_5p6kzeo/view?usp=sharing",
+        // project: "https://drive.google.com/file/d/1-pmvv_ZrK1DE11ah-lo9y2lI_5p6kzeo/view?usp=sharing",
         code: "https://github.com/Drakatoa/Project-Pawkour",
         videoUrl: "https://drive.google.com/file/d/1mvEWaFJAOHNpSeNnPKCat9HdkTO29SjV/preview",
         videoLabel: "WATCH SPEEDRUN",

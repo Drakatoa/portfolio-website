@@ -181,6 +181,26 @@ export function ProjectSlide({
                   </a>
                 )}
 
+                {!hasProject && hasCode && (
+                  <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="group relative w-fit transition-transform hover:translate-x-2">
+                    <svg
+                      className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                      viewBox="0 0 160 50"
+                      preserveAspectRatio="none"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <polygon points="0,0 160,0 147,50 0,50" fill="white" className="transition-all" />
+                    </svg>
+                    <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
+                      <span>CODE</span>
+                      <Code className="w-5 h-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                    </div>
+                  </a>
+                )}
+
                 {videoUrl && (
                   <button
                     onClick={() => setShowVideoModal(true)}
@@ -207,7 +227,7 @@ export function ProjectSlide({
 
               {/* Column 2 */}
               <div className="flex flex-col gap-3 justify-end">
-                {hasCode && (
+                {hasProject && hasCode && (
                   <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="group relative w-fit transition-transform hover:translate-x-2">
                     <svg
                       className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
