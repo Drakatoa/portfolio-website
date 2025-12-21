@@ -176,7 +176,7 @@ export default function InclusionCaseStudy() {
 
           <div className="max-w-full">
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mb-8">
-              This is my HCI research examining nonbinary student experiences at UT Dallas after 28% reported not feeling a sense of belonging. I conducted qualitative interviews revealing students only found resources through informal networks and existing policies lacked enforcement. I then proposed interventions including a centralized LGBTQ+ resource hub, anonymous feedback system for misgendering incidents, and inclusive event feed. Presented findings to UTD faculty.
+              This is my HCI research examining nonbinary student experiences at UT Dallas after 28% reported not feeling a sense of belonging. I conducted qualitative interviews revealing students only found resources through informal networks and existing policies lacked enforcement. I then proposed three interventions: a centralized LGBTQ+ resource hub, an anonymous feedback system for misgendering incidents, and an inclusive event feed. Presented findings to UTD faculty.
             </p>
             <div className="inline-block bg-purple-500/20 border border-purple-500/30 px-6 py-3">
               <p className="text-sm font-bold tracking-wide">
@@ -209,7 +209,7 @@ export default function InclusionCaseStudy() {
             </div>
 
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">TOOLS USED</h2>
+              <p className="text-sm text-white/60 mb-4">TOOLS USED</p>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   "Figma",
@@ -221,7 +221,7 @@ export default function InclusionCaseStudy() {
                 ))}
               </div>
               <div className="mt-8 pt-8 border-t border-white/20">
-                <h2 className="text-xl md:text-2xl font-bold mb-4 tracking-tighter">METHODS USED</h2>
+                <p className="text-sm text-white/60 mb-4">METHODS USED</p>
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     "Secondary Research",
@@ -552,7 +552,7 @@ export default function InclusionCaseStudy() {
                 >
                   <div className="p-6 md:p-10 h-full flex items-center">
                     <p className="text-base md:text-lg text-black leading-relaxed max-w-[430px] ml-15">
-                      I proposed a comprehensive mobile app with three core features: a centralized LGBTQ+ resource hub with searchable campus map, an anonymous feedback system paired with identity change guides, and an inclusive event feed with networking opportunities. I designed it to reduce reliance on hidden knowledge and provide structural support for those who need it.
+                      I proposed a mobile app with three main parts. First, a centralized LGBTQ+ resource hub with a searchable campus map. Second, an anonymous feedback system paired with identity change guides. Third, an inclusive event feed with networking opportunities. The goal was to reduce reliance on hidden knowledge and give structural support to those who need it.
                     </p>
                   </div>
                 </div>
@@ -615,7 +615,7 @@ export default function InclusionCaseStudy() {
               <div className="bg-gradient-to-br from-pink-900/20 to-transparent border border-pink-500/30 p-8">
                 <p className="font-bold text-pink-300 mb-2">COMBINED VALUE: 8.0/10 (Feedback) + 8.3/10 (Identity Guide)</p>
                 <p className="text-white/70 text-sm">
-                  Students avoid reporting due to outing fears. This provides safe outlet and removes bureaucratic friction from identity updates.
+                  Students avoid reporting due to outing fears. This gives them a safe outlet and removes bureaucratic friction from identity updates.
                 </p>
               </div>
             </div>
@@ -812,7 +812,7 @@ export default function InclusionCaseStudy() {
                 >
                   <div className="p-6 md:p-8 h-full flex items-center justify-center">
                     <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      Technology can reduce institutional friction. A centralized app makes hidden resources visible, provides anonymous reporting channels, and keeps students informed about opportunities. Removes dependency on word-of-mouth knowledge transmission.
+                      Technology can reduce institutional friction. A centralized app makes hidden resources visible, gives students anonymous reporting channels, and keeps them informed about opportunities. Removes dependency on word-of-mouth knowledge transmission.
                     </p>
                   </div>
                 </div>
@@ -867,7 +867,7 @@ export default function InclusionCaseStudy() {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-purple-300">USABILITY TESTING</h3>
               <p className="text-white/70 mb-4">
-                Conduct usability testing with LGBTQ+ students across majors and identities, including cisgender students. Iterate based on feedback and usage patterns collected through in-app surveys.
+                Conduct usability testing with LGBTQ+ students across majors and identities, plus cisgender students. Iterate based on feedback and usage patterns collected through in-app surveys.
               </p>
             </div>
             <div>

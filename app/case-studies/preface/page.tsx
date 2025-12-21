@@ -200,9 +200,7 @@ export default function PrefaceCaseStudy() {
 
           <div className="max-w-full flex items-start gap-8">
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl">
-              A recruiting platform that helps employers reach the right candidates faster by replacing vague
-              applications with role-specific learning and proof. Candidates complete advanced courses/assessments,
-              earn a certificate, and employers can review a clearer summary of skills and readiness before interviews.
+              A recruiting platform that helps employers find the right candidates faster. Instead of vague applications, candidates complete role-specific courses and earn certificates. Employers get a clear picture of skills and readiness before interviews.
             </p>
             <div className="flex-shrink-0 ml-30">
               <p className="text-xs font-black tracking-widest text-white/60 mb-3">IN PARTNERSHIP WITH</p>
@@ -224,7 +222,8 @@ export default function PrefaceCaseStudy() {
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="grid md:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">TEAM MEMBERS</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">PROJECT DETAILS</h2>
+              <p className="text-sm text-white/60 mb-4">TEAM MEMBERS</p>
               <div className="space-y-4">
                 <div className="border-l-2 border-violet-500 pl-4">
                   <p className="font-bold text-lg">Rajit Goel</p>
@@ -258,7 +257,7 @@ export default function PrefaceCaseStudy() {
             </div>
 
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">TOOLS USED</h2>
+              <p className="text-sm text-white/60 mb-4">TOOLS USED</p>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   "Canva",
@@ -276,7 +275,7 @@ export default function PrefaceCaseStudy() {
                 ))}
               </div>
               <div className="mt-8 pt-8 border-t border-white/20">
-                <h2 className="text-xl md:text-2xl font-bold mb-4 tracking-tighter">METHODS USED</h2>
+                <p className="text-sm text-white/60 mb-4">METHODS USED</p>
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     "User Interviews",
@@ -591,7 +590,7 @@ export default function PrefaceCaseStudy() {
             <div className="mb-8 pb-4 border-b border-white/20">
               <h3 className="text-2xl md:text-3xl font-bold tracking-tight">01 // WIREFRAMES</h3>
               <p className="text-white/70 mt-4">
-                Our early sketches tried a lot of ideas, including a dating app style matching concept and an Action Center for tracking every step. Exploring those versions made it clear that extra dashboards would slow HR teams down instead of helping them. That pushed us toward the simpler course based flow I described earlier in our solution section.
+                Our early sketches tried a lot of ideas, like a dating app style matching concept and an Action Center for tracking every step. Exploring those versions made it clear that extra dashboards would slow HR teams down instead of helping them. That pushed us toward the simpler course based flow I described earlier in our solution section.
               </p>
             </div>
             <div className="space-y-6">

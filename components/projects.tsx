@@ -103,8 +103,7 @@ export function Projects() {
       status: "COMPLETE",
       image: "/hackmateproject.png",
       links: {
-        project: "https://github.com/Drakatoa",
-        code: "https://github.com/Drakatoa",
+        code: "https://github.com/Evelas78/HackMate",
       },
     },
     {
@@ -117,6 +116,30 @@ export function Projects() {
       image: "/delhiproject.png",
       links: {
         caseStudy: "/case-studies/delhi-olympics",
+      },
+    },
+    {
+      id: "009",
+      title: "ZENZ",
+      description:
+        "An AI-powered mental health app designed to help users manage stress, practice mindfulness, and track emotional well-being in the post-pandemic world. Features guided meditation sessions for relaxation, journaling and mood tracking for self-reflection, AI-based mental health support, and personalized wellness activities. Created calming visual identity with lotus imagery and serene color palette (light blue, pink, beige) to promote peace and emotional resilience through daily wellness practices.",
+      tech: ["Figma", "UI/UX Design", "Mobile Design"],
+      status: "CASE STUDY",
+      image: "/zenzproject.png",
+      links: {
+        caseStudy: "/case-studies/zenz",
+      },
+    },
+    {
+      id: "010",
+      title: "ARC",
+      description:
+        "A human-centered IoT fitness ecosystem that transforms raw workout data into meaningful insights. Uses AI to interpret effort quality, near-failure moments, and recovery patterns rather than just counting reps. Features adaptive visualizations, real-time form guidance through wearables, and social progress sharing. Designed to make fitness more mindful and motivating by revealing the invisible effort that drives real growth through intelligent feedback and community connection.",
+      tech: ["Figma", "IoT Design", "UI/UX Design"],
+      status: "CASE STUDY",
+      image: "/arcproject.png",
+      links: {
+        caseStudy: "/case-studies/arc",
       },
     },
   ]

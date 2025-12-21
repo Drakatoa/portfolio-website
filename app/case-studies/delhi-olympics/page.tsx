@@ -204,7 +204,7 @@ export default function DelhiOlympicsPage() {
             </div>
 
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">TOOLS USED</h2>
+              <p className="text-sm text-white/60 mb-4">TOOLS USED</p>
               <div className="grid grid-cols-2 gap-4">
                 {["Figma"].map((tool) => (
                   <div
@@ -216,7 +216,7 @@ export default function DelhiOlympicsPage() {
                 ))}
               </div>
               <div className="mt-8 pt-8 border-t border-white/20">
-                <h2 className="text-xl md:text-2xl font-bold mb-4 tracking-tighter">METHODS USED</h2>
+                <p className="text-sm text-white/60 mb-4">METHODS USED</p>
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     "Visual Research",
@@ -330,11 +330,7 @@ export default function DelhiOlympicsPage() {
                 >
                   <div className="p-6 md:p-10 h-full flex items-center">
                     <p className="text-base md:text-lg text-black leading-relaxed max-w-[430px] ml-16">
-                      The lotus is India's national flower, symbolizing purity, enlightenment, and rebirth. Merged
-                      seamlessly with the Olympic torch rising from the center, the logo creates a unique visual
-                      identity that honors both local culture and global athletic excellence. The lotus blooms from
-                      muddy waters, reaching toward the light — just as athletes rise from challenges to achieve
-                      greatness.
+                      The lotus is India's national flower, symbolizing purity, enlightenment, and rebirth. Merged seamlessly with the Olympic torch rising from the center, the logo creates a unique visual identity that honors both local culture and global athletic excellence. The lotus blooms from muddy waters, reaching toward the light, just as athletes rise from challenges to achieve greatness.
                     </p>
                   </div>
                 </div>
@@ -350,7 +346,7 @@ export default function DelhiOlympicsPage() {
               <div className="mb-12">
                 <h4 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">Symbolic Origins</h4>
                 <p className="text-white/70 mb-6 max-w-3xl">
-                  Each element of the logo draws from specific cultural motifs and Olympic symbols. The lotus represents India's national flower and the Lotus Temple, the torch base references the Ashoka Chakra from the Indian flag, and the colors reflect the vibrant spices and national fruit (mango) of India. The script used to write New Delhi is inspired by Devanagari, which is the basis for many languages across North India, most notably the lingua franca Hindi.
+                  Each element of the logo draws from specific cultural motifs and Olympic symbols. The lotus represents India's national flower and the Lotus Temple, the torch base references the Ashoka Chakra from the Indian flag, and the colors reflect the vibrant spices and national fruit (mango) of India.
                 </p>
                 <div
                   className="relative aspect-video border border-white/20 overflow-hidden cursor-pointer hover:border-white/40 transition-colors"

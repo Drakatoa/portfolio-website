@@ -200,7 +200,7 @@ export default function AegisCaseStudy() {
 
           <div className="max-w-full">
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mb-8">
-              A lightweight browser extension that puts trust and privacy back in the user's hands. Aegis provides real-time website safety scores, community-powered threat reporting, and smart autofill that protects sensitive data without slowing you down.
+              A lightweight browser extension that puts trust and privacy back in your hands. Aegis shows you real-time website safety scores. The community reports threats, and smart autofill protects your data without slowing you down.
             </p>
             <div className="inline-block bg-[#5AD0FF]/10 border border-[#5AD0FF]/50 px-6 py-3">
               <p className="text-sm font-bold tracking-wide text-[#5AD0FF]">
@@ -216,9 +216,8 @@ export default function AegisCaseStudy() {
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="grid md:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter text-white">
-                TEAM MEMBERS
-              </h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">PROJECT DETAILS</h2>
+              <p className="text-sm text-white/60 mb-4">TEAM MEMBERS</p>
               <div className="space-y-4">
                 <div className="border-l-2 border-[#5AD0FF] pl-4">
                   <p className="font-bold text-lg">Rajit Goel</p>
@@ -252,9 +251,7 @@ export default function AegisCaseStudy() {
             </div>
 
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter text-white">
-                TOOLS USED
-              </h2>
+              <p className="text-sm text-white/60 mb-4">TOOLS USED</p>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   "JavaScript",
@@ -272,7 +269,7 @@ export default function AegisCaseStudy() {
                 ))}
               </div>
               <div className="mt-8 pt-8 border-t border-white/20">
-                <h2 className="text-xl md:text-2xl font-bold mb-4 tracking-tighter text-white">METHODS USED</h2>
+                <p className="text-sm text-white/60 mb-4">METHODS USED</p>
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     "User Interviews",
@@ -800,7 +797,7 @@ export default function AegisCaseStudy() {
               <div className="border border-[#4ADE80]/50 p-6 bg-[#4ADE80]/5">
                 <h4 className="text-2xl font-bold mb-2 text-[#4ADE80]">Context-Aware</h4>
                 <p className="text-sm text-white/60">
-                  Provides security exactly when you need it, not buried in settings menus.
+                  Security shows up exactly when you need it, not buried in settings menus.
                 </p>
               </div>
               <div className="border border-[#FFD233]/50 p-6 bg-[#FFD233]/5">
