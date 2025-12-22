@@ -854,7 +854,7 @@ export default function AegisCaseStudy() {
                     width: "100%",
                     height: "100%",
                     left: "35px",
-                    top: "45px",
+                    top: "35px",
                   }}
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
@@ -888,7 +888,7 @@ export default function AegisCaseStudy() {
                     width: "100%",
                     height: "100%",
                     left: "35px",
-                    top: "45px",
+                    top: "35px",
                   }}
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
@@ -922,7 +922,7 @@ export default function AegisCaseStudy() {
                     width: "100%",
                     height: "100%",
                     left: "35px",
-                    top: "45px",
+                    top: "35px",
                   }}
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
@@ -945,7 +945,7 @@ export default function AegisCaseStudy() {
                     <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
                       Community-powered protection scales better than algorithms alone. Users report threats that automated scanners miss. Color-coded data logs help people recognize patterns without memorizing rules. The result is security that adapts to user behavior instead of fighting it.
                     </p>
-                  </div>
+                  </div>+
                 </div>
               </div>
             </div>

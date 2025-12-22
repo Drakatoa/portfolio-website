@@ -70,38 +70,6 @@ export function ProjectSlide({
       </div>
 
       <div className="relative z-10 w-full min-h-screen flex flex-col justify-between p-6 md:p-8 lg:p-16">
-        {/* Header that spans full width */}
-        {title === "AEGIS" ? (
-          <div className="w-full lg:mb-8">
-            <div className="flex items-center justify-between">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter">{"PROJECTS"}</h2>
-              {/* <a
-                href="https://megamitensei.fandom.com/wiki/Aigis"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative w-auto h-auto hover:opacity-80 transition-opacity"
-              > */}
-                <Image
-                  src="/aigis-easter-egg.png"
-                  alt="Aigis easter egg"
-                  width={400}
-                  height={400}
-                  className="object-contain w-auto h-auto max-h-[120px] md:max-h-[150px]"
-                  quality={100}
-                />
-              {/* </a> */}
-            </div>
-            <div className="h-px w-full bg-white" />
-          </div>
-        ) : (
-          <div className="w-full mb-6 lg:mb-8">
-            <div className="flex items-center justify-between">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6">{"PROJECTS"}</h2>
-            </div>
-            <div className="h-px w-full bg-white" />
-          </div>
-        )}
-
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 flex-1">
           <div className="w-full lg:w-[55%] flex flex-col">
 

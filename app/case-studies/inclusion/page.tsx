@@ -757,7 +757,7 @@ export default function InclusionCaseStudy() {
                     width: "100%",
                     height: "100%",
                     left: "35px",
-                    top: "45px",
+                    top: "35px",
                   }}
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
@@ -791,7 +791,7 @@ export default function InclusionCaseStudy() {
                     width: "100%",
                     height: "100%",
                     left: "35px",
-                    top: "45px",
+                    top: "35px",
                   }}
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
@@ -825,7 +825,7 @@ export default function InclusionCaseStudy() {
                     width: "100%",
                     height: "100%",
                     left: "35px",
-                    top: "45px",
+                    top: "35px",
                   }}
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
