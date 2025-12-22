@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react"
 import { ProjectSlide } from "./project-slide"
 import { ProjectGrid } from "./project-grid"
 import Image from "next/image"
+import { LayoutGrid } from "lucide-react"
 
 type FilterType = "all" | "case-studies" | "code"
 type ViewType = "carousel" | "grid"
@@ -34,8 +35,8 @@ export function Projects() {
       id: "002",
       title: "AEGIS",
       description:
-        "A lightweight browser extension that puts trust and privacy back in the user's hands. Provides real-time website safety scores based on aggregated reviews and sentiment analysis, community-powered threat reporting for flagging dangerous sites automated scanners might miss, and smart autofill that creates profiles (Personal vs Work) and restricts sensitive data to trusted sites only. Built with vanilla JavaScript for performance under 500KB.",
-      tech: ["Vanilla JavaScript", "Supabase", "Email.js", "Chrome Extensions API", "Figma"],
+        "A lightweight browser extension that puts trust and privacy back in the user's hands. Provides real-time website safety scores based on aggregated reviews and sentiment analysis, community-powered threat reporting for flagging dangerous sites automated scanners might miss, and smart autofill that restricts sensitive data to trusted sites only. Built with vanilla JavaScript for performance under 500KB.",
+      tech: ["JavaScript", "Supabase", "Email.js", "Chrome Extensions API", "Figma"],
       status: "CASE STUDY",
       image: "/aegisproject.png",
       links: {
@@ -234,19 +235,8 @@ export function Projects() {
         <div className="relative z-10 w-full flex flex-col p-6 md:p-8 lg:p-16">
           {/* Header */}
           <div className="w-full mb-6 lg:mb-8">
-            <div className={`flex items-center justify-between ${view === "carousel" && currentProject?.title === "AEGIS" ? "" : "mb-6"}`}>
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter">{"PROJECTS"}</h2>
-              {/* Easter egg only shows on AEGIS project in carousel view */}
-              {view === "carousel" && currentProject?.title === "AEGIS" && (
-                <Image
-                  src="/aigis-easter-egg.png"
-                  alt="Aigis easter egg"
-                  width={400}
-                  height={400}
-                  className="object-contain w-auto h-auto max-h-[120px] md:max-h-[150px]"
-                  quality={100}
-                />
-              )}
             </div>
             <div className="h-px w-full bg-white mb-6" />
 
@@ -290,23 +280,39 @@ export function Projects() {
               <div className="flex gap-2 border border-white/30 p-1">
                 <button
                   onClick={() => setView("carousel")}
-                  className={`px-4 py-2 text-xs font-black tracking-wider transition-all ${
+                  className={`px-4 py-2 text-xs font-black tracking-wider transition-all flex items-center gap-2 ${
                     view === "carousel"
                       ? "bg-white text-black"
                       : "bg-transparent text-white/70 hover:text-white"
                   }`}
                 >
-                  CAROUSEL
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 448 449"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M143.156 1.64692C127.063 5.54392 110.614 18.5749 102.801 33.6169C94.924 48.7839 95.5 33.7479 95.5 224.066C95.5 414.384 94.924 399.348 102.801 414.515C110.731 429.783 127.126 442.645 143.614 446.531C153.128 448.774 293.872 448.774 303.386 446.531C319.924 442.633 336.255 429.796 344.265 414.401C351.99 399.552 351.469 413.323 351.485 223.71C351.502 33.7839 352.077 48.7849 344.199 33.6169C336.269 18.3489 319.874 5.48692 303.386 1.60092C294.212 -0.562083 152.11 -0.520082 143.156 1.64692ZM296.682 33.8899C305.848 36.9579 314.958 46.2669 317.735 55.4029C319.587 61.4989 319.587 386.633 317.735 392.729C314.874 402.141 305.575 411.44 296.163 414.301C292.98 415.268 275.873 415.566 223.5 415.566C171.127 415.566 154.02 415.268 150.837 414.301C141.717 411.529 132.455 402.477 129.296 393.248C127.627 388.369 126.86 71.3409 128.493 60.7329C129.759 52.4999 132.27 47.2959 137.5 42.0659C142.395 37.1709 147.903 34.3209 154.717 33.1559C163.109 31.7229 292.198 32.3899 296.682 33.8899ZM32.5 65.9519C18.721 70.4069 9.679 78.2079 3.685 90.8159L0 98.5659V224.066V349.566L3.259 356.474C7.546 365.561 12.517 371.474 19.858 376.219C27.751 381.321 36.852 384.066 45.871 384.066C54.417 384.066 58.979 382.027 61.673 377.004C63.955 372.748 64.075 364.08 61.914 359.526C59.728 354.919 56.61 353.156 48.001 351.659C39.539 350.187 36.273 348.385 33.771 343.807C32.105 340.758 32 333.653 32 224.066C32 114.479 32.105 107.374 33.771 104.325C36.273 99.7469 39.539 97.9449 48.001 96.4729C52.061 95.7669 56.494 94.4609 57.855 93.5689C61.375 91.2619 63.5 86.1179 63.5 79.8989C63.5 73.2539 61.031 68.3559 56.438 65.8929C51.95 63.4859 40.036 63.5149 32.5 65.9519ZM390.756 65.7109C385.925 68.0929 383.5 72.7109 383.5 79.5329C383.5 86.0929 385.563 91.2219 389.145 93.5689C390.506 94.4609 394.939 95.7669 398.999 96.4729C407.461 97.9449 410.727 99.7469 413.229 104.325C414.895 107.374 415 114.479 415 224.066C415 338.793 414.97 340.617 413 343.885C410.321 348.33 406.137 350.71 399.5 351.564C387.94 353.051 383.5 357.528 383.5 367.7C383.5 379.181 388.739 384.066 401.053 384.066C417.982 384.066 434.765 374.349 441.787 360.482C447.805 348.598 447.5 355.888 447.5 224.066C447.5 116.036 447.332 102.861 445.888 97.9979C440.958 81.3799 430.186 70.6079 413.568 65.6779C406.532 63.5899 395.025 63.6059 390.756 65.7109Z"
+                      fill={view === "carousel" ? "#000000" : "currentColor"}
+                    />
+                  </svg>
+                  <span>CAROUSEL</span>
                 </button>
                 <button
                   onClick={() => setView("grid")}
-                  className={`px-4 py-2 text-xs font-black tracking-wider transition-all ${
+                  className={`px-4 py-2 text-xs font-black tracking-wider transition-all flex items-center gap-2 ${
                     view === "grid"
                       ? "bg-white text-black"
                       : "bg-transparent text-white/70 hover:text-white"
                   }`}
                 >
-                  GRID
+                  <LayoutGrid className="w-4 h-4" />
+                  <span>GRID</span>
                 </button>
               </div>
             </div>

@@ -260,7 +260,97 @@ export function ProjectSlide({
 
           {/* Parallelogram shaped image - Desktop */}
           <div className="hidden lg:flex w-full lg:w-[45%] relative mr-16 items-center">
-            <div className="relative w-full h-[350px] max-h-[calc(100vh-250px)] xl:h-[420px] 2xl:h-[550px] max-w-[750px]">
+            <div className="relative w-full flex flex-col items-end">
+              {/* Aegis Easter Egg - positioned above parallelogram using flex */}
+              {title === "AEGIS" && (
+                <div className="mb-[-0px] md:mb-[-0px] xl:mb-[-0px] 2xl:mb-[-0px] z-30 pointer-events-none self-end mr-2 md:mr-4 lg:mr-6 xl:mr-0 2xl:mr-0 ml-4 md:ml-6 lg:ml-8 xl:ml-11 2xl:ml-15">
+                  <Image
+                    src="/aigis-easter-egg.png"
+                    alt="Aigis easter egg"
+                    width={120}
+                    height={120}
+                    className="object-contain w-auto h-auto max-h-[100px] md:max-h-[120px] xl:max-h-[140px] 2xl:max-h-[150px] drop-shadow-lg"
+                    quality={100}
+                  />
+                </div>
+              )}
+              <div className="relative w-full h-[350px] max-h-[calc(100vh-250px)] xl:h-[420px] 2xl:h-[550px] max-w-[750px]">
+                {/* Offset outline - rendered first (below) */}
+                <svg
+                  className="absolute pointer-events-none z-0"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    left: "30px",
+                    top: "30px",
+                  }}
+                >
+                  <polygon
+                    points="8,0 100,0 92,100 0,100"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="0.6"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                </svg>
+
+                {/* Main image border - only for Auralis */}
+                {(title === "AURALIS" || title === "IDEATE - AI WHITEBOARD") && (
+                  <svg
+                    className="absolute pointer-events-none z-20"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  >
+                    <polygon
+                      points="8,0 100,0 92,100 0,100"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="0.3"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                  </svg>
+                )}
+
+                {/* Image */}
+                <div
+                  className="absolute inset-0 z-10"
+                  style={{
+                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
+                  }}
+                >
+                  <Image
+                    src={imageUrl || "/placeholder.svg"}
+                    alt={title}
+                    fill
+                    className="object-cover opacity-100 contrast-110"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Parallelogram shaped image - Mobile */}
+          <div className="lg:hidden relative w-full flex flex-col items-end">
+            {/* Aegis Easter Egg - positioned above parallelogram using flex */}
+            {title === "AEGIS" && (
+              <div className="mb-[-0px] md:mb-[-0px] z-30 pointer-events-none self-end mr-2 md:mr-0 ml-9 md:ml-12">
+                <Image
+                  src="/aigis-easter-egg.png"
+                  alt="Aigis easter egg"
+                  width={100}
+                  height={100}
+                  className="object-contain w-auto h-auto max-h-[80px] md:max-h-[100px] drop-shadow-lg"
+                  quality={100}
+                />
+              </div>
+            )}
+            <div className="relative w-full h-64 md:h-80">
               {/* Offset outline - rendered first (below) */}
               <svg
                 className="absolute pointer-events-none z-0"
@@ -269,45 +359,43 @@ export function ProjectSlide({
                 style={{
                   width: "100%",
                   height: "100%",
-                  left: "30px",
+                  left: "20px",
                   top: "30px",
                 }}
               >
                 <polygon
-                  points="8,0 100,0 92,100 0,100"
+                  points="6,0 100,0 94,100 0,100"
                   fill="none"
                   stroke="white"
-                  strokeWidth="0.6"
+                  strokeWidth="1"
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
 
-              {/* Main image border - only for Auralis */}
-              {(title === "AURALIS" || title === "IDEATE - AI WHITEBOARD") && (
-                <svg
-                  className="absolute pointer-events-none z-20"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                  }}
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.3"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-              )}
+              {/* Main image border */}
+              <svg
+                className="absolute pointer-events-none z-20"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <polygon
+                  points="6,0 100,0 94,100 0,100"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="0.5"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
 
               {/* Image */}
               <div
                 className="absolute inset-0 z-10"
                 style={{
-                  clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
+                  clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)",
                 }}
               >
                 <Image
@@ -317,64 +405,6 @@ export function ProjectSlide({
                   className="object-cover opacity-100 contrast-110"
                 />
               </div>
-            </div>
-          </div>
-
-          {/* Parallelogram shaped image - Mobile */}
-          <div className="lg:hidden relative w-full h-64 md:h-80">
-            {/* Offset outline - rendered first (below) */}
-            <svg
-              className="absolute pointer-events-none z-0"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              style={{
-                width: "100%",
-                height: "100%",
-                left: "20px",
-                top: "30px",
-              }}
-            >
-              <polygon
-                points="6,0 100,0 94,100 0,100"
-                fill="none"
-                stroke="white"
-                strokeWidth="1"
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
-
-            {/* Main image border */}
-            <svg
-              className="absolute pointer-events-none z-20"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              style={{
-                width: "100%",
-                height: "100%",
-              }}
-            >
-              <polygon
-                points="6,0 100,0 94,100 0,100"
-                fill="none"
-                stroke="white"
-                strokeWidth="0.5"
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
-
-            {/* Image */}
-            <div
-              className="absolute inset-0 z-10"
-              style={{
-                clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)",
-              }}
-            >
-              <Image
-                src={imageUrl || "/placeholder.svg"}
-                alt={title}
-                fill
-                className="object-cover opacity-100 contrast-110"
-              />
             </div>
           </div>
         </div>

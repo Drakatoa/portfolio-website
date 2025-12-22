@@ -30,6 +30,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
   const [showVideoModal, setShowVideoModal] = useState<{ url: string; title: string } | null>(null)
   const [expandedTags, setExpandedTags] = useState<Record<string, boolean>>({})
   const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({})
+  const [hoveredAegis, setHoveredAegis] = useState(false)
   const isEmbedVideo = (url?: string) => (url?.includes("drive.google.com") || url?.includes("youtube.com") || url?.includes("youtu.be")) ?? false
 
   return (
@@ -48,8 +49,44 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
           return (
             <div
               key={project.id}
-              className="group relative bg-black border border-white/20 hover:border-white/40 transition-all overflow-hidden flex flex-col"
+              className={`group relative bg-black border border-white/20 hover:border-white/40 transition-all overflow-visible flex flex-col ${
+                project.title === "AEGIS" ? "md:mt-0 mt-20" : ""
+              }`}
+              onMouseEnter={() => project.title === "AEGIS" && setHoveredAegis(true)}
+              onMouseLeave={() => project.title === "AEGIS" && setHoveredAegis(false)}
             >
+              {/* Aegis Easter Egg - positioned on top of card */}
+              {project.title === "AEGIS" && (
+                <>
+                  {/* Mobile: Easter egg takes up space in layout */}
+                  <div className={`md:hidden flex justify-end mb-[-0px] z-30 pointer-events-none transition-opacity duration-300 ${
+                    hoveredAegis ? "opacity-100" : "opacity-0"
+                  }`}>
+                    <Image
+                      src="/aigis-easter-egg.png"
+                      alt="Aigis easter egg"
+                      width={100}
+                      height={100}
+                      className="object-contain w-auto h-auto max-h-[80px] drop-shadow-lg"
+                      quality={100}
+                    />
+                  </div>
+                  {/* Desktop: Easter egg positioned absolutely */}
+                  <div className={`hidden md:block absolute -top-14 lg:-top-11 xl:-top-14 2xl:-top-18 right-0 z-30 pointer-events-none transition-opacity duration-300 ${
+                    hoveredAegis ? "opacity-100" : "opacity-0"
+                  }`}>
+                    <Image
+                      src="/aigis-easter-egg.png"
+                      alt="Aigis easter egg"
+                      width={100}
+                      height={100}
+                      className="object-contain w-auto h-auto max-h-[100px] lg:max-h-[120px] xl:max-h-[140px] 2xl:max-h-[150px] drop-shadow-lg"
+                      quality={100}
+                    />
+                  </div>
+                </>
+              )}
+
               {/* Image */}
               <div className="relative aspect-video w-full overflow-hidden bg-white/5">
                 <Image
