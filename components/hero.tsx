@@ -1,13 +1,20 @@
 "use client"
 
 import Image from "next/image"
-import { Github, Linkedin, Mail, FileText } from "lucide-react"
+import { Github, Linkedin, Mail, FileText, ChevronDown } from "lucide-react"
 import { useState } from "react"
 
 export function Hero() {
   const [showPhoto, setShowPhoto] = useState(false)
+  
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById("projects")
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-visible pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-visible pt-20 pb-32 md:pb-40">
       <div
         className="absolute inset-0 pointer-events-none mix-blend-normal"
         style={{
@@ -211,6 +218,15 @@ export function Hero() {
       <div className="absolute top-24 right-6 text-xs text-white/40">{"[INIT]"}</div>
       <div className="absolute bottom-6 left-6 text-xs text-white/40">{"[SCROLL]"}</div>
       <div className="absolute bottom-6 right-6 text-xs text-white/40">{"[2025]"}</div>
+
+      <button
+        onClick={scrollToProjects}
+        className="absolute bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors group cursor-pointer z-20"
+        aria-label="Scroll to projects"
+      >
+        <span className="text-xs tracking-wider">{"SCROLL TO PROJECTS"}</span>
+        <ChevronDown className="w-6 h-6 animate-bounce group-hover:opacity-80" />
+      </button>
     </section>
   )
 }

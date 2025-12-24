@@ -18,7 +18,7 @@ export function About() {
             </p>
             <p className="text-lg leading-relaxed">
               I've worked on everything from tax validation at Thomson Reuters to food and beverage analytics
-              at Cinemark to solving problems on campus with clever design. Right now, I'm focused on projects that blend multimodal AI with practical interaction
+              at Cinemark to solving problems on campus with clever design. Right now, I'm focused on projects and research that blend multimodal AI with practical interaction
               design, and I'm always thinking about how to make technology more accessible and enjoyable.
             </p>
           </div>

@@ -21,6 +21,20 @@ interface ProjectSlideProps {
   devpostUrl?: string
 }
 
+// Helper function to get project color
+const getProjectColor = (projectTitle: string): string => {
+  const title = projectTitle.toUpperCase()
+  if (title.includes("PREFACE")) return "#70587C"
+  if (title.includes("AEGIS")) return "#5AD0FF"
+  if (title.includes("IDEATE")) return "#5870BC"
+  if (title.includes("INCLUSION") || title.includes("DESIGN FOR INCLUSION") || title.includes("DEI")) return "#400C23"
+  if (title.includes("ZENZ")) return "#EC76C3"
+  if (title.includes("ARC")) return "#444549"
+  if (title.includes("CSA") || title.includes("UTD")) return "#455668"
+  if (title.includes("DELHI") || title.includes("OLYMPICS") || title.includes("NEW DELHI")) return "#FF6B35"
+  return "rgba(255, 255, 255, 0.3)" // default
+}
+
 export function ProjectSlide({
   title = "Project Name",
   description = "Project Description",
@@ -43,6 +57,7 @@ export function ProjectSlide({
   const hasCaseStudy = !!caseStudyUrl
   const hasCode = !!codeUrl && codeUrl !== "#"
   const hasProject = !!projectUrl && projectUrl !== "#"
+  const projectColor = getProjectColor(title)
 
   return (
     <div className="relative w-full min-h-screen bg-black overflow-hidden text-white selection:bg-white selection:text-black">
@@ -141,6 +156,8 @@ export function ProjectSlide({
                       }}
                     >
                       <polygon points="0,0 280,0 257,50 0,50" fill="white" className="transition-all" />
+                      <polygon points="0,0 280,0 257,50 0,50" fill="none" stroke={projectColor} strokeWidth="8" />
+                      <line x1="0" y1="0" x2="0" y2="50" stroke={projectColor} strokeWidth="12" />
                     </svg>
                     <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
                       <span>VIEW PROJECT</span>
@@ -227,6 +244,8 @@ export function ProjectSlide({
                       }}
                     >
                       <polygon points="0,0 240,0 220,50 0,50" fill="white" className="transition-all" />
+                      <polygon points="0,0 240,0 220,50 0,50" fill="none" stroke={projectColor} strokeWidth="8" />
+                      <line x1="0" y1="0" x2="0" y2="50" stroke={projectColor} strokeWidth="12" />
                     </svg>
                     <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
                       <span>CASE STUDY</span>

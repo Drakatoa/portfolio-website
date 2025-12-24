@@ -26,6 +26,20 @@ interface ProjectGridProps {
   projects: Project[]
 }
 
+// Helper function to get project color
+const getProjectColor = (projectTitle: string): string => {
+  const title = projectTitle.toUpperCase()
+  if (title.includes("PREFACE")) return "#70587C"
+  if (title.includes("AEGIS")) return "#5AD0FF"
+  if (title.includes("IDEATE")) return "#5870BC"
+  if (title.includes("INCLUSION") || title.includes("DESIGN FOR INCLUSION") || title.includes("DEI")) return "#400C23"
+  if (title.includes("ZENZ")) return "#EC76C3"
+  if (title.includes("ARC")) return "#444549"
+  if (title.includes("CSA") || title.includes("UTD")) return "#455668"
+  if (title.includes("DELHI") || title.includes("OLYMPICS") || title.includes("NEW DELHI")) return "#FF6B35"
+  return "rgba(255, 255, 255, 0.3)" // default
+}
+
 export function ProjectGrid({ projects }: ProjectGridProps) {
   const [showVideoModal, setShowVideoModal] = useState<{ url: string; title: string } | null>(null)
   const [expandedTags, setExpandedTags] = useState<Record<string, boolean>>({})
@@ -177,6 +191,8 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                         style={{ width: "100%", height: "100%" }}
                       >
                         <polygon points="0,0 200,0 185,45 0,45" fill="white" />
+                        <polygon points="0,0 200,0 185,45 0,45" fill="none" stroke={getProjectColor(project.title)} strokeWidth="8" />
+                        <line x1="0" y1="0" x2="0" y2="45" stroke={getProjectColor(project.title)} strokeWidth="12" />
                       </svg>
                       <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
                         <span>CASE STUDY</span>
@@ -221,9 +237,11 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                         style={{ width: "100%", height: "100%" }}
                       >
                         <polygon points="0,0 200,0 185,45 0,45" fill="white" />
+                        <polygon points="0,0 200,0 185,45 0,45" fill="none" stroke={getProjectColor(project.title)} strokeWidth="8" />
+                        <line x1="0" y1="0" x2="0" y2="45" stroke={getProjectColor(project.title)} strokeWidth="12" />
                       </svg>
                       <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
-                        <span>VIEW</span>
+                        <span>VIEW PROJECT</span>
                         <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                       </div>
                     </a>
