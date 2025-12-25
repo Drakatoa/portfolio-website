@@ -222,3 +222,27 @@
 .flicker {
   animation: flicker 2s infinite;
 }
+
+/* Animated border highlight that circles around - smooth neon effect */
+@keyframes borderCircle {
+  0% {
+    stroke-dashoffset: 750;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animated-border {
+  animation: borderCircle 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Only trigger on button hover, not parent card hover */
+.group\/btn:hover .animated-border,
+a.group:hover .animated-border,
+button.group:hover .animated-border {
+  opacity: 1;
+}

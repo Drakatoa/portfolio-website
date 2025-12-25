@@ -40,6 +40,30 @@ const getProjectColor = (projectTitle: string): string => {
   return "rgba(255, 255, 255, 0.3)" // default
 }
 
+// Helper function to brighten a hex color
+const brightenColor = (color: string, amount: number = 0.3): string => {
+  // Handle rgba colors
+  if (color.startsWith("rgba")) {
+    return color.replace(/rgba?\(([^)]+)\)/, (_, values) => {
+      const [r, g, b, a = 1] = values.split(",").map((v: string) => parseFloat(v.trim()))
+      const brighten = (val: number) => Math.min(255, val + (255 - val) * amount)
+      return `rgba(${brighten(r)}, ${brighten(g)}, ${brighten(b)}, ${a})`
+    })
+  }
+  
+  // Handle hex colors
+  if (color.startsWith("#")) {
+    const hex = color.slice(1)
+    const num = parseInt(hex, 16)
+    const r = Math.min(255, ((num >> 16) & 0xff) + Math.floor((255 - ((num >> 16) & 0xff)) * amount))
+    const g = Math.min(255, ((num >> 8) & 0xff) + Math.floor((255 - ((num >> 8) & 0xff)) * amount))
+    const b = Math.min(255, (num & 0xff) + Math.floor((255 - (num & 0xff)) * amount))
+    return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`
+  }
+  
+  return color
+}
+
 export function ProjectGrid({ projects }: ProjectGridProps) {
   const [showVideoModal, setShowVideoModal] = useState<{ url: string; title: string } | null>(null)
   const [expandedTags, setExpandedTags] = useState<Record<string, boolean>>({})
@@ -179,115 +203,174 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
 
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-2 mt-auto">
-                  {hasCaseStudy && (
-                    <Link
-                      href={project.links.caseStudy!}
-                      className="group/btn relative inline-block transition-transform hover:translate-x-1"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 200 45"
-                        preserveAspectRatio="none"
-                        style={{ width: "100%", height: "100%" }}
-                      >
-                        <polygon points="0,0 200,0 185,45 0,45" fill="white" />
-                        <polygon points="0,0 200,0 185,45 0,45" fill="none" stroke={getProjectColor(project.title)} strokeWidth="8" />
-                        <line x1="0" y1="0" x2="0" y2="45" stroke={getProjectColor(project.title)} strokeWidth="12" />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
-                        <span>CASE STUDY</span>
-                        <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                      </div>
-                    </Link>
-                  )}
+                  {(() => {
+                    // Build arrays of buttons - colored border buttons first, then others
+                    const coloredBorderButtons: React.ReactNode[] = []
+                    const otherButtons: React.ReactNode[] = []
+                    const projectColor = getProjectColor(project.title)
 
-                  {hasCode && (
-                    <a
-                      href={project.links.code}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/btn relative inline-block transition-transform hover:translate-x-1"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 120 45"
-                        preserveAspectRatio="none"
-                        style={{ width: "100%", height: "100%" }}
-                      >
-                        <polygon points="0,0 120,0 110,45 0,45" fill="white" />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
-                        <span>CODE</span>
-                        <Code className="w-4 h-4 transition-transform group-hover/btn:scale-110 group-hover/btn:rotate-12" />
-                      </div>
-                    </a>
-                  )}
+                    // VIEW PROJECT - colored border button
+                    if (hasProject) {
+                      const brightColor = brightenColor(projectColor, 0.4)
+                      coloredBorderButtons.push(
+                        <a
+                          key="view-project"
+                          href={project.links.project}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/btn relative inline-block transition-transform hover:translate-x-1"
+                        >
+                          <svg
+                            className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                            viewBox="0 0 200 45"
+                            preserveAspectRatio="none"
+                            style={{ width: "100%", height: "100%" }}
+                          >
+                            <polygon points="0,0 200,0 185,45 0,45" fill="white" />
+                            <polygon points="0,0 200,0 185,45 0,45" fill="none" stroke={projectColor} strokeWidth="8" />
+                            {/* Animated brighter border that circles around - smooth neon effect */}
+                            <polygon
+                              points="0,0 200,0 185,45 0,45"
+                              fill="none"
+                              stroke={brightColor}
+                              strokeWidth="8"
+                              className="animated-border"
+                              style={{
+                                strokeDasharray: "250 500",
+                                strokeLinecap: "round",
+                              }}
+                            />
+                          </svg>
+                          <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
+                            <span>VIEW PROJECT</span>
+                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                          </div>
+                        </a>
+                      )
+                    }
 
-                  {hasProject && (
-                    <a
-                      href={project.links.project}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/btn relative inline-block transition-transform hover:translate-x-1"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 200 45"
-                        preserveAspectRatio="none"
-                        style={{ width: "100%", height: "100%" }}
-                      >
-                        <polygon points="0,0 200,0 185,45 0,45" fill="white" />
-                        <polygon points="0,0 200,0 185,45 0,45" fill="none" stroke={getProjectColor(project.title)} strokeWidth="8" />
-                        <line x1="0" y1="0" x2="0" y2="45" stroke={getProjectColor(project.title)} strokeWidth="12" />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
-                        <span>VIEW PROJECT</span>
-                        <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                      </div>
-                    </a>
-                  )}
+                    // CASE STUDY - colored border button
+                    if (hasCaseStudy) {
+                      const brightColor = brightenColor(projectColor, 0.4)
+                      coloredBorderButtons.push(
+                        <Link
+                          key="case-study"
+                          href={project.links.caseStudy!}
+                          className="group/btn relative inline-block transition-transform hover:translate-x-1"
+                        >
+                          <svg
+                            className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                            viewBox="0 0 200 45"
+                            preserveAspectRatio="none"
+                            style={{ width: "100%", height: "100%" }}
+                          >
+                            <polygon points="0,0 200,0 185,45 0,45" fill="white" />
+                            <polygon points="0,0 200,0 185,45 0,45" fill="none" stroke={projectColor} strokeWidth="8" />
+                            {/* Animated brighter border that circles around - smooth neon effect */}
+                            <polygon
+                              points="0,0 200,0 185,45 0,45"
+                              fill="none"
+                              stroke={brightColor}
+                              strokeWidth="8"
+                              className="animated-border"
+                              style={{
+                                strokeDasharray: "250 500",
+                                strokeLinecap: "round",
+                              }}
+                            />
+                          </svg>
+                          <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
+                            <span>CASE STUDY</span>
+                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                          </div>
+                        </Link>
+                      )
+                    }
 
-                  {hasVideo && (
-                    <button
-                      onClick={() => setShowVideoModal({ url: project.links.videoUrl!, title: project.title })}
-                      className="group/btn relative inline-block transition-transform hover:translate-x-1"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 180 45"
-                        preserveAspectRatio="none"
-                        style={{ width: "100%", height: "100%" }}
-                      >
-                        <polygon points="0,0 180,0 165,45 0,45" fill="white" />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
-                        <span>{project.links.videoLabel || "VIDEO"}</span>
-                        <Play className="w-4 h-4 transition-transform group-hover/btn:scale-110" />
-                      </div>
-                    </button>
-                  )}
+                    // CODE - other button
+                    if (hasCode) {
+                      otherButtons.push(
+                        <a
+                          key="code"
+                          href={project.links.code}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/btn relative inline-block transition-transform hover:translate-x-1"
+                        >
+                          <svg
+                            className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                            viewBox="0 0 120 45"
+                            preserveAspectRatio="none"
+                            style={{ width: "100%", height: "100%" }}
+                          >
+                            <polygon points="0,0 120,0 110,45 0,45" fill="white" />
+                          </svg>
+                          <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
+                            <span>CODE</span>
+                            <Code className="w-4 h-4 transition-transform group-hover/btn:scale-110 group-hover/btn:rotate-12" />
+                          </div>
+                        </a>
+                      )
+                    }
 
-                  {project.links.devpost && (
-                    <a
-                      href={project.links.devpost}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/btn relative inline-block transition-transform hover:translate-x-1"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 160 45"
-                        preserveAspectRatio="none"
-                        style={{ width: "100%", height: "100%" }}
-                      >
-                        <polygon points="0,0 160,0 148,45 0,45" fill="white" />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
-                        <span>DEVPOST</span>
-                        <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                      </div>
-                    </a>
-                  )}
+                    // VIDEO - other button
+                    if (hasVideo) {
+                      otherButtons.push(
+                        <button
+                          key="video"
+                          onClick={() => setShowVideoModal({ url: project.links.videoUrl!, title: project.title })}
+                          className="group/btn relative inline-block transition-transform hover:translate-x-1"
+                        >
+                          <svg
+                            className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                            viewBox="0 0 180 45"
+                            preserveAspectRatio="none"
+                            style={{ width: "100%", height: "100%" }}
+                          >
+                            <polygon points="0,0 180,0 165,45 0,45" fill="white" />
+                          </svg>
+                          <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
+                            <span>{project.links.videoLabel || "VIDEO"}</span>
+                            <Play className="w-4 h-4 transition-transform group-hover/btn:scale-110" />
+                          </div>
+                        </button>
+                      )
+                    }
+
+                    // DEVPOST - other button
+                    if (project.links.devpost) {
+                      otherButtons.push(
+                        <a
+                          key="devpost"
+                          href={project.links.devpost}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/btn relative inline-block transition-transform hover:translate-x-1"
+                        >
+                          <svg
+                            className="absolute inset-0 pointer-events-none transition-all group-hover/btn:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                            viewBox="0 0 160 45"
+                            preserveAspectRatio="none"
+                            style={{ width: "100%", height: "100%" }}
+                          >
+                            <polygon points="0,0 160,0 148,45 0,45" fill="white" />
+                          </svg>
+                          <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
+                            <span>DEVPOST</span>
+                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                          </div>
+                        </a>
+                      )
+                    }
+
+                    // Render colored border buttons first, then other buttons
+                    return (
+                      <>
+                        {coloredBorderButtons}
+                        {otherButtons}
+                      </>
+                    )
+                  })()}
                 </div>
               </div>
             </div>
