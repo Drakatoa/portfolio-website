@@ -325,7 +325,7 @@ export default function AegisCaseStudy() {
                   <polygon
                     points="8,0 100,0 92,100 0,100"
                     fill="none"
-                    stroke="#5AD0FF"
+                    stroke="#FFFFFF"
                     strokeWidth="0.5"
                     vectorEffect="non-scaling-stroke"
                   />

@@ -127,9 +127,9 @@ export function Hero() {
             </div>
 
             <div className="flex items-center gap-4 mb-8">
-              <div className="h-px w-12 bg-white/40" />
+              <div className="h-px w-28 bg-white/40" />
               <span className="text-lg">✦</span>
-              <div className="h-px w-12 bg-white/40" />
+              <div className="h-px w-28 bg-white/40" />
             </div>
 
             
