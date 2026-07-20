@@ -36,22 +36,31 @@ export function About() {
               </p>
             </div>
 
-            <div className="border border-white/20 p-6 relative">
+            <div className="border border-white/20 p-6">
               <h3 className="text-xs text-white/60 mb-4">{"[EDUCATION]"}</h3>
-              <p className="text-lg font-bold mb-1">{"Georgia Institute of Technology"}</p>
-              <p className="text-sm text-white/60 mb-2">{"M.S. Computer Science, AI Specialization"}</p>
-              <p className="text-xs text-white/40 mb-4">{"Aug 2026 - Dec 2027"}</p>
-              <p className="text-lg font-bold mb-1">{"University of Texas at Dallas"}</p>
-              <p className="text-sm text-white/60 mb-2">{"B.S. Computer Science, CS² Honors | GPA 3.965"}</p>
-              <p className="text-sm text-white/60">{"Certificate in Applied Experience Design and Research"}</p>
-              <p className="text-xs text-white/40 mt-3">{"Graduated May 2026"}</p>
-
-              <div className="absolute bottom-6 right-6 w-24 h-12">
+              <div className="relative mb-6 pb-3">
+                <p className="text-lg font-bold mb-1">{"Georgia Institute of Technology"}</p>
+                <p className="text-sm text-white/60 mb-2">{"M.S. Computer Science, AI Specialization"}</p>
+                <p className="text-xs text-white/40">{"Aug 2026 - Dec 2027"}</p>
+                <Image
+                  src="/Georgia-Tech.png"
+                  alt="Georgia Tech logo"
+                  width={96}
+                  height={54}
+                  className="absolute bottom-0 right-0 w-12 h-auto object-contain opacity-75"
+                />
+              </div>
+              <div className="relative">
+                <p className="text-lg font-bold mb-1">{"University of Texas at Dallas"}</p>
+                <p className="text-sm text-white/60 mb-2">{"B.S. Computer Science, CS² Honors | GPA 3.965"}</p>
+                <p className="text-sm text-white/60">{"Certificate in Applied Experience Design and Research"}</p>
+                <p className="text-xs text-white/40 mt-3">{"Graduated May 2026"}</p>
                 <Image
                   src="/utdlogo.png"
                   alt="UT Dallas logo"
-                  fill
-                  className="object-contain opacity-75"
+                  width={96}
+                  height={96}
+                  className="absolute bottom-0 right-0 w-10 h-auto object-contain opacity-75"
                 />
               </div>
             </div>
