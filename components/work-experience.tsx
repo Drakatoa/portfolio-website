@@ -3,6 +3,15 @@ import Image from "next/image"
 export function WorkExperience() {
   const experiences = [
     {
+      title: "Software Engineer Intern",
+      company: "Samsung Electronics America, Plano, TX",
+      period: "Jun 2026 - Present",
+      description:
+        "Architected an agentic AI system that autonomously diagnoses RAN network alarms end-to-end, cutting field-engineer diagnosis time from ~2 hours to 10-20 minutes. Designed a plan-and-execute agent (LLM planner, ReAct execution loop, verification) with confidence gating and human-in-the-loop escalation. Built a RAG pipeline over a LanceDB knowledge base of alarm runbooks with local LLM inference on Ollama across on-prem NVIDIA A30 GPUs, and a read-only MCP server exposing 100+ network diagnostic tools to LLM agents. Also designed an in-platform AI chatbot for the Optimus (Django + React) system used by field engineers.",
+      technologies: ["Python", "LLM Agents", "RAG", "MCP", "Ollama", "LanceDB", "Django", "React"],
+      logo: "/samsunglogo.png",
+    },
+    {
       title: "Data Science Intern",
       company: "Cinemark Theatres, Plano, TX",
       period: "Jun 2025 - Aug 2025",

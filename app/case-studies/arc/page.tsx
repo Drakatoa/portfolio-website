@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { CaseStudyNav } from "@/components/case-study-nav"
 import { ArrowLeft, ArrowUpRight, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import { useState, useEffect } from "react"
 
@@ -152,6 +153,8 @@ export default function ARCPage() {
         </div>
       </div>
 
+      <CaseStudyNav />
+
       {/* Hero Section */}
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
@@ -172,7 +175,7 @@ export default function ARCPage() {
           </div>
 
           <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl">
-            An IoT fitness ecosystem that turns workout data into something that actually matters. Instead of just counting reps, ARC uses AI to understand how hard you're really pushing, such as when you're close to failure, how your form changes, and what your recovery looks like. It's about making fitness more meaningful by showing you the effort that actually drives progress.
+            Your fitness tracker counts reps. It has no idea how hard you actually worked. ARC is an IoT fitness ecosystem that uses AI to read effort quality (near-failure moments, form breakdown, recovery patterns) and turns raw workout data into the insight that actually drives progress.
           </p>
         </div>
       </section>
@@ -592,6 +595,30 @@ export default function ARCPage() {
       </section>
 
       {/* Footer */}
+      <section className="relative border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">RESULTS & IMPACT</h2>
+          <div className="h-px w-full bg-white/20 mb-16" />
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">6+</p>
+              <p className="text-sm text-white/60 leading-relaxed">Final screens spanning dashboard, workout detail, progress, profile, and social</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">4</p>
+              <p className="text-sm text-white/60 leading-relaxed">AI insight types: effort quality, near-failure detection, form guidance, recovery</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">1</p>
+              <p className="text-sm text-white/60 leading-relaxed">Interactive prototype of the full ecosystem</p>
+            </div>
+          </div>
+          <p className="text-lg text-white/80 leading-relaxed max-w-3xl">
+            Delivered: brand identity, a full screen suite, and an interactive prototype. Projected impact: effort-aware feedback reframes progress around quality instead of volume, the metric gap that makes people abandon fitness trackers.
+          </p>
+        </div>
+      </section>
+
       <footer className="relative border-t border-white/20 py-12 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <Link

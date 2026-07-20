@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { ArrowLeft, ArrowUpRight, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import Link from "next/link"
+import { CaseStudyNav } from "@/components/case-study-nav"
 import { useState, useEffect } from "react"
 
 export default function InclusionCaseStudy() {
@@ -155,6 +156,8 @@ export default function InclusionCaseStudy() {
         </div>
       </div>
 
+      <CaseStudyNav />
+
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-8">
@@ -176,7 +179,7 @@ export default function InclusionCaseStudy() {
 
           <div className="max-w-full">
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mb-8">
-              This is my HCI research examining nonbinary student experiences at UT Dallas after 28% reported not feeling a sense of belonging. I conducted qualitative interviews revealing students only found resources through informal networks and existing policies lacked enforcement. I then proposed three interventions: a centralized LGBTQ+ resource hub, an anonymous feedback system for misgendering incidents, and an inclusive event feed. Presented findings to UTD faculty.
+              28% of nonbinary students at UT Dallas don't feel they belong, and the resources meant to help them are effectively invisible. My HCI research traces why: students discover support only through informal networks, and existing policies lack enforcement. I proposed three structural interventions (a centralized LGBTQ+ resource hub, an anonymous feedback system for misgendering incidents, and an inclusive event feed) and presented them to UTD faculty and administration.
             </p>
             <div className="inline-block bg-purple-500/20 border border-purple-500/30 px-6 py-3">
               <p className="text-sm font-bold tracking-wide">
@@ -905,6 +908,30 @@ export default function InclusionCaseStudy() {
               </div>
             </a>
           </div>
+        </div>
+      </section>
+
+      <section className="relative border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">RESULTS & IMPACT</h2>
+          <div className="h-px w-full bg-white/20 mb-16" />
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">28%</p>
+              <p className="text-sm text-white/60 leading-relaxed">Of nonbinary students reported not feeling a sense of belonging, the stat that started this research</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">3</p>
+              <p className="text-sm text-white/60 leading-relaxed">Structural interventions proposed: resource hub, anonymous feedback system, inclusive event feed</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">1</p>
+              <p className="text-sm text-white/60 leading-relaxed">Presentation of findings delivered to UTD faculty and administration</p>
+            </div>
+          </div>
+          <p className="text-lg text-white/80 leading-relaxed max-w-3xl">
+            Delivered: interview findings, personas, journey maps, and design recommendations that reframe campus support from performative to structural.
+          </p>
         </div>
       </section>
 

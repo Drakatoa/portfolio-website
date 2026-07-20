@@ -9,12 +9,30 @@ import { LayoutGrid } from "lucide-react"
 type FilterType = "all" | "case-studies" | "code"
 type ViewType = "carousel" | "grid"
 
+interface Project {
+  id: string
+  title: string
+  description: string
+  tech: string[]
+  status: string
+  image: string
+  links: {
+    project?: string
+    projectLabel?: string
+    code?: string
+    caseStudy?: string
+    videoUrl?: string
+    videoLabel?: string
+    devpost?: string
+  }
+}
+
 export function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [filter, setFilter] = useState<FilterType>("all")
   const [view, setView] = useState<ViewType>("carousel")
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: "001",
       title: "PREFACE",
@@ -48,6 +66,20 @@ export function Projects() {
       },
     },
     {
+      id: "012",
+      title: "SONARE.LIVE",
+      description:
+        "What if your webcam was a rhythm game controller? A fully client-side lyric performance game built for the Hatsune Miku 'Magical Mirai 2026' Programming Contest. Draw shapes with your mouse or your bare hands to perform lyrics in real time. MediaPipe hand tracking with 1-Euro filtering feeds a custom shape-recognition pipeline, while a 4-layer procedural animation system drives a VRM character with lip-sync, music-driven emotion, and pointer-relative gaze. No UI framework, no backend, and inference runs in a Web Worker to protect render FPS.",
+      tech: ["JavaScript", "Vite", "Three.js", "MediaPipe", "WebGL/GLSL", "Web Workers"],
+      status: "COMPLETE",
+      image: "/sonare.live.png",
+      links: {
+        project: "https://porukana.itch.io/sonarelive",
+        projectLabel: "PLAY GAME",
+        code: "https://github.com/Drakatoa/magical-mirai-competition-2026",
+      },
+    },
+    {
       id: "003",
       title: "PROJECT PAWKOUR",
       description:
@@ -68,7 +100,7 @@ export function Projects() {
       description:
         "A sound generation platform that creates studio-quality audio effects from text prompts. Uses PyTorch AudioLDM for real-time synthesis with CUDA acceleration and Google Gemini for adaptive prompt refinement. Built the frontend with Next.js and Supabase auth, plus a Flask REST API backend for low-latency audio streaming. Includes a public sound library with likes and engagement tracking.",
       tech: ["Next.js", "Flask", "PyTorch AudioLDM", "PostgreSQL", "Supabase", "Gemini API"],
-      status: "IN PROGRESS",
+      status: "COMPLETE",
       image: "/auralisproject.png",
       links: {
         code: "https://github.com/Drakatoa/Auralis",
@@ -88,6 +120,31 @@ export function Projects() {
         devpost: "https://devpost.com/software/ideate-mratxn",
         videoUrl: "https://www.youtube.com/embed/2ebeNaF3sto",
         videoLabel: "WATCH DEMO",
+      },
+    },
+    {
+      id: "013",
+      title: "ARRESTORIQ",
+      description:
+        "10,000+ flame arrestor configurations, one validated platform. An industry-sponsored UTD capstone for Emerson unifying test data, CFD simulation, and bill-of-materials records in a single cross-platform desktop and mobile app. Data is ingested through the Emerson Data Interchange standard via a Haxe-compiled parsing engine that runs natively in both JavaScript and Python. The full product catalog is embedded for offline-first operation, a regression engine fits four model types to pressure-drop data for cross-product comparison, and hierarchical BOM trees deep-link into Emerson's records, with search running ~5x faster than Emerson's internal tool.",
+      tech: ["React Native", "Expo", "Electron", "TypeScript", "Haxe", "Python"],
+      status: "COMPLETE",
+      image: "/arrestoriq.png",
+      links: {
+        project: "/arrestoriqposter.pdf",
+        projectLabel: "VIEW POSTER",
+      },
+    },
+    {
+      id: "014",
+      title: "EUKARYA",
+      description:
+        "Evolve from a single cell to a creature that walks on land. A Unity evolution simulator spanning six evolutionary stages across both 2D top-down and full 3D environments, including a transition mechanic that lets you breach the water's surface. Built the camera system, UI/UX, and audio architecture with a persistent cross-scene music manager, plus health, stamina, and overhealth mechanics driven by an edge-detection state machine that fires damage exactly once per attack.",
+      tech: ["Unity", "C#", "Blender", "Figma"],
+      status: "COMPLETE",
+      image: "/eukarya.png",
+      links: {
+        code: "https://github.com/a-sriel/Eukarya",
       },
     },
     {
@@ -189,6 +246,22 @@ export function Projects() {
     }
   }, [])
 
+  // Deep-linking: ?filter=case-studies preselects the filter (used by the nav),
+  // and the nav dispatches an event when already on the home page
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const applyFilter = (value: unknown) => {
+      if (value === "all" || value === "case-studies" || value === "code") {
+        setFilter(value)
+        setCurrentIndex(0)
+      }
+    }
+    applyFilter(new URLSearchParams(window.location.search).get("filter"))
+    const onSetFilter = (e: Event) => applyFilter((e as CustomEvent).detail)
+    window.addEventListener("projects:set-filter", onSetFilter)
+    return () => window.removeEventListener("projects:set-filter", onSetFilter)
+  }, [])
+
   // Persist preferences to localStorage whenever they change
   useEffect(() => {
     if (typeof window === "undefined") return
@@ -229,10 +302,35 @@ export function Projects() {
     setCurrentIndex(0)
   }
 
+  // Project counts per filter, shown in the tab labels
+  const counts = useMemo(
+    () => ({
+      all: projects.length,
+      caseStudies: projects.filter((p) => p.status === "CASE STUDY").length,
+      code: projects.filter((p) => p.links.code && p.links.code !== "#").length,
+    }),
+    [],
+  )
+
+  // Keyboard navigation for the carousel
+  useEffect(() => {
+    if (view !== "carousel") return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") handleNext()
+      if (e.key === "ArrowLeft") handlePrev()
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [view, filteredProjects.length])
+
   return (
     <section id="projects" className="relative">
-      <div className="relative w-full min-h-screen bg-black overflow-hidden text-white">
-        <div className="relative z-10 w-full flex flex-col p-6 md:p-8 lg:p-16">
+      <div
+        className={`relative w-full bg-black overflow-hidden text-white ${
+          view === "carousel" ? "carousel-full" : "min-h-screen"
+        }`}
+      >
+        <div className="relative z-10 w-full lg:h-full flex flex-col p-6 md:p-8 lg:px-16 lg:pt-16 lg:pb-0">
           {/* Header */}
           <div className="w-full mb-6 lg:mb-8">
             <div className="flex items-center justify-between mb-6">
@@ -252,7 +350,7 @@ export function Projects() {
                       : "bg-transparent text-white/70 border-white/30 hover:border-white/50 hover:text-white"
                   }`}
                 >
-                  ALL
+                  ALL ({counts.all})
                 </button>
                 <button
                   onClick={() => handleFilterChange("case-studies")}
@@ -262,7 +360,7 @@ export function Projects() {
                       : "bg-transparent text-white/70 border-white/30 hover:border-white/50 hover:text-white"
                   }`}
                 >
-                  CASE STUDIES
+                  CASE STUDIES ({counts.caseStudies})
                 </button>
                 <button
                   onClick={() => handleFilterChange("code")}
@@ -272,7 +370,7 @@ export function Projects() {
                       : "bg-transparent text-white/70 border-white/30 hover:border-white/50 hover:text-white"
                   }`}
                 >
-                  CODE
+                  CODE ({counts.code})
                 </button>
               </div>
 
@@ -320,7 +418,7 @@ export function Projects() {
 
           {/* Content Area */}
           {view === "carousel" ? (
-            <div className="flex-1 -mx-6 md:-mx-8 lg:-mx-16">
+            <div className="flex-1 min-h-0 -mx-6 md:-mx-8 lg:-mx-16 relative">
               <ProjectSlide
                 title={currentProject?.title || "Project Name"}
                 description={currentProject?.description || "Project Description"}
@@ -330,6 +428,7 @@ export function Projects() {
                 index={adjustedIndex + 1}
                 total={filteredProjects.length}
                 projectUrl={currentProject?.links.project}
+                projectLabel={currentProject?.links.projectLabel}
                 codeUrl={currentProject?.links.code}
                 caseStudyUrl={currentProject?.links.caseStudy}
                 videoUrl={currentProject?.links.videoUrl}
@@ -338,6 +437,29 @@ export function Projects() {
                 onNext={handleNext}
                 onPrev={handlePrev}
               />
+
+              {/* Position dots - one per project, tooltip with name on hover */}
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center gap-2">
+                {filteredProjects.map((p, i) => (
+                  <button
+                    key={p.id}
+                    onClick={() => setCurrentIndex(i)}
+                    aria-label={`Go to ${p.title}`}
+                    className="group relative p-1.5"
+                  >
+                    <span
+                      className={`block w-2.5 h-2.5 rounded-full border border-white transition-all ${
+                        i === safeIndex
+                          ? "bg-white scale-125"
+                          : "bg-transparent group-hover:bg-white/50"
+                      }`}
+                    />
+                    <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap border border-white/30 bg-black/90 px-2.5 py-1 text-[10px] font-black tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                      {p.title}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
           ) : (
             <div className="flex-1">

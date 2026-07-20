@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { ArrowLeft, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Code } from "lucide-react"
 import Link from "next/link"
+import { CaseStudyNav } from "@/components/case-study-nav"
 import { useState, useEffect } from "react"
 
 export default function AegisCaseStudy() {
@@ -160,6 +161,8 @@ export default function AegisCaseStudy() {
         </div>
       </div>
 
+      <CaseStudyNav />
+
       {/* Hero Section */}
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
@@ -200,7 +203,7 @@ export default function AegisCaseStudy() {
 
           <div className="max-w-full">
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mb-8">
-              A lightweight browser extension that puts trust and privacy back in your hands. Aegis shows you real-time website safety scores. The community reports threats, and smart autofill protects your data without slowing you down.
+              You shouldn't need a security degree to shop online safely. Aegis is a lightweight extension that scores every site's trustworthiness in real time, lets the community flag threats automated scanners miss, and withholds your sensitive data from sites that haven't earned it.
             </p>
             <div className="inline-block bg-[#5AD0FF]/10 border border-[#5AD0FF]/50 px-6 py-3">
               <p className="text-sm font-bold tracking-wide text-[#5AD0FF]">
@@ -1003,6 +1006,30 @@ export default function AegisCaseStudy() {
       </section>
 
       {/* Footer */}
+      <section className="relative border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">RESULTS & IMPACT</h2>
+          <div className="h-px w-full bg-white/20 mb-16" />
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">{"<500KB"}</p>
+              <p className="text-sm text-white/60 leading-relaxed">Total extension footprint: vanilla JavaScript, Manifest v3, no framework</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">3</p>
+              <p className="text-sm text-white/60 leading-relaxed">Layers of protection: trust scores, community threat reporting, risk-aware autofill</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">10/10</p>
+              <p className="text-sm text-white/60 leading-relaxed">Nielsen heuristics addressed in the post-testing redesign</p>
+            </div>
+          </div>
+          <p className="text-lg text-white/80 leading-relaxed max-w-3xl">
+            Delivered: a working Chrome extension with popup UI, content scripts, and a background service worker, backed by Supabase with Row Level Security. User testing drove a full heuristic revision pass, and the before/after screens above show every fix.
+          </p>
+        </div>
+      </section>
+
       <footer className="relative border-t border-white/30 py-12 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <Link

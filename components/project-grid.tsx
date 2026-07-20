@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight, Code, Play, X } from "lucide-react"
 import { useState } from "react"
+import { getProjectColor, brightenColor } from "@/lib/project-colors"
 
 interface Project {
   id: string
@@ -14,6 +15,7 @@ interface Project {
   image: string
   links: {
     project?: string
+    projectLabel?: string
     code?: string
     caseStudy?: string
     videoUrl?: string
@@ -24,44 +26,6 @@ interface Project {
 
 interface ProjectGridProps {
   projects: Project[]
-}
-
-// Helper function to get project color
-const getProjectColor = (projectTitle: string): string => {
-  const title = projectTitle.toUpperCase()
-  if (title.includes("PREFACE")) return "#70587C"
-  if (title.includes("AEGIS")) return "#5AD0FF"
-  if (title.includes("IDEATE")) return "#5870BC"
-  if (title.includes("INCLUSION") || title.includes("DESIGN FOR INCLUSION") || title.includes("DEI")) return "#400C23"
-  if (title.includes("ZENZ")) return "#EC76C3"
-  if (title.includes("ARC")) return "#444549"
-  if (title.includes("CSA") || title.includes("UTD")) return "#455668"
-  if (title.includes("DELHI") || title.includes("OLYMPICS") || title.includes("NEW DELHI")) return "#FF6B35"
-  return "rgba(255, 255, 255, 0.3)" // default
-}
-
-// Helper function to brighten a hex color
-const brightenColor = (color: string, amount: number = 0.3): string => {
-  // Handle rgba colors
-  if (color.startsWith("rgba")) {
-    return color.replace(/rgba?\(([^)]+)\)/, (_, values) => {
-      const [r, g, b, a = 1] = values.split(",").map((v: string) => parseFloat(v.trim()))
-      const brighten = (val: number) => Math.min(255, val + (255 - val) * amount)
-      return `rgba(${brighten(r)}, ${brighten(g)}, ${brighten(b)}, ${a})`
-    })
-  }
-  
-  // Handle hex colors
-  if (color.startsWith("#")) {
-    const hex = color.slice(1)
-    const num = parseInt(hex, 16)
-    const r = Math.min(255, ((num >> 16) & 0xff) + Math.floor((255 - ((num >> 16) & 0xff)) * amount))
-    const g = Math.min(255, ((num >> 8) & 0xff) + Math.floor((255 - ((num >> 8) & 0xff)) * amount))
-    const b = Math.min(255, (num & 0xff) + Math.floor((255 - (num & 0xff)) * amount))
-    return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`
-  }
-  
-  return color
 }
 
 export function ProjectGrid({ projects }: ProjectGridProps) {
@@ -226,11 +190,11 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                             preserveAspectRatio="none"
                             style={{ width: "100%", height: "100%" }}
                           >
-                            <polygon points="0,0 200,0 185,45 0,45" fill="white" />
-                            <polygon points="0,0 200,0 185,45 0,45" fill="none" stroke={projectColor} strokeWidth="8" />
+                            <polygon points="0,0 200,0 188.8,45 0,45" fill="white" />
+                            <polygon points="0,0 200,0 188.8,45 0,45" fill="none" stroke={projectColor} strokeWidth="8" />
                             {/* Animated brighter border that circles around - smooth neon effect */}
                             <polygon
-                              points="0,0 200,0 185,45 0,45"
+                              points="0,0 200,0 188.8,45 0,45"
                               fill="none"
                               stroke={brightColor}
                               strokeWidth="8"
@@ -242,7 +206,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                             />
                           </svg>
                           <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
-                            <span>VIEW PROJECT</span>
+                            <span>{project.links.projectLabel || "VIEW PROJECT"}</span>
                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                           </div>
                         </a>
@@ -264,11 +228,11 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                             preserveAspectRatio="none"
                             style={{ width: "100%", height: "100%" }}
                           >
-                            <polygon points="0,0 200,0 185,45 0,45" fill="white" />
-                            <polygon points="0,0 200,0 185,45 0,45" fill="none" stroke={projectColor} strokeWidth="8" />
+                            <polygon points="0,0 200,0 188.8,45 0,45" fill="white" />
+                            <polygon points="0,0 200,0 188.8,45 0,45" fill="none" stroke={projectColor} strokeWidth="8" />
                             {/* Animated brighter border that circles around - smooth neon effect */}
                             <polygon
-                              points="0,0 200,0 185,45 0,45"
+                              points="0,0 200,0 188.8,45 0,45"
                               fill="none"
                               stroke={brightColor}
                               strokeWidth="8"
@@ -303,7 +267,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                             preserveAspectRatio="none"
                             style={{ width: "100%", height: "100%" }}
                           >
-                            <polygon points="0,0 120,0 110,45 0,45" fill="white" />
+                            <polygon points="0,0 120,0 108.8,45 0,45" fill="white" />
                           </svg>
                           <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
                             <span>CODE</span>
@@ -327,7 +291,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                             preserveAspectRatio="none"
                             style={{ width: "100%", height: "100%" }}
                           >
-                            <polygon points="0,0 180,0 165,45 0,45" fill="white" />
+                            <polygon points="0,0 180,0 168.8,45 0,45" fill="white" />
                           </svg>
                           <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
                             <span>{project.links.videoLabel || "VIDEO"}</span>
@@ -353,7 +317,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                             preserveAspectRatio="none"
                             style={{ width: "100%", height: "100%" }}
                           >
-                            <polygon points="0,0 160,0 148,45 0,45" fill="white" />
+                            <polygon points="0,0 160,0 148.8,45 0,45" fill="white" />
                           </svg>
                           <div className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 font-black text-sm italic tracking-tighter text-black whitespace-nowrap">
                             <span>DEVPOST</span>

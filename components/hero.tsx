@@ -1,8 +1,19 @@
 "use client"
 
 import Image from "next/image"
+import dynamic from "next/dynamic"
 import { Github, Linkedin, Mail, FileText, ChevronDown } from "lucide-react"
 import { useState } from "react"
+
+const AsciiAvatar = dynamic(
+  () => import("./ascii-avatar").then((m) => m.AsciiAvatar),
+  {
+    ssr: false,
+    loading: () => (
+      <Image src="/ascii-art.png" alt="ASCII Art Profile" fill className="w-full h-full object-contain" />
+    ),
+  },
+)
 
 export function Hero() {
   const [showPhoto, setShowPhoto] = useState(false)
@@ -162,7 +173,7 @@ export function Hero() {
                 preserveAspectRatio="none"
               >
                 <polygon
-                  points="48,0 600,0 552,400 0,400"
+                  points="99.7,0 600,0 500.3,400 0,400"
                   fill="none"
                   stroke="white"
                   strokeWidth="5"
@@ -173,24 +184,11 @@ export function Hero() {
                 <div
                   className="w-full h-full overflow-hidden"
                   style={{
-                    clipPath: "polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%)",
+                    clipPath: "polygon(99.7px 0, 100% 0, calc(100% - 99.7px) 100%, 0 100%)",
                   }}
                 >
-                  <Image
-                    src="/IMG_2934.jpeg"
-                    alt="Rajit Goel"
-                    fill
-                    className="w-full h-full object-cover contrast-125"
-                  />
-                  <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${
-                    showPhoto ? 'opacity-0' : 'opacity-100'
-                  }`}>
-                    <Image
-                      src="/ascii-art.png"
-                      alt="ASCII Art Profile"
-                      fill
-                      className="w-full h-full object-contain"
-                    />
+                  <div className="absolute inset-0 bg-black">
+                    <AsciiAvatar className="absolute inset-0 w-full h-full" />
                   </div>
                 </div>
                 <svg
@@ -201,7 +199,7 @@ export function Hero() {
                   preserveAspectRatio="none"
                 >
                   <polygon
-                    points="48,0 600,0 552,400 0,400"
+                    points="99.7,0 600,0 500.3,400 0,400"
                     fill="none"
                     stroke="white"
                     strokeWidth="2"
@@ -217,7 +215,7 @@ export function Hero() {
       <div className="absolute top-24 left-6 text-xs text-white/40">{"[001]"}</div>
       <div className="absolute top-24 right-6 text-xs text-white/40">{"[INIT]"}</div>
       <div className="absolute bottom-6 left-6 text-xs text-white/40">{"[SCROLL]"}</div>
-      <div className="absolute bottom-6 right-6 text-xs text-white/40">{"[2025]"}</div>
+      <div className="absolute bottom-6 right-6 text-xs text-white/40">{"[2026]"}</div>
 
       <button
         onClick={scrollToProjects}

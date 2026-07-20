@@ -3,6 +3,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Full-viewport carousel section: cap to the viewport only when the screen is
+   actually tall enough to hold the content. On shorter displays the section
+   takes its natural content height and the page scrolls, so nothing clips or
+   overlaps. svh (small viewport height) avoids the mobile-toolbar 100vh bug. */
+@media (min-width: 1024px) and (min-height: 820px) {
+  .carousel-full {
+    height: 100vh;
+    height: 100svh;
+  }
+}
+
 /* Custom Fonts */
 @font-face {
   font-family: 'Franklin Gothic Heavy';

@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { ArrowLeft, ArrowUpRight, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import Link from "next/link"
+import { CaseStudyNav } from "@/components/case-study-nav"
 import { useState, useEffect } from "react"
 
 export default function PrefaceCaseStudy() {
@@ -180,6 +181,8 @@ export default function PrefaceCaseStudy() {
         </div>
       </div>
 
+      <CaseStudyNav />
+
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-8">
@@ -200,7 +203,7 @@ export default function PrefaceCaseStudy() {
 
           <div className="max-w-full flex items-start gap-8">
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl">
-              A recruiting platform that helps employers find the right candidates faster. Instead of vague applications, candidates complete role-specific courses and earn certificates. Employers get a clear picture of skills and readiness before interviews.
+              Cover letters are where candidate effort goes to die. Preface replaces them with proof: candidates complete role-specific courses and earn verifiable certificates, and employers see real skills and readiness before the first interview ever happens.
             </p>
             <div className="flex-shrink-0 ml-30">
               <p className="text-xs font-black tracking-widest text-white/60 mb-3">IN PARTNERSHIP WITH</p>
@@ -920,6 +923,30 @@ export default function PrefaceCaseStudy() {
               title="Preface promotional video"
             />
           </div>
+        </div>
+      </section>
+
+      <section className="relative border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">RESULTS & IMPACT</h2>
+          <div className="h-px w-full bg-white/20 mb-16" />
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">LIVE</p>
+              <p className="text-sm text-white/60 leading-relaxed">Production build shipped and publicly deployed on Vercel</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">2-SIDED</p>
+              <p className="text-sm text-white/60 leading-relaxed">Applicant course flow + employer HR portal, prototyped and built in React</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">100%</p>
+              <p className="text-sm text-white/60 leading-relaxed">Of completed assessments produce a verifiable, shareable certificate</p>
+            </div>
+          </div>
+          <p className="text-lg text-white/80 leading-relaxed max-w-3xl">
+            Delivered: high-fidelity Figma prototypes, a working Next.js build, a promo video, and a final presentation to Fisher Investments. Projected impact: structured skill evidence replaces subjective cover-letter screening, cutting reviewer time per candidate and reducing bias in first-pass filtering.
+          </p>
         </div>
       </section>
 

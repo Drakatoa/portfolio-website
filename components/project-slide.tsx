@@ -2,6 +2,8 @@
 import Image from "next/image"
 import { ArrowUpRight, Code, ChevronLeft, ChevronRight, Play, X } from "lucide-react"
 import { useState } from "react"
+import { getProjectColor, brightenColor } from "@/lib/project-colors"
+import { SLANT_DEG, parallelogramClip, trapezoidClip } from "@/lib/slant"
 
 interface ProjectSlideProps {
   title?: string
@@ -14,49 +16,12 @@ interface ProjectSlideProps {
   onNext?: () => void
   onPrev?: () => void
   projectUrl?: string
+  projectLabel?: string
   codeUrl?: string
   caseStudyUrl?: string
   videoUrl?: string
   videoLabel?: string
   devpostUrl?: string
-}
-
-// Helper function to get project color
-const getProjectColor = (projectTitle: string): string => {
-  const title = projectTitle.toUpperCase()
-  if (title.includes("PREFACE")) return "#70587C"
-  if (title.includes("AEGIS")) return "#5AD0FF"
-  if (title.includes("IDEATE")) return "#5870BC"
-  if (title.includes("INCLUSION") || title.includes("DESIGN FOR INCLUSION") || title.includes("DEI")) return "#400C23"
-  if (title.includes("ZENZ")) return "#EC76C3"
-  if (title.includes("ARC")) return "#444549"
-  if (title.includes("CSA") || title.includes("UTD")) return "#455668"
-  if (title.includes("DELHI") || title.includes("OLYMPICS") || title.includes("NEW DELHI")) return "#FF6B35"
-  return "rgba(255, 255, 255, 0.3)" // default
-}
-
-// Helper function to brighten a hex color
-const brightenColor = (color: string, amount: number = 0.3): string => {
-  // Handle rgba colors
-  if (color.startsWith("rgba")) {
-    return color.replace(/rgba?\(([^)]+)\)/, (_, values) => {
-      const [r, g, b, a = 1] = values.split(",").map((v: string) => parseFloat(v.trim()))
-      const brighten = (val: number) => Math.min(255, val + (255 - val) * amount)
-      return `rgba(${brighten(r)}, ${brighten(g)}, ${brighten(b)}, ${a})`
-    })
-  }
-  
-  // Handle hex colors
-  if (color.startsWith("#")) {
-    const hex = color.slice(1)
-    const num = parseInt(hex, 16)
-    const r = Math.min(255, ((num >> 16) & 0xff) + Math.floor((255 - ((num >> 16) & 0xff)) * amount))
-    const g = Math.min(255, ((num >> 8) & 0xff) + Math.floor((255 - ((num >> 8) & 0xff)) * amount))
-    const b = Math.min(255, (num & 0xff) + Math.floor((255 - (num & 0xff)) * amount))
-    return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`
-  }
-  
-  return color
 }
 
 export function ProjectSlide({
@@ -70,6 +35,7 @@ export function ProjectSlide({
   onNext = () => {},
   onPrev = () => {},
   projectUrl = "#",
+  projectLabel,
   codeUrl = "#",
   caseStudyUrl,
   videoUrl,
@@ -84,50 +50,38 @@ export function ProjectSlide({
   const projectColor = getProjectColor(title)
 
   return (
-    <div className="relative w-full min-h-screen bg-black overflow-hidden text-white selection:bg-white selection:text-black">
-      <div className="absolute bottom-4 right-8 z-20 pointer-events-auto">
+    <div className="relative w-full lg:h-full bg-black overflow-hidden text-white selection:bg-white selection:text-black">
+      <div className="absolute bottom-4 right-8 z-20 pointer-events-none">
         <div className="flex items-center gap-4 text-base md:text-lg font-black bg-black/80 backdrop-blur-sm border border-white/30 px-5 py-3">
-          <button
-            onClick={onPrev}
-            className="text-white/80 hover:text-white hover:scale-110 transition-all"
-            aria-label="Previous project"
-          >
-            <ChevronLeft className="w-6 h-6 md:w-7 md:h-7" />
-          </button>
           <span className="tracking-wider">
             {String(index).padStart(2, "0")} <span className="text-white/50">of</span>{" "}
             {String(total).padStart(2, "0")}
           </span>
-          <button
-            onClick={onNext}
-            className="text-white/80 hover:text-white hover:scale-110 transition-all"
-            aria-label="Next project"
-          >
-            <ChevronRight className="w-6 h-6 md:w-7 md:h-7" />
-          </button>
         </div>
       </div>
 
-      <div className="relative z-10 w-full min-h-screen flex flex-col justify-between p-6 md:p-8 lg:p-16">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 flex-1">
-          <div className="w-full lg:w-[55%] flex flex-col">
+      {/* Side navigation arrows */}
+      <button
+        onClick={onPrev}
+        aria-label="Previous project"
+        className="absolute left-0 md:left-1 top-1/2 -translate-y-1/2 z-30 p-1.5 md:p-2 text-white/40 hover:text-white transition-colors"
+      >
+        <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5} />
+      </button>
+      <button
+        onClick={onNext}
+        aria-label="Next project"
+        className="absolute right-0 md:right-1 top-1/2 -translate-y-1/2 z-30 p-1.5 md:p-2 text-white/40 hover:text-white transition-colors"
+      >
+        <ChevronRight className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5} />
+      </button>
 
-            <div className="relative mb-6 lg:mb-8" style={{ width: "fit-content", maxWidth: "100%" }}>
-              <svg
-                className="absolute inset-0 pointer-events-none"
-                viewBox="0 0 550 180"
-                preserveAspectRatio="none"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  left: 0,
-                  top: 0,
-                }}
-              >
-                <polygon points="0,0 550,0 507,180 0,180" fill="none" stroke="white" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-              </svg>
+      <div className="relative z-10 w-full lg:h-full flex flex-col px-12 py-6 md:px-16 md:py-8 lg:px-20 lg:pt-4 lg:pb-16">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 flex-1 min-h-0">
+          <div className="w-full lg:w-[55%] flex flex-col lg:justify-center">
 
-              <div className="relative z-10 px-4 md:px-6 py-4 md:py-6 pr-12 md:pr-20">
+            <div className="relative mb-5 flex items-stretch gap-4 md:gap-6" style={{ width: "fit-content", maxWidth: "100%" }}>
+              <div className="py-2 md:py-3">
                 <div className="flex items-start gap-3 md:gap-4">
                   <div className="bg-white text-black px-3 md:px-4 py-1.5 md:py-2 font-black italic text-xs md:text-sm flex-shrink-0">
                     {status}
@@ -137,7 +91,57 @@ export function ProjectSlide({
                   </h1>
                 </div>
               </div>
+              {/* single diagonal edge at the standard slant angle */}
+              <div
+                className="w-[3px] bg-white self-stretch flex-shrink-0"
+                style={{ transform: `skewX(${-SLANT_DEG}deg)` }}
+                aria-hidden="true"
+              />
             </div>
+
+            {/* Primary action - pinned directly under the title (DBH-style bar) */}
+            {(hasCaseStudy || hasProject) && (() => {
+              const isCs = hasCaseStudy
+              const href = isCs ? caseStudyUrl : projectUrl
+              const label = isCs ? "VIEW CASE STUDY" : (projectLabel ?? "VIEW PROJECT")
+              const brightColor = brightenColor(projectColor, 0.4)
+              return (
+                <div className="relative mb-8 lg:mb-10 w-fit">
+                  {/* corner brackets */}
+                  <span className="absolute -top-2 -left-2 h-4 w-4 border-t-2 border-l-2 border-white/70 pointer-events-none" aria-hidden="true" />
+                  <span className="absolute -top-2 -right-2 h-4 w-4 border-t-2 border-r-2 border-white/70 pointer-events-none" aria-hidden="true" />
+                  <span className="absolute -bottom-2 -left-2 h-4 w-4 border-b-2 border-l-2 border-white/70 pointer-events-none" aria-hidden="true" />
+                  <span className="absolute -bottom-2 -right-2 h-4 w-4 border-b-2 border-r-2 border-white/70 pointer-events-none" aria-hidden="true" />
+                  <a
+                    href={href}
+                    {...(isCs ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                    className="group relative block w-[320px] max-w-full transition-transform hover:translate-x-2"
+                  >
+                    <svg
+                      className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                      viewBox="0 0 320 56"
+                      preserveAspectRatio="none"
+                      style={{ width: "100%", height: "100%" }}
+                    >
+                      <polygon points="0,0 320,0 306,56 0,56" fill="white" />
+                      <polygon points="0,0 320,0 306,56 0,56" fill="none" stroke={projectColor} strokeWidth="8" />
+                      <polygon
+                        points="0,0 320,0 306,56 0,56"
+                        fill="none"
+                        stroke={brightColor}
+                        strokeWidth="8"
+                        className="animated-border"
+                        style={{ strokeDasharray: "250 500", strokeLinecap: "round" }}
+                      />
+                    </svg>
+                    <div className="relative z-10 flex items-center gap-2 px-8 py-4 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
+                      <span>{label}</span>
+                      <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </div>
+                  </a>
+                </div>
+              )
+            })()}
 
             <div className="mb-6 lg:mb-8">
               <p className="text-xs font-black tracking-widest mb-3 md:mb-4">PROJECT TAGS</p>
@@ -145,7 +149,7 @@ export function ProjectSlide({
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs border border-white/50 px-3 py-2 bg-black text-white hover:bg-white hover:text-black transition-colors whitespace-nowrap flex-shrink-0"
+                    className="text-xs border border-white/50 px-3 py-2 bg-black text-white hover:border-white hover:bg-white/15 transition-colors whitespace-nowrap flex-shrink-0"
                   >
                     {tag}
                   </span>
@@ -153,297 +157,153 @@ export function ProjectSlide({
               </div>
             </div>
 
-            <div className="mb-8 max-w-full lg:max-w-xl">
+            <div className="mb-6 max-w-full lg:max-w-xl">
               <p className="text-xs font-black tracking-widest mb-3 md:mb-4">PROJECT DESCRIPTION</p>
-              <div className="h-32 md:h-40 overflow-y-auto pr-3 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-white/10 [&::-webkit-scrollbar-thumb]:bg-white/30 hover:[&::-webkit-scrollbar-thumb]:bg-white/50 [&::-webkit-scrollbar-thumb]:rounded-full">
+              <div className="max-h-32 md:max-h-40 overflow-y-auto pr-3 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-white/10 [&::-webkit-scrollbar-thumb]:bg-white/30 hover:[&::-webkit-scrollbar-thumb]:bg-white/50 [&::-webkit-scrollbar-thumb]:rounded-full">
                 <p className="text-white/70 text-sm md:text-base leading-relaxed">{description}</p>
               </div>
             </div>
 
-            <div className="flex gap-3 mt-auto h-[120px] items-end">
-              {/* Helper function to render button with colored border */}
-              {(() => {
-                // Build arrays of buttons
-                const coloredBorderButtons: React.ReactNode[] = []
-                const otherButtons: React.ReactNode[] = []
+            {/* Secondary + tertiary actions */}
+            <div className="flex flex-wrap gap-3 items-center">
+              {/* Secondary: VIEW PROJECT when the case study is primary */}
+              {hasCaseStudy && hasProject && (
+                <a
+                  href={projectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-fit transition-transform hover:translate-x-2"
+                  style={{ "--slant": "12px" } as React.CSSProperties}
+                >
+                  <span
+                    className="absolute inset-0 bg-white transition-colors"
+                    style={{ clipPath: trapezoidClip }}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className="absolute inset-[2px] bg-black transition-colors group-hover:bg-neutral-800"
+                    style={{ clipPath: trapezoidClip }}
+                    aria-hidden="true"
+                  />
+                  <span className="relative z-10 flex items-center gap-2 px-8 py-3 font-black text-base italic tracking-tighter text-white whitespace-nowrap">
+                    <span>{projectLabel ?? "VIEW PROJECT"}</span>
+                    <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </span>
+                </a>
+              )}
 
-                // VIEW PROJECT - colored border button
-                if (hasProject) {
-                  const brightColor = brightenColor(projectColor, 0.4)
-                  coloredBorderButtons.push(
-                    <a
-                      key="view-project"
-                      href={projectUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative w-fit transition-transform hover:translate-x-2"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 280 50"
-                        preserveAspectRatio="none"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                        }}
-                      >
-                        <polygon points="0,0 280,0 257,50 0,50" fill="white" className="transition-all" />
-                        <polygon points="0,0 280,0 257,50 0,50" fill="none" stroke={projectColor} strokeWidth="8" />
-                        {/* Animated brighter border that circles around - smooth neon effect */}
-                        <polygon
-                          points="0,0 280,0 257,50 0,50"
-                          fill="none"
-                          stroke={brightColor}
-                          strokeWidth="8"
-                          className="animated-border"
-                          style={{
-                            strokeDasharray: "250 500",
-                            strokeLinecap: "round",
-                          }}
-                        />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
-                        <span>VIEW PROJECT</span>
-                        <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                      </div>
-                    </a>
-                  )
-                }
-
-                // CASE STUDY - colored border button
-                if (hasCaseStudy) {
-                  const brightColor = brightenColor(projectColor, 0.4)
-                  coloredBorderButtons.push(
-                    <a
-                      key="case-study"
-                      href={caseStudyUrl}
-                      className="group relative w-fit transition-transform hover:translate-x-2"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 240 50"
-                        preserveAspectRatio="none"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                        }}
-                      >
-                        <polygon points="0,0 240,0 220,50 0,50" fill="white" className="transition-all" />
-                        <polygon points="0,0 240,0 220,50 0,50" fill="none" stroke={projectColor} strokeWidth="8" />
-                        {/* Animated brighter border that circles around - smooth neon effect */}
-                        <polygon
-                          points="0,0 240,0 220,50 0,50"
-                          fill="none"
-                          stroke={brightColor}
-                          strokeWidth="8"
-                          className="animated-border"
-                          style={{
-                            strokeDasharray: "250 500",
-                            strokeLinecap: "round",
-                          }}
-                        />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
-                        <span>CASE STUDY</span>
-                        <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                      </div>
-                    </a>
-                  )
-                }
-
-                // CODE - other button
-                if (hasCode) {
-                  otherButtons.push(
-                    <a
-                      key="code"
-                      href={codeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative w-fit transition-transform hover:translate-x-2"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 160 50"
-                        preserveAspectRatio="none"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                        }}
-                      >
-                        <polygon points="0,0 160,0 147,50 0,50" fill="white" className="transition-all" />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
-                        <span>CODE</span>
-                        <Code className="w-5 h-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
-                      </div>
-                    </a>
-                  )
-                }
-
-                // WATCH VIDEO - other button
-                if (videoUrl) {
-                  otherButtons.push(
-                    <button
-                      key="video"
-                      onClick={() => setShowVideoModal(true)}
-                      className="group relative w-fit transition-transform hover:translate-x-2"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 240 50"
-                        preserveAspectRatio="none"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                        }}
-                      >
-                        <polygon points="0,0 240,0 220,50 0,50" fill="white" className="transition-all" />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
-                        <span>{videoLabel}</span>
-                        <Play className="w-5 h-5 transition-transform group-hover:scale-110" />
-                      </div>
-                    </button>
-                  )
-                }
-
-                // DEVPOST - other button
-                if (devpostUrl) {
-                  otherButtons.push(
-                    <a
-                      key="devpost"
-                      href={devpostUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative w-fit transition-transform hover:translate-x-2"
-                    >
-                      <svg
-                        className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                        viewBox="0 0 240 50"
-                        preserveAspectRatio="none"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                        }}
-                      >
-                        <polygon points="0,0 240,0 220,50 0,50" fill="white" className="transition-all" />
-                      </svg>
-                      <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
-                        <span>DEVPOST</span>
-                        <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                      </div>
-                    </a>
-                  )
-                }
-
-                // Layout: 2x2 grid, fill bottom row first, then top row
-                // Bottom row: colored border buttons (max 2)
-                // Top row: other buttons (max 2)
-                // Strategy: Sort by width (largest first) so wider buttons on left minimize visual gap
-                const bottomLeft = coloredBorderButtons[0] || null
-                const bottomRight = coloredBorderButtons[1] || null
-                
-                // Button widths: CODE=160, WATCH VIDEO=240, DEVPOST=240
-                const buttonWidths: Record<string, number> = {
-                  code: 160,
-                  video: 240,
-                  devpost: 240,
-                }
-                otherButtons.sort((a, b) => {
-                  const aKey = (a as any)?.key || ""
-                  const bKey = (b as any)?.key || ""
-                  const aWidth = buttonWidths[aKey] || 240
-                  const bWidth = buttonWidths[bKey] || 240
-                  return bWidth - aWidth // Sort largest first (wider buttons on left)
-                })
-                
-                const topLeft = otherButtons[0] || null
-                const topRight = otherButtons[1] || null
-
-                return (
-                  <>
-                    {/* Column 1 */}
-                    <div className="flex flex-col gap-3 justify-end">
-                      {topLeft}
-                      {bottomLeft}
-                    </div>
-                    {/* Column 2 */}
-                    <div className="flex flex-col gap-3 justify-end">
-                      {topRight}
-                      {bottomRight}
-                    </div>
-                  </>
-                )
-              })()}
+              {/* Tertiary: outline-only utility links */}
+              {hasCode && (
+                <a
+                  href={codeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-fit transition-transform hover:translate-x-2"
+                  style={{ "--slant": "10px" } as React.CSSProperties}
+                >
+                  <span
+                    className="absolute inset-0 bg-white/40 transition-colors group-hover:bg-white"
+                    style={{ clipPath: trapezoidClip }}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className="absolute inset-[1.5px] bg-black"
+                    style={{ clipPath: trapezoidClip }}
+                    aria-hidden="true"
+                  />
+                  <span className="relative z-10 flex items-center gap-2 px-6 py-2.5 font-black text-sm italic tracking-tighter text-white/80 group-hover:text-white whitespace-nowrap">
+                    <span>CODE</span>
+                    <Code className="w-4 h-4 transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                  </span>
+                </a>
+              )}
+              {videoUrl && (
+                <button
+                  onClick={() => setShowVideoModal(true)}
+                  className="group relative w-fit transition-transform hover:translate-x-2"
+                  style={{ "--slant": "10px" } as React.CSSProperties}
+                >
+                  <span
+                    className="absolute inset-0 bg-white/40 transition-colors group-hover:bg-white"
+                    style={{ clipPath: trapezoidClip }}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className="absolute inset-[1.5px] bg-black"
+                    style={{ clipPath: trapezoidClip }}
+                    aria-hidden="true"
+                  />
+                  <span className="relative z-10 flex items-center gap-2 px-6 py-2.5 font-black text-sm italic tracking-tighter text-white/80 group-hover:text-white whitespace-nowrap">
+                    <span>{videoLabel}</span>
+                    <Play className="w-4 h-4 transition-transform group-hover:scale-110" />
+                  </span>
+                </button>
+              )}
+              {devpostUrl && (
+                <a
+                  href={devpostUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-fit transition-transform hover:translate-x-2"
+                  style={{ "--slant": "10px" } as React.CSSProperties}
+                >
+                  <span
+                    className="absolute inset-0 bg-white/40 transition-colors group-hover:bg-white"
+                    style={{ clipPath: trapezoidClip }}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className="absolute inset-[1.5px] bg-black"
+                    style={{ clipPath: trapezoidClip }}
+                    aria-hidden="true"
+                  />
+                  <span className="relative z-10 flex items-center gap-2 px-6 py-2.5 font-black text-sm italic tracking-tighter text-white/80 group-hover:text-white whitespace-nowrap">
+                    <span>DEVPOST</span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </span>
+                </a>
+              )}
             </div>
           </div>
 
           {/* Parallelogram shaped image - Desktop */}
-          <div className="hidden lg:flex w-full lg:w-[45%] relative mr-16 items-center">
+          <div className="hidden lg:flex w-full lg:w-[45%] relative items-center">
             <div className="relative w-full flex flex-col items-end">
-              {/* Aegis Easter Egg - positioned above parallelogram using flex */}
-              {title === "AEGIS" && (
-                <div className="mb-[-0px] md:mb-[-0px] xl:mb-[-0px] 2xl:mb-[-0px] z-30 pointer-events-none self-end mr-2 md:mr-4 lg:mr-6 xl:mr-0 2xl:mr-0 ml-4 md:ml-6 lg:ml-8 xl:ml-11 2xl:ml-15">
-                  <Image
-                    src="/aigis-easter-egg.png"
-                    alt="Aigis easter egg"
-                    width={120}
-                    height={120}
-                    className="object-contain w-auto h-auto max-h-[100px] md:max-h-[120px] xl:max-h-[140px] 2xl:max-h-[150px] drop-shadow-lg"
-                    quality={100}
-                  />
-                </div>
-              )}
-              <div className="relative w-full h-[350px] max-h-[calc(100vh-250px)] xl:h-[420px] 2xl:h-[550px] max-w-[750px]">
-                {/* Offset outline - rendered first (below) */}
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "30px",
-                    top: "30px",
-                  }}
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.6"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-
-                {/* Main image border - only for Auralis */}
-                {(title === "AURALIS" || title === "IDEATE - AI WHITEBOARD") && (
-                  <svg
-                    className="absolute pointer-events-none z-20"
-                    viewBox="0 0 100 100"
-                    preserveAspectRatio="none"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                    }}
+              <div
+                className="relative w-full max-w-[850px] [--img-h:clamp(300px,42svh,560px)] h-[var(--img-h)] [--slant:calc(var(--img-h)*0.2493)]"
+              >
+                {/* Aegis Easter Egg - spans the parallelogram's top edge, outside layout flow */}
+                {title === "AEGIS" && (
+                  <div
+                    className="absolute bottom-full right-0 z-30 pointer-events-none"
+                    style={{ left: "var(--slant)" }}
                   >
-                    <polygon
-                      points="8,0 100,0 92,100 0,100"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="0.3"
-                      vectorEffect="non-scaling-stroke"
+                    <Image
+                      src="/aigis-easter-egg.png"
+                      alt="Aigis easter egg"
+                      width={750}
+                      height={90}
+                      className="w-full h-auto drop-shadow-lg"
+                      quality={100}
                     />
-                  </svg>
+                  </div>
+                )}
+                {/* Offset echo outline */}
+                <div className="absolute inset-0 pointer-events-none z-0 translate-x-[30px] translate-y-[30px]">
+                  <div className="absolute inset-0 bg-white/80" style={{ clipPath: parallelogramClip }} />
+                  <div className="absolute inset-[1px] bg-black" style={{ clipPath: parallelogramClip }} />
+                </div>
+
+                {/* Thin border ring behind the image - visible for dark screenshots */}
+                {(title === "AURALIS" || title === "IDEATE - AI WHITEBOARD") && (
+                  <div
+                    className="absolute -inset-[1.5px] pointer-events-none z-[5] bg-white/70"
+                    style={{ clipPath: parallelogramClip }}
+                  />
                 )}
 
                 {/* Image */}
-                <div
-                  className="absolute inset-0 z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
+                <div className="absolute inset-0 z-10" style={{ clipPath: parallelogramClip }}>
                   <Image
                     src={imageUrl || "/placeholder.svg"}
                     alt={title}
@@ -470,54 +330,21 @@ export function ProjectSlide({
                 />
               </div>
             )}
-            <div className="relative w-full h-64 md:h-80">
-              {/* Offset outline - rendered first (below) */}
-              <svg
-                className="absolute pointer-events-none z-0"
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  left: "20px",
-                  top: "30px",
-                }}
-              >
-                <polygon
-                  points="6,0 100,0 94,100 0,100"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="1"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
+            <div className="relative w-full h-64 md:h-80 [--slant:64px] md:[--slant:80px]">
+              {/* Offset echo outline */}
+              <div className="absolute inset-0 pointer-events-none z-0 translate-x-[20px] translate-y-[30px]">
+                <div className="absolute inset-0 bg-white" style={{ clipPath: parallelogramClip }} />
+                <div className="absolute inset-[1px] bg-black" style={{ clipPath: parallelogramClip }} />
+              </div>
 
-              {/* Main image border */}
-              <svg
-                className="absolute pointer-events-none z-20"
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                <polygon
-                  points="6,0 100,0 94,100 0,100"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="0.5"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
+              {/* Thin border ring behind the image */}
+              <div
+                className="absolute -inset-[1px] pointer-events-none z-[5] bg-white/70"
+                style={{ clipPath: parallelogramClip }}
+              />
 
               {/* Image */}
-              <div
-                className="absolute inset-0 z-10"
-                style={{
-                  clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)",
-                }}
-              >
+              <div className="absolute inset-0 z-10" style={{ clipPath: parallelogramClip }}>
                 <Image
                   src={imageUrl || "/placeholder.svg"}
                   alt={title}

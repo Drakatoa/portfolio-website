@@ -34,6 +34,21 @@ export function Navigation() {
           <a href="#projects" className="hover:opacity-70 transition-opacity">
             {"[PROJECTS]"}
           </a>
+          <a
+            href="/?filter=case-studies#projects"
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault()
+                window.dispatchEvent(
+                  new CustomEvent("projects:set-filter", { detail: "case-studies" }),
+                )
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+              }
+            }}
+            className="hover:opacity-70 transition-opacity"
+          >
+            {"[CASE STUDIES]"}
+          </a>
         </div>
       </div>
     </nav>

@@ -12,7 +12,7 @@ export function Resume() {
             <div>
               <h3 className="text-xs text-white/60 mb-4 font-mono">{"[DOWNLOAD]"}</h3>
               <a
-                href="/resume.pdf"
+                href="/rajit-goel-cv.pdf"
                 download
                 className="inline-flex items-center gap-3 border-2 border-white px-6 py-4 hover:bg-white hover:text-black transition-colors group"
               >
@@ -34,7 +34,7 @@ export function Resume() {
             <div className="pt-6 border-t border-white/20">
               <h3 className="text-xs text-white/60 mb-4 font-mono">{"[EXTERNAL LINK]"}</h3>
               <a
-                href="/resume.pdf"
+                href="/rajit-goel-cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm hover:opacity-70 transition-opacity"
@@ -50,10 +50,11 @@ export function Resume() {
               <h3 className="text-xs text-white/60 mb-4 font-mono">{"[HIGHLIGHTS]"}</h3>
               <ul className="space-y-3 text-sm">
                 {[
-                  "GPA 3.965 — CS² Honors, UT Dallas",
-                  "Cinemark Data Science Intern — clustering + market basket analysis for 300+ theaters",
-                  "Thomson Reuters SWE Intern — C# ASP.NET tax validation APIs and XSLT migration",
-                  "HackUTD 2025 (NVIDIA Track) — Top 5 Honorable Mention for AI Whiteboard",
+                  "Samsung SWE Intern: agentic AI system for RAN alarm diagnosis, cutting diagnosis time from ~2 hrs to 10-20 min",
+                  "Incoming MS in CS (AI Specialization) at Georgia Tech, Aug 2026",
+                  "GPA 3.965, CS² Honors, UT Dallas",
+                  "HackUTD 2025 (NVIDIA Track): Top 5 Honorable Mention for AI Whiteboard",
+                  "Cinemark Data Science + Thomson Reuters SWE internships",
                   "Scholarships: Goldman Sachs Excellence in CS; Capital One Applied Experience Design",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
@@ -68,8 +69,9 @@ export function Resume() {
               <h3 className="text-xs text-white/60 mb-4 font-mono">{"[CORE SKILLS]"}</h3>
               <div className="space-y-2 text-sm">
                 <p>{"Languages: C#, C/C++, Python, Java, JavaScript/TypeScript, SQL"}</p>
-                <p>{"Frameworks: Next.js, React, ASP.NET, Flask, PyTorch, TensorFlow, scikit-learn"}</p>
-                <p>{"Data/Infra: PostgreSQL, Supabase, SQL Server, Azure, Vercel"}</p>
+                <p>{"Frameworks: Next.js, React, ASP.NET, Flask, Django, PyTorch, Three.js"}</p>
+                <p>{"AI/ML: RAG, LLM agents, MCP, Ollama, LanceDB, MediaPipe"}</p>
+                <p>{"Data/Infra: PostgreSQL, Supabase, Redis, SQL Server, Azure, Docker, Vercel"}</p>
                 <p>{"Design: Figma, UX Research, Interaction Design"}</p>
               </div>
             </div>
@@ -92,7 +94,7 @@ export function Resume() {
             <div>
               <h4 className="text-sm font-bold mb-3">{"Backend"}</h4>
               <div className="flex flex-wrap gap-2">
-                {["Node.js", "Python", "PostgreSQL", "MongoDB"].map((skill) => (
+                {["Node.js", "Python", "PostgreSQL", "Flask"].map((skill) => (
                   <span key={skill} className="border border-white/40 px-2 py-1 text-xs">
                     {skill}
                   </span>
@@ -102,7 +104,7 @@ export function Resume() {
             <div>
               <h4 className="text-sm font-bold mb-3">{"Tools"}</h4>
               <div className="flex flex-wrap gap-2">
-                {["Git", "Docker", "AWS", "Vercel"].map((skill) => (
+                {["Git", "Docker", "Azure", "Vercel"].map((skill) => (
                   <span key={skill} className="border border-white/40 px-2 py-1 text-xs">
                     {skill}
                   </span>

@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { CaseStudyNav } from "@/components/case-study-nav"
 import { ArrowLeft, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import { useState, useEffect } from "react"
 
@@ -24,7 +25,7 @@ export default function DelhiOlympicsPage() {
     ],
     colors: [
       // Color palette images can be added here if needed
-    ],
+    ] as { src: string; alt: string }[],
     deliverables: [
       { src: "/delhi-medals-deliverable.png", alt: "Olympic medals design - gold, silver, and bronze" },
       { src: "/delhi-tickets-banner-deliverable.png", alt: "Event tickets and promotional banners" },
@@ -154,6 +155,8 @@ export default function DelhiOlympicsPage() {
         </div>
       </div>
 
+      <CaseStudyNav />
+
       {/* Hero Section */}
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
@@ -174,9 +177,9 @@ export default function DelhiOlympicsPage() {
           </div>
 
           <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl">
-            A visual identity system for a hypothetical 2024 Olympics hosted in New Delhi, India (my parent's hometown). This project
-            celebrates the vibrant culture and rich heritage of India's capital through
-            cohesive branding that merges modern Olympic values with traditional Indian motifs.
+            What would the Olympics look like in my parents' hometown? A complete visual identity for a hypothetical
+            New Delhi Games that fuses the national lotus with the Olympic torch, and modern Olympic values with the
+            motifs, colors, and festivals of India's capital.
           </p>
         </div>
       </section>
@@ -610,6 +613,30 @@ export default function DelhiOlympicsPage() {
       </section>
 
       {/* Footer */}
+      <section className="relative border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">RESULTS & IMPACT</h2>
+          <div className="h-px w-full bg-white/20 mb-16" />
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">4</p>
+              <p className="text-sm text-white/60 leading-relaxed">Deliverable families: logo system, medals, tickets and banners, motif library</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">1</p>
+              <p className="text-sm text-white/60 leading-relaxed">Lotus-torch logo fusing the national flower with Olympic identity</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">FULL</p>
+              <p className="text-sm text-white/60 leading-relaxed">Color and pattern system drawn from Indian textiles and festivals</p>
+            </div>
+          </div>
+          <p className="text-lg text-white/80 leading-relaxed max-w-3xl">
+            Delivered: a cohesive identity system ready to extend across signage, broadcast, and merchandise.
+          </p>
+        </div>
+      </section>
+
       <footer className="relative border-t border-white/20 py-12 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <Link

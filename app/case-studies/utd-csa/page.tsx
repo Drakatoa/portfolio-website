@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { ArrowLeft, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import Link from "next/link"
+import { CaseStudyNav } from "@/components/case-study-nav"
 import { useState, useEffect } from "react"
 
 export default function UTDCsaCaseStudy() {
@@ -157,6 +158,8 @@ export default function UTDCsaCaseStudy() {
         </div>
       </div>
 
+      <CaseStudyNav />
+
       {/* Hero Section */}
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
@@ -182,7 +185,7 @@ export default function UTDCsaCaseStudy() {
 
           <div className="max-w-full">
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mb-8">
-              A brand design project for UTD Chinese Student Association's shirt for the 2025-2026 academic year. We created a playful minimalist-style design featuring Wang, our cute tiger mascot, riding a Lao Gan Ma rocket bottle. The design celebrates the "5 Spices" theme representing our family groups, with a front emblem that references P.F. Chang's with "P.F. Wang's."
+              How do you get 200+ college students to wear the same shirt? Wang the tiger riding a Lao Gan Ma rocket, apparently. CSA's 2025-2026 shirt celebrates the "5 Spices" family theme with a playful minimalist design and a front emblem riffing on P.F. Chang's: "P.F. Wang's."
             </p>
             <div className="inline-block bg-[#5AD0FF]/10 border border-[#5AD0FF]/50 px-6 py-3">
               <p className="text-sm font-bold tracking-wide text-[#5AD0FF]">
@@ -641,6 +644,30 @@ export default function UTDCsaCaseStudy() {
       </section>
 
       {/* Footer */}
+      <section className="relative border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">RESULTS & IMPACT</h2>
+          <div className="h-px w-full bg-white/20 mb-16" />
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">200+</p>
+              <p className="text-sm text-white/60 leading-relaxed">Shirts purchased by CSA members in the 2025-2026 academic year</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">3</p>
+              <p className="text-sm text-white/60 leading-relaxed">Collaborating designers: art by Chloe Tee and Liz Michel, layout and composition by me</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">2</p>
+              <p className="text-sm text-white/60 leading-relaxed">Final designs: front emblem + full back graphic</p>
+            </div>
+          </div>
+          <p className="text-lg text-white/80 leading-relaxed max-w-3xl">
+            Delivered: production-ready shirt artwork for one of UTD's largest cultural organizations, worn across campus all year.
+          </p>
+        </div>
+      </section>
+
       <footer className="relative border-t border-white/30 py-12 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <Link

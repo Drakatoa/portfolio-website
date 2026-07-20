@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { CaseStudyNav } from "@/components/case-study-nav"
 import { ArrowLeft, ArrowUpRight, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import { useState, useEffect } from "react"
 
@@ -164,6 +165,8 @@ export default function ZenzPage() {
         </div>
       </div>
 
+      <CaseStudyNav />
+
       {/* Hero Section */}
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
@@ -184,7 +187,7 @@ export default function ZenzPage() {
           </div>
 
           <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl">
-            A mental health app that helps people manage stress and practice mindfulness in the post-pandemic world. Zenz gives you private tools for daily wellness and emotional resilience.
+            Stress didn't end with the pandemic. It moved in. Zenz gives you private, daily tools for mindfulness, journaling, and emotional resilience, designed to make wellness a habit instead of a chore.
           </p>
         </div>
       </section>
@@ -619,6 +622,30 @@ export default function ZenzPage() {
       </section>
 
       {/* Footer */}
+      <section className="relative border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">RESULTS & IMPACT</h2>
+          <div className="h-px w-full bg-white/20 mb-16" />
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">17</p>
+              <p className="text-sm text-white/60 leading-relaxed">Final high-fidelity screens covering the full wellness flow</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">1</p>
+              <p className="text-sm text-white/60 leading-relaxed">Clickable end-to-end interactive prototype</p>
+            </div>
+            <div className="border border-white/20 p-8 bg-black/60">
+              <p className="text-5xl font-bold mb-3 tracking-tighter">FULL</p>
+              <p className="text-sm text-white/60 leading-relaxed">Brand identity: logo, palette, and calming visual system</p>
+            </div>
+          </div>
+          <p className="text-lg text-white/80 leading-relaxed max-w-3xl">
+            Delivered: a complete design package from research through interactive prototype. Projected impact: meditation, journaling, and mood tracking in one private space lowers the barrier to daily practice, the core retention problem for wellness apps.
+          </p>
+        </div>
+      </section>
+
       <footer className="relative border-t border-white/20 py-12 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <Link

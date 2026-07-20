@@ -12,14 +12,17 @@ export function About() {
         <div className="space-y-8">
           <div className="border border-white/20 p-6">
             <p className="text-lg leading-relaxed mb-4">
-              I'm Rajit Goel, a Computer Science student at UT Dallas. My work sits at the intersection of
-              engineering, data, and design. I care about building tools that feel good to use and actually solve
-              real problems, whether that be through AI-powered platforms, data-driven insights, or thoughtful UX research.
+              I'm Rajit Goel, a UT Dallas CS grad and incoming MS student at Georgia Tech (AI specialization).
+              My work sits at the intersection of engineering, data, and design. I care about building tools that
+              feel good to use and actually solve real problems, whether that be through AI-powered platforms,
+              data-driven insights, or thoughtful UX research.
             </p>
             <p className="text-lg leading-relaxed">
-              I've worked on everything from tax validation at Thomson Reuters to food and beverage analytics
-              at Cinemark to solving problems on campus with clever design. Right now, I'm focused on projects and research that blend multimodal AI with practical interaction
-              design, and I'm always thinking about how to make technology more accessible and enjoyable.
+              Right now I'm at Samsung building agentic AI systems that diagnose telecom network alarms autonomously.
+              Before that I worked on everything from tax validation at Thomson Reuters to food and beverage analytics
+              at Cinemark to solving problems on campus with clever design. I'm focused on projects and research that
+              blend multimodal AI with practical interaction design, and I'm always thinking about how to make
+              technology more accessible and enjoyable.
             </p>
           </div>
 
@@ -35,10 +38,13 @@ export function About() {
 
             <div className="border border-white/20 p-6 relative">
               <h3 className="text-xs text-white/60 mb-4">{"[EDUCATION]"}</h3>
+              <p className="text-lg font-bold mb-1">{"Georgia Institute of Technology"}</p>
+              <p className="text-sm text-white/60 mb-2">{"M.S. Computer Science, AI Specialization"}</p>
+              <p className="text-xs text-white/40 mb-4">{"Aug 2026 - Dec 2027"}</p>
               <p className="text-lg font-bold mb-1">{"University of Texas at Dallas"}</p>
-              <p className="text-sm text-white/60 mb-2">{"B.S. Computer Science, CS² Honors"}</p>
+              <p className="text-sm text-white/60 mb-2">{"B.S. Computer Science, CS² Honors | GPA 3.965"}</p>
               <p className="text-sm text-white/60">{"Certificate in Applied Experience Design and Research"}</p>
-              <p className="text-xs text-white/40 mt-3">{"Expected Graduation: May 2026"}</p>
+              <p className="text-xs text-white/40 mt-3">{"Graduated May 2026"}</p>
 
               <div className="absolute bottom-6 right-6 w-24 h-12">
                 <Image
