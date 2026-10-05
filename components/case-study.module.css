@@ -1,0 +1,123 @@
+/* Case studies inside the landing's frame (components/case-study-shell.tsx). The pages keep
+   their Tailwind markup; this module only scopes the landing's type onto it. */
+
+/* The landing column: 1180px with 48px margins, 32px at 1050px, 20px at 760px, 16px at 360px. */
+.page, .bar { --gutter: 48px; }
+.column { width: min(1180px, calc(100% - 2 * var(--gutter))); margin-inline: auto; }
+@media (max-width: 1050px) { .page, .bar { --gutter: 32px; } }
+@media (max-width: 760px) { .page, .bar { --gutter: 20px; } }
+@media (max-width: 360px) { .page, .bar { --gutter: 16px; } }
+
+/* .site resets heading and paragraph margins for the landing's own markup. The case studies
+   space theirs with Tailwind utilities (a lower cascade layer), so hand those back. */
+.page .content :is(h1, h2, h3, h4, p, figure) { margin: revert-layer; }
+
+/* The pages' max-w-7xl px-6 rows line up with the header's column. Some sections wrap a bare
+   max-w-7xl in a px-6 band; the row already carries the gutter, so the band drops its own. */
+.content :global(.max-w-7xl) { max-width: calc(1180px + 2 * var(--gutter)); padding-inline: var(--gutter); }
+.content section > :global(.px-6):has(> :global(.max-w-7xl)) { padding-inline: 0; }
+
+/* Hero */
+.content h1 { font-family: var(--landing-display), sans-serif; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -.02em; }
+.meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; }
+.year { font: 900 italic 22px/1.2 var(--landing-display), sans-serif; color: #a1a1aa; letter-spacing: .04em; }
+.role { font: 400 20px/1.45 var(--landing-body), sans-serif; color: var(--muted); }
+
+/* Section headings: display italic at the pages' own sizes; h3 and below are unchanged. */
+.content section h2 { font-family: var(--landing-display), sans-serif; font-weight: 900; font-style: italic; letter-spacing: -.02em; }
+.number { display: inline-block; font: 900 italic 22px/1 var(--landing-display), sans-serif; color: #a1a1aa; letter-spacing: .04em; }
+
+/* Section bar: sticky, sideways-scrolling on phones; the active section carries the P3R blade.
+   It sets the blade colours itself so pages outside the frame render it the same. */
+.bar {
+  --blade: #ffffff; --blade-echo: #ed58f7; --blade-ink: #fc0000;
+  position: sticky; top: 0; z-index: 40; min-height: 56px;
+  background: #050507e6; border-block: 1px solid #353539;
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+/* The track starts on the column's left edge and runs to the viewport's right edge, so most
+   pages fit on desktop; longer ones (and phones) scroll sideways, with faded edges. */
+.track {
+  --fade-l: 0px; --fade-r: 0px;
+  position: relative; display: flex; align-items: center;
+  padding-inline: 0;
+  overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-l), #000 calc(100% - var(--fade-r)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-l), #000 calc(100% - var(--fade-r)), transparent);
+}
+.track[data-more-right="true"] { --fade-r: 56px; }
+.track::-webkit-scrollbar { display: none; }
+.track::after { content: ""; flex: 0 0 24px; }
+.sectionLink {
+  position: relative; isolation: isolate; flex-shrink: 0; display: inline-flex; align-items: center;
+  min-height: 54px; padding: 0 11px; white-space: nowrap;
+  font: 900 italic 15px/1 var(--landing-display), sans-serif; letter-spacing: .03em; text-transform: uppercase;
+  color: #a1a1aa; text-decoration: none; transition: color 160ms;
+}
+.back + .sectionLink { margin-left: 5px; }
+/* "all projects": pinned at the bar's left end, over the scrolling section names. Its left padding
+   is the column offset, so at rest it sits on the column edge. */
+.back {
+  position: sticky; left: 0; z-index: 2; flex-shrink: 0; align-self: stretch;
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  padding: 0 18px 0 max(var(--gutter), calc((100% - 1180px) / 2));
+  background: #050507; color: #a1a1aa; text-decoration: none;
+  font: 400 14px/1 var(--landing-body), sans-serif; transition: color 160ms;
+}
+.back::after { content: ""; position: absolute; right: 0; top: 50%; height: 24px; width: 1px; transform: translateY(-50%); background: #ffffff33; }
+.back:hover { color: white; }
+.back:focus-visible { outline: 2px solid var(--accent, #fff); outline-offset: -4px; }
+.sectionLink:is(:hover, :focus-visible), .sectionLink[aria-current="location"] { color: white; }
+.bar .sectionLink:focus-visible { outline: none; }
+.sectionLink:focus-visible > span { text-decoration: underline; text-underline-offset: 3px; }
+
+/* As in P3R, one selection at a time: the active section, or the label being pointed at. */
+.sectionLink[aria-current="location"] > span,
+.sectionLink:is(:hover, :focus-visible) > span { animation: bladeSelect 100ms cubic-bezier(.25, .46, .45, .94) both; }
+.track:has(.sectionLink:is(:hover, :focus-visible)) .sectionLink[aria-current="location"]:not(:hover, :focus-visible) > span { animation: none; }
+.sectionLink[aria-current="location"] > span > span[aria-hidden],
+.sectionLink:is(:hover, :focus-visible) > span > span[aria-hidden] { visibility: visible; }
+.track:has(.sectionLink:is(:hover, :focus-visible)) .sectionLink[aria-current="location"]:not(:hover, :focus-visible) > span > span[aria-hidden] { visibility: hidden; }
+.track:has(.sectionLink:is(:hover, :focus-visible)) .sectionLink[aria-current="location"]:not(:hover, :focus-visible) { color: #a1a1aa; }
+.sectionLink[aria-current="location"] > span > span[aria-hidden]:first-child,
+.sectionLink:is(:hover, :focus-visible) > span > span[aria-hidden]:first-child { animation: bladeEchoPulse 1s linear infinite; }
+@keyframes bladeSelect {
+  from { transform: scale(calc(var(--p3r-scale) * .55)); }
+  to { transform: scale(var(--p3r-scale)); }
+}
+@keyframes bladeEchoPulse {
+  0% { transform: translate(.07em, .06em) scale(1); animation-timing-function: cubic-bezier(.37, 0, .63, 1); }
+  10% { transform: translate(.07em, .06em) scale(1.05); animation-timing-function: cubic-bezier(.37, 0, .63, 1); }
+  21.7%, 100% { transform: translate(.07em, .06em) scale(1); }
+}
+
+/* Lightbox close and prev/next: square and framed, like the project gallery's .ctl. */
+.control {
+  display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0;
+  background: #050507; color: #fff; border: 1px solid #ffffff33; border-radius: 0; transition: border-color 160ms;
+}
+.control:is(:hover, :focus-visible):not(:disabled) { border-color: #fff; }
+.control:disabled { color: #ffffff33; cursor: not-allowed; }
+/* The lightbox's image counter and zoom level: the same square frame, as plain read-outs. */
+.readout {
+  display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 16px;
+  background: #050507; color: #ffffffcc; border: 1px solid #ffffff33; border-radius: 0;
+  font: 500 14px/1 var(--landing-body), sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .track { padding-right: var(--gutter); }
+  .sectionLink { min-height: 50px; }
+  .bar { min-height: 52px; }
+  .year { font-size: 19px; }
+  .role { font-size: 17px; }
+  .number { font-size: 19px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sectionLink, .sectionLink > span, .sectionLink > span > span { animation: none !important; transition: none !important; }
+}
+
+/* The hero chip sits above a very large title, so it is set larger than the project pages' status chip. */
+.caseLabel.caseLabel { padding: 6px 18px; font-size: 24px; }
+@media (max-width: 760px) { .caseLabel.caseLabel { padding: 5px 14px; font-size: 18px; } }

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trophy Studio</title>
+<style>
+  :root { --ink: #fff; --muted: #b7b7bf; --line: #353539; --bg: #050507; }
+  body[data-bg="light"] { --ink: #111116; --muted: #55555f; --line: #d4d2cc; --bg: #f4f3ef; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 "Source Sans 3", system-ui, sans-serif; }
+  #gl { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; }
+  .bar { position: sticky; top: 0; z-index: 3; display: flex; gap: 16px; align-items: baseline; padding: 14px 24px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .bar h1 { font: italic 900 22px "Barlow Condensed", system-ui, sans-serif; margin: 0; letter-spacing: .02em; }
+  .bar button { margin-left: auto; background: none; color: var(--ink); border: 1px solid var(--line); padding: 4px 10px; cursor: pointer; }
+  #app { padding: 16px 24px 80px; }
+  a { color: inherit; }
+  .row { border-bottom: 1px solid var(--line); padding: 14px 0 18px; }
+  .row header { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+  .row header a { font: italic 900 20px "Barlow Condensed", system-ui, sans-serif; text-decoration: none; }
+  .row header p { margin: 0; color: var(--muted); }
+  .badge { font-size: 12px; padding: 1px 7px; border: 1px solid var(--line); color: var(--muted); }
+  .badge[data-status="original-asset"] { border-color: #3fd3e3; color: #3fd3e3; }
+  .badge[data-status="traced-export"] { border-color: #d6a33c; color: #d6a33c; }
+  .badge[data-status="source-grounded"] { border-color: #b48ce0; color: #b48ce0; }
+  .strip { display: flex; gap: 18px; align-items: flex-end; flex-wrap: wrap; margin-top: 10px; }
+  .tile { position: relative; margin: 0; outline: 1px dashed var(--line); touch-action: pan-y; }
+  .tile figcaption { position: absolute; left: 0; bottom: -20px; font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .tile.bare { outline: 0; }
+  .turntable { cursor: grab; pointer-events: auto; }
+  .strip .tile { margin-bottom: 22px; }
+  .detail { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .reference { margin: 0; max-width: 450px; }
+  .reference img { width: 100%; height: auto; display: block; }
+  .reference figcaption, .meta { color: var(--muted); }
+  pre { color: var(--muted); }
+  .bar nav { color: var(--muted); }
+  .bar label { margin-left: auto; color: var(--muted); }
+  .bar select { background: var(--bg); color: var(--ink); border: 1px solid var(--line); }
+  .bar button { margin-left: 0; }
+  .style-head, .style-row { display: grid; grid-template-columns: 120px repeat(6, var(--cell, 332px)); gap: 14px; align-items: end; }
+  body[data-size="phone"] { --cell: 164px; }
+  .style-head { position: sticky; top: 53px; z-index: 2; background: var(--bg); padding: 8px 0; font-size: 12px; color: var(--muted); }
+  .style-row { padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .style-row a { font: italic 900 16px "Barlow Condensed", system-ui, sans-serif; text-decoration: none; align-self: center; }
+  .spin { display: block; margin: 30px 0 4px; color: var(--muted); }
+  body.still { overflow: hidden; }
+  body.still .bar { display: none; }
+  body.still #app { padding: 0; }
+  body.still[data-bg="none"] { background: transparent; }
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div class="bar"><h1>TROPHY STUDIO</h1><span>first pass · not integrated</span><nav><a href="./">all</a> · <a href="?styles">compare styles</a> · <a href="?styles&size=phone">styles at phone size</a></nav><label>style <select id="style"></select></label><button id="bg" type="button">dark / light</button></div>
+<main id="app"></main>
+<script type="module" src="/src/viewer.js"></script>
+</body>
+</html>

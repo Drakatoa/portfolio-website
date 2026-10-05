@@ -1,0 +1,25 @@
+.page { width: min(1180px, calc(100% - 96px)); margin: 0 auto; padding: 12px 0 96px; }
+.footer { width: min(1180px, calc(100% - 96px)); margin: 0 auto; }
+.back { display: flex; width: fit-content; align-items: center; gap: 8px; color: var(--muted); font-size: 15px; min-height: 44px; margin-bottom: 2px; }
+.back:hover { color: white; }
+.hero { position: relative; display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 48px; margin-top: 12px; }
+.canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; }
+.trophy { position: relative; height: 460px; touch-action: pan-y; cursor: grab; }
+.trophy:active { cursor: grabbing; }
+.poster { object-fit: contain; }
+.hero[data-ready="true"] .poster { visibility: hidden; }
+.copy { position: relative; z-index: 2; }
+.status { display: inline-block; padding: 4px 12px; background: white; color: #050507; font: 900 italic 14px/1.2 var(--landing-display), sans-serif; }
+.title { margin: 18px 0 14px; font: 900 italic clamp(40px, 6vw, 72px)/1 var(--landing-display), sans-serif; text-transform: uppercase; }
+.hook { color: var(--muted); font-size: 20px; line-height: 1.45; max-width: 34ch; }
+.year { display: block; margin-top: 8px; color: #a1a1aa; font-size: 20px; letter-spacing: .04em; }
+.body { position: relative; z-index: 2; max-width: 760px; display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
+.description { color: #c1c1c7; font-size: 18px; line-height: 1.65; }
+@media (max-width: 760px) {
+  .page, .footer { width: calc(100% - 40px); }
+  .page { padding-top: 0; }
+  .hero { grid-template-columns: 1fr; gap: 8px; }
+  .trophy { height: 300px; }
+  .hook { font-size: 17px; }
+  .description { font-size: 16px; }
+}

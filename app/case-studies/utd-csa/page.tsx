@@ -1,10 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowLeft, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
-import Link from "next/link"
-import { CaseStudyNav } from "@/components/case-study-nav"
+import { CaseStudyShell, CaseStudyLabel, CaseStudyMeta, SectionNumber, caseStudyProject, lightboxControl } from "@/components/case-study-shell"
+import { SlantCard } from "@/components/slant-card"
+import caseStudy from "@/components/case-study.module.css"
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import { useState, useEffect } from "react"
+
+const project = caseStudyProject("utd-csa")
 
 export default function UTDCsaCaseStudy() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -141,37 +144,20 @@ export default function UTDCsaCaseStudy() {
   }, [lightboxOpen])
 
   return (
-    <div className="min-h-screen bg-[#000000] text-white">
-      {/* Grid Background */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
-
-      {/* Top Navigation */}
-      <div className="relative z-10 border-b border-white/30 bg-[#000000]">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-        </div>
-      </div>
-
-      <CaseStudyNav />
-
+    <CaseStudyShell project={project}>
       {/* Hero Section */}
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-8">
-            <span className="text-xs text-white/60 tracking-widest">{"[CASE STUDY]"}</span>
+            <CaseStudyLabel />
           </div>
 
-          <div className="flex items-start justify-between mb-3">
+          <div className="flex items-start justify-between mb-5">
             <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white">
               UTD CSA SHIRT DESIGN
             </h1>
           </div>
+          <CaseStudyMeta project={project} className="mb-12" />
 
           <div className="relative aspect-[21/9] mb-12 border border-white/50 overflow-hidden">
             <Image
@@ -272,7 +258,7 @@ export default function UTDCsaCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="relative z-10">
                 <div className="mb-4">
-                  <span className="text-xs text-white/60 tracking-widest">{"[01]"}</span>
+                  <SectionNumber>01</SectionNumber>
                 </div>
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">
                   THE STARTING POINT
@@ -282,39 +268,11 @@ export default function UTDCsaCaseStudy() {
                 </p>
               </div>
 
-              <div className="relative h-[400px] md:h-[500px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "30px",
-                    top: "40px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="#FFFFFF"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-10 h-full flex items-center">
-                    <p className="text-base md:text-lg text-black leading-relaxed max-w-[430px] ml-16">
-                      We had some inspirations from the moodboard and we wanted to initially go for a grunge style aesthetic. We had the mascot Liz designed, which was a cute tiger named Wang, and they were gonna be inside a Lao Gan Ma bottle. But we thought that he had to have more action and moving parts.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard>
+                <p className="text-base md:text-lg text-black leading-relaxed">
+                  We had some inspirations from the moodboard and we wanted to initially go for a grunge style aesthetic. We had the mascot Liz designed, which was a cute tiger named Wang, and they were gonna be inside a Lao Gan Ma bottle. But we thought that he had to have more action and moving parts.
+                </p>
+              </SlantCard>
             </div>
           </div>
         </div>
@@ -324,7 +282,7 @@ export default function UTDCsaCaseStudy() {
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[02]"}</span>
+            <SectionNumber>02</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             MOODBOARD & INSPIRATION
@@ -355,7 +313,7 @@ export default function UTDCsaCaseStudy() {
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[03]"}</span>
+            <SectionNumber>03</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             COLLABORATION & ITERATION
@@ -436,7 +394,7 @@ export default function UTDCsaCaseStudy() {
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[04]"}</span>
+            <SectionNumber>04</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             COLOR & COMPOSITION DECISIONS
@@ -471,7 +429,7 @@ export default function UTDCsaCaseStudy() {
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[05]"}</span>
+            <SectionNumber>05</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             THE FRONT DESIGN
@@ -526,7 +484,7 @@ export default function UTDCsaCaseStudy() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <div className="mb-4">
-                <span className="text-xs text-white/60 tracking-widest">{"[06]"}</span>
+                <SectionNumber>06</SectionNumber>
               </div>
               <h2 className="text-5xl md:text-7xl font-bold mb-4 tracking-tighter text-white">
                 PROJECT SUMMARY
@@ -537,107 +495,23 @@ export default function UTDCsaCaseStudy() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-              <div className="relative h-[300px] md:h-[350px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "35px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-8 h-full flex items-center justify-center">
-                    <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      This project was all about collaboration. Chloe brought the energy with her dynamic sketches of Wang riding the rocket, Liz created the adorable chef mascot, and I pulled everything together into a cohesive design system.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 35]}>
+                <p className="text-xs md:text-sm text-black leading-relaxed text-center">
+                  This project was all about collaboration. Chloe brought the energy with her dynamic sketches of Wang riding the rocket, Liz created the adorable chef mascot, and I pulled everything together into a cohesive design system.
+                </p>
+              </SlantCard>
 
-              <div className="relative h-[300px] md:h-[350px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "35px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-8 h-full flex items-center justify-center">
-                    <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      The grunge aesthetic gave us that raw, authentic feel, while the playful P.F. Wang's reference added humor and personality. Sometimes the best designs are the ones that make people smile.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 35]}>
+                <p className="text-xs md:text-sm text-black leading-relaxed text-center">
+                  The grunge aesthetic gave us that raw, authentic feel, while the playful P.F. Wang's reference added humor and personality. Sometimes the best designs are the ones that make people smile.
+                </p>
+              </SlantCard>
 
-              <div className="relative h-[300px] md:h-[350px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "35px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-8 h-full flex items-center justify-center">
-                    <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      The 5 Spices theme represented our family groups, and the final design balanced all these elements like action, humor, culture, and community, into something that felt authentically UTD CSA.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 35]}>
+                <p className="text-xs md:text-sm text-black leading-relaxed text-center">
+                  The 5 Spices theme represented our family groups, and the final design balanced all these elements like action, humor, culture, and community, into something that felt authentically UTD CSA.
+                </p>
+              </SlantCard>
             </div>
           </div>
         </div>
@@ -668,19 +542,6 @@ export default function UTDCsaCaseStudy() {
         </div>
       </section>
 
-      <footer className="relative border-t border-white/30 py-12 bg-[#000000]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white transition-colors mb-4"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-          <p className="text-xs text-white/40">{"© 2025 RAJIT GOEL"}</p>
-        </div>
-      </footer>
-
       {/* Lightbox Modal */}
       {lightboxOpen && currentSection && (
         <div
@@ -690,7 +551,7 @@ export default function UTDCsaCaseStudy() {
           <div className="relative w-full h-full flex items-center justify-center p-4">
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-[#5AD0FF]/20"
+              className={`absolute top-6 right-6 z-50 ${lightboxControl}`}
               aria-label="Close lightbox"
             >
               <X className="w-6 h-6" />
@@ -702,11 +563,7 @@ export default function UTDCsaCaseStudy() {
                 prevImage()
               }}
               disabled={currentImageIndex === 0}
-              className={`absolute left-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-[#5AD0FF]/20 ${
-                currentImageIndex === 0
-                  ? "text-white/20 cursor-not-allowed"
-                  : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute left-6 z-50 ${lightboxControl}`}
               aria-label="Previous image"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -718,28 +575,24 @@ export default function UTDCsaCaseStudy() {
                 nextImage()
               }}
               disabled={currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1}
-              className={`absolute right-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-[#5AD0FF]/20 ${
-                currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1
-                  ? "text-white/20 cursor-not-allowed"
-                  : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute right-6 z-50 ${lightboxControl}`}
               aria-label="Next image"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
 
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-black/50 p-2 rounded-full border border-[#5AD0FF]/20">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
               <button
                 onClick={(e) => {
                   e.stopPropagation()
                   zoomOut()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom out"
               >
                 <ZoomOut className="w-5 h-5" />
               </button>
-              <span className="text-white/80 text-sm font-medium min-w-[60px] text-center">
+              <span className={`${caseStudy.readout} min-w-[72px]`}>
                 {Math.round(zoomLevel * 100)}%
               </span>
               <button
@@ -747,17 +600,15 @@ export default function UTDCsaCaseStudy() {
                   e.stopPropagation()
                   zoomIn()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom in"
               >
                 <ZoomIn className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="absolute top-6 left-6 z-50 bg-black/50 px-4 py-2 rounded-full border border-[#5AD0FF]/20">
-              <span className="text-white/80 text-sm font-medium">
-                {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
-              </span>
+            <div className={`absolute top-6 left-6 z-50 ${caseStudy.readout}`}>
+              {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
             </div>
 
             <div
@@ -793,7 +644,7 @@ export default function UTDCsaCaseStudy() {
           </div>
         </div>
       )}
-    </div>
+    </CaseStudyShell>
   )
 }
 

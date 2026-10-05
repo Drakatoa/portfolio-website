@@ -1,10 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowLeft, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Code } from "lucide-react"
-import Link from "next/link"
-import { CaseStudyNav } from "@/components/case-study-nav"
+import { CaseStudyShell, CaseStudyLabel, CaseStudyMeta, SectionNumber, caseStudyProject, lightboxControl } from "@/components/case-study-shell"
+import { ProjectActions } from "@/components/project-actions"
+import { SlantCard } from "@/components/slant-card"
+import caseStudy from "@/components/case-study.module.css"
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import { useState, useEffect } from "react"
+
+const project = caseStudyProject("aegis")
 
 export default function AegisCaseStudy() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -144,36 +148,21 @@ export default function AegisCaseStudy() {
   }, [lightboxOpen])
 
   return (
-    <div className="min-h-screen bg-[#000000] text-white">
-      {/* Grid Background */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
-
-      {/* Top Navigation */}
-      <div className="relative z-10 border-b border-white/30 bg-[#000000]">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-        </div>
-      </div>
-
-      <CaseStudyNav />
-
+    <CaseStudyShell project={project}>
       {/* Hero Section */}
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-8">
-            <span className="text-xs text-white/60 tracking-widest">{"[CASE STUDY]"}</span>
+            <CaseStudyLabel />
           </div>
 
           <div className="flex items-start justify-between mb-3">
-            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white">
-              AEGIS
-            </h1>
+            <div>
+              <h1 className="text-6xl md:text-8xl font-bold mb-5 tracking-tighter text-white">
+                AEGIS
+              </h1>
+              <CaseStudyMeta project={project} className="mb-9" />
+            </div>
             <a
               href="https://megamitensei.fandom.com/wiki/Aigis"
               target="_blank"
@@ -303,7 +292,7 @@ export default function AegisCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="relative z-10">
                 <div className="mb-4">
-                  <span className="text-xs text-white/60 tracking-widest">{"[01]"}</span>
+                  <SectionNumber>01</SectionNumber>
                 </div>
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">
                   THE CORE CONFLICT
@@ -313,39 +302,11 @@ export default function AegisCaseStudy() {
                 </p>
               </div>
 
-              <div className="relative h-[400px] md:h-[500px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "30px",
-                    top: "40px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="#FFFFFF"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-10 h-full flex items-center">
-                    <p className="text-base md:text-lg text-black leading-relaxed max-w-[430px] ml-16">
-                      Working adults face a constant dilemma. They value privacy, but they prioritize convenience. Our research found that even security-conscious users (like our Participant A, a CTO) compromise their safety by using risky autofill and reusing passwords just to save time during checkout.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard>
+                <p className="text-base md:text-lg text-black leading-relaxed">
+                  Working adults face a constant dilemma. They value privacy, but they prioritize convenience. Our research found that even security-conscious users (like our Participant A, a CTO) compromise their safety by using risky autofill and reusing passwords just to save time during checkout.
+                </p>
+              </SlantCard>
             </div>
           </div>
         </div>
@@ -355,7 +316,7 @@ export default function AegisCaseStudy() {
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[02]"}</span>
+            <SectionNumber>02</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             RESEARCH & INSIGHTS
@@ -498,7 +459,7 @@ export default function AegisCaseStudy() {
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[03]"}</span>
+            <SectionNumber>03</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             THE THREE SOLUTIONS
@@ -593,7 +554,7 @@ export default function AegisCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-24">
               <div className="relative z-10">
                 <div className="mb-4">
-                  <span className="text-xs text-white/60 tracking-widest">{"[04]"}</span>
+                  <SectionNumber>04</SectionNumber>
                 </div>
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">
                   MAIN FEATURES
@@ -603,39 +564,11 @@ export default function AegisCaseStudy() {
                 </p>
               </div>
 
-              <div className="relative h-[400px] md:h-[500px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "45px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-10 h-full flex items-center">
-                    <p className="text-base md:text-lg text-black leading-relaxed max-w-[430px] ml-15">
-                      We designed three core tasks that map to different complexity levels. Simple tasks like viewing trust scores happen instantly. Moderate tasks like reporting suspicious sites take a few clicks. Complex tasks like managing autofill profiles give power users full control.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 45]}>
+                <p className="text-base md:text-lg text-black leading-relaxed">
+                  We designed three core tasks that map to different complexity levels. Simple tasks like viewing trust scores happen instantly. Moderate tasks like reporting suspicious sites take a few clicks. Complex tasks like managing autofill profiles give power users full control.
+                </p>
+              </SlantCard>
             </div>
 
             <div className="space-y-12">
@@ -683,7 +616,7 @@ export default function AegisCaseStudy() {
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[05]"}</span>
+            <SectionNumber>05</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             ITERATION & HEURISTIC REDESIGN
@@ -778,7 +711,7 @@ export default function AegisCaseStudy() {
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[06]"}</span>
+            <SectionNumber>06</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             FINAL IMPLEMENTATION
@@ -839,7 +772,7 @@ export default function AegisCaseStudy() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <div className="mb-4">
-                <span className="text-xs text-white/60 tracking-widest">{"[07]"}</span>
+                <SectionNumber>07</SectionNumber>
               </div>
               <h2 className="text-5xl md:text-7xl font-bold mb-4 tracking-tighter text-white">
                 PROJECT SUMMARY
@@ -850,107 +783,23 @@ export default function AegisCaseStudy() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-              <div className="relative h-[300px] md:h-[350px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "35px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-8 h-full flex items-center justify-center">
-                    <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      Convenience always beats security in practice. Users value privacy but sacrifice it to save seconds at checkout. Even security professionals cut corners when the friction is too high. Traditional solutions fail because they force users to choose between speed and safety.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 35]}>
+                <p className="text-xs md:text-sm text-black leading-relaxed text-center">
+                  Convenience always beats security in practice. Users value privacy but sacrifice it to save seconds at checkout. Even security professionals cut corners when the friction is too high. Traditional solutions fail because they force users to choose between speed and safety.
+                </p>
+              </SlantCard>
 
-              <div className="relative h-[300px] md:h-[350px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "35px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-8 h-full flex items-center justify-center">
-                    <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      Aegis makes security invisible. Real-time trust scores appear exactly when users need them. Smart autofill protects sensitive data without slowing down checkout. The Data Usage Log educates users about what they're sharing without requiring them to read privacy policies.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 35]}>
+                <p className="text-xs md:text-sm text-black leading-relaxed text-center">
+                  Aegis makes security invisible. Real-time trust scores appear exactly when users need them. Smart autofill protects sensitive data without slowing down checkout. The Data Usage Log educates users about what they're sharing without requiring them to read privacy policies.
+                </p>
+              </SlantCard>
 
-              <div className="relative h-[300px] md:h-[350px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "35px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-8 h-full flex items-center justify-center">
-                    <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      Community-powered protection scales better than algorithms alone. Users report threats that automated scanners miss. Color-coded data logs help people recognize patterns without memorizing rules. The result is security that adapts to user behavior instead of fighting it.
-                    </p>
-                  </div>+
-                </div>
-              </div>
+              <SlantCard offset={[35, 35]}>
+                <p className="text-xs md:text-sm text-black leading-relaxed text-center">
+                  Community-powered protection scales better than algorithms alone. Users report threats that automated scanners miss. Color-coded data logs help people recognize patterns without memorizing rules. The result is security that adapts to user behavior instead of fighting it.
+                </p>
+              </SlantCard>
             </div>
           </div>
         </div>
@@ -960,7 +809,7 @@ export default function AegisCaseStudy() {
       <section className="relative border-b border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[08]"}</span>
+            <SectionNumber>08</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             DEMO & SOURCE CODE
@@ -979,29 +828,7 @@ export default function AegisCaseStudy() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="https://github.com/Drakatoa/Aegis"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-block transition-transform hover:translate-x-2"
-            >
-              <svg
-                className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                viewBox="0 0 160 50"
-                preserveAspectRatio="xMinYMin meet"
-                style={{
-                  height: "100%",
-                }}
-              >
-                <polygon points="0,0 160,0 147,50 0,50" fill="white" className="transition-all" />
-              </svg>
-              <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
-                <span>VIEW CODE</span>
-                <Code className="w-5 h-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
-              </div>
-            </a>
-          </div>
+          <ProjectActions project={project} exclude={["case-study", "video"]} />
         </div>
       </section>
 
@@ -1030,19 +857,6 @@ export default function AegisCaseStudy() {
         </div>
       </section>
 
-      <footer className="relative border-t border-white/30 py-12 bg-[#000000]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white transition-colors mb-4"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-          <p className="text-xs text-white/40">{"© 2025 RAJIT GOEL"}</p>
-        </div>
-      </footer>
-
       {/* Lightbox Modal */}
       {lightboxOpen && currentSection && (
         <div
@@ -1052,7 +866,7 @@ export default function AegisCaseStudy() {
           <div className="relative w-full h-full flex items-center justify-center p-4">
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-[#5AD0FF]/20"
+              className={`absolute top-6 right-6 z-50 ${lightboxControl}`}
               aria-label="Close lightbox"
             >
               <X className="w-6 h-6" />
@@ -1064,11 +878,7 @@ export default function AegisCaseStudy() {
                 prevImage()
               }}
               disabled={currentImageIndex === 0}
-              className={`absolute left-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-[#5AD0FF]/20 ${
-                currentImageIndex === 0
-                  ? "text-white/20 cursor-not-allowed"
-                  : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute left-6 z-50 ${lightboxControl}`}
               aria-label="Previous image"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -1080,28 +890,24 @@ export default function AegisCaseStudy() {
                 nextImage()
               }}
               disabled={currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1}
-              className={`absolute right-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-[#5AD0FF]/20 ${
-                currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1
-                  ? "text-white/20 cursor-not-allowed"
-                  : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute right-6 z-50 ${lightboxControl}`}
               aria-label="Next image"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
 
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-black/50 p-2 rounded-full border border-[#5AD0FF]/20">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
               <button
                 onClick={(e) => {
                   e.stopPropagation()
                   zoomOut()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom out"
               >
                 <ZoomOut className="w-5 h-5" />
               </button>
-              <span className="text-white/80 text-sm font-medium min-w-[60px] text-center">
+              <span className={`${caseStudy.readout} min-w-[72px]`}>
                 {Math.round(zoomLevel * 100)}%
               </span>
               <button
@@ -1109,17 +915,15 @@ export default function AegisCaseStudy() {
                   e.stopPropagation()
                   zoomIn()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom in"
               >
                 <ZoomIn className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="absolute top-6 left-6 z-50 bg-black/50 px-4 py-2 rounded-full border border-[#5AD0FF]/20">
-              <span className="text-white/80 text-sm font-medium">
-                {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
-              </span>
+            <div className={`absolute top-6 left-6 z-50 ${caseStudy.readout}`}>
+              {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
             </div>
 
             <div
@@ -1155,6 +959,6 @@ export default function AegisCaseStudy() {
           </div>
         </div>
       )}
-    </div>
+    </CaseStudyShell>
   )
 }

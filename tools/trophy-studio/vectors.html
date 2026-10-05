@@ -1,0 +1,13 @@
+<!doctype html><meta charset="utf-8"><title>Traced vectors</title>
+<style>body{margin:0;background:#2a2a30;color:#ccc;font:13px system-ui;display:flex;flex-wrap:wrap;gap:12px;padding:12px}figure{margin:0;background:#3a3a44;padding:8px}svg{width:260px;height:220px;display:block}</style>
+<script type="module">
+// 2D check of every traced layer (flat colour, even-odd fill) before extrusion.
+const modules = import.meta.glob("./src/vectors/*.js", { eager: true })
+for (const [path, mod] of Object.entries(modules)) {
+  const v = mod.default
+  const fig = document.createElement("figure")
+  fig.innerHTML = `<svg viewBox="0 0 ${v.width} ${v.height}">${v.layers.map((l, i) => `<path d="${l.d}" fill="${l.color || ["#ff8844", "#44ccff", "#aaff66"][i]}" fill-rule="evenodd" opacity="${i ? 1 : .9}"/>`).join("")}</svg><figcaption>${path.split("/").pop()}</figcaption>`
+  document.body.append(fig)
+}
+window.ready = true
+</script>

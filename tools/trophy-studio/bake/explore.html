@@ -1,0 +1,32 @@
+<!doctype html><meta charset="utf-8"><body style="margin:0;background:#111"><script type="module">
+import * as THREE from "three"
+import { loadRig, pose, bakeSkinned, loadImageData, bakePaletteColors } from "./common.js"
+// Renders a strip of frames from an original clip so a pose can be chosen from real animation data.
+window.strip = async ({ t0 = 0, span = 1,  fbx, clip, frames = 8, texture, palette, view = "side", overrides = {}, cell = 260 }) => {
+  window.t0 = t0; window.span = span; const rig = await loadRig(fbx)
+  const duration = clip ? rig.clips.find((c) => c.name === clip).duration : 0
+  const image = texture ? await loadImageData(texture) : null
+  const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true })
+  renderer.setSize(cell * frames, cell)
+  const tex = image && !palette ? new THREE.CanvasTexture(image.canvas) : null
+  if (tex) { tex.colorSpace = THREE.SRGBColorSpace; tex.flipY = true }
+  renderer.setScissorTest(true)
+  for (let f = 0; f < frames; f++) {
+    pose(rig, clip, (window.t0 ?? 0) * duration + duration * (window.span ?? 1) * f / frames, overrides)
+    let geometry = bakeSkinned(rig.mesh)
+    if (palette) geometry = bakePaletteColors(geometry, image)
+    const material = new THREE.MeshStandardMaterial({ color: palette || tex ? 0xffffff : 0xdddddd, map: tex, vertexColors: !!palette, flatShading: true, roughness: .7 })
+    const scene = new THREE.Scene(); scene.background = new THREE.Color(0x2a2a33)
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x444455, 2.5)); const key = new THREE.DirectionalLight(0xffffff, 2.5); key.position.set(-2, 4, 3); scene.add(key)
+    const mesh = new THREE.Mesh(geometry, material); scene.add(mesh)
+    geometry.computeBoundingSphere(); const { center, radius } = geometry.boundingSphere
+    const camera = new THREE.PerspectiveCamera(30, 1, radius / 10, radius * 20)
+    const dir = view === "side" ? new THREE.Vector3(1, 0, 0) : view === "top" ? new THREE.Vector3(0, 1, 0.001) : new THREE.Vector3(0, 0, 1)
+    camera.position.copy(center).addScaledVector(dir, radius * 4); camera.lookAt(center)
+    renderer.setViewport(f * cell, 0, cell, cell); renderer.setScissor(f * cell, 0, cell, cell)
+    renderer.render(scene, camera)
+  }
+  return renderer.domElement.toDataURL("image/png")
+}
+window.ready = true
+</script>

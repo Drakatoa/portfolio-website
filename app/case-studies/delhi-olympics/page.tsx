@@ -1,10 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
-import { CaseStudyNav } from "@/components/case-study-nav"
-import { ArrowLeft, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
+import { CaseStudyShell, CaseStudyLabel, CaseStudyMeta, SectionNumber, caseStudyProject, lightboxControl } from "@/components/case-study-shell"
+import { SlantCard } from "@/components/slant-card"
+import caseStudy from "@/components/case-study.module.css"
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import { useState, useEffect } from "react"
+
+const project = caseStudyProject("delhi-olympics")
 
 export default function DelhiOlympicsPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -140,31 +143,16 @@ export default function DelhiOlympicsPage() {
   }, [lightboxOpen])
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
-
-      <div className="relative z-10 border-b border-white/20 bg-black">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white/70 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-        </div>
-      </div>
-
-      <CaseStudyNav />
-
+    <CaseStudyShell project={project}>
       {/* Hero Section */}
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-8">
-            <span className="text-xs text-white/60 tracking-widest">{"[CASE STUDY]"}</span>
+            <CaseStudyLabel />
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold mb-12 tracking-tighter">HOMETOWN OLYMPICS: NEW DELHI</h1>
+          <h1 className="text-6xl md:text-8xl font-bold mb-5 tracking-tighter">HOMETOWN OLYMPICS: NEW DELHI</h1>
+          <CaseStudyMeta project={project} className="mb-12" />
 
           <div className="relative aspect-[21/9] mb-12 border border-white/20 overflow-hidden">
             <Image
@@ -245,7 +233,7 @@ export default function DelhiOlympicsPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[01]"}</span>
+            <SectionNumber>01</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">DESIGN IDEALS</h2>
 
@@ -297,7 +285,7 @@ export default function DelhiOlympicsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="relative z-10">
                 <div className="mb-4">
-                  <span className="text-xs text-white/60 tracking-widest">{"[02]"}</span>
+                  <SectionNumber>02</SectionNumber>
                 </div>
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">THE LOGO</h2>
                 <p className="text-sm md:text-base text-white/50 max-w-md">
@@ -305,39 +293,11 @@ export default function DelhiOlympicsPage() {
                 </p>
               </div>
 
-              <div className="relative h-[400px] md:h-[500px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "30px",
-                    top: "40px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-10 h-full flex items-center">
-                    <p className="text-base md:text-lg text-black leading-relaxed max-w-[430px] ml-16">
-                      The lotus is India's national flower, symbolizing purity, enlightenment, and rebirth. Merged seamlessly with the Olympic torch rising from the center, the logo creates a unique visual identity that honors both local culture and global athletic excellence. The lotus blooms from muddy waters, reaching toward the light, just as athletes rise from challenges to achieve greatness.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard>
+                <p className="text-base md:text-lg text-black leading-relaxed">
+                  The lotus is India's national flower, symbolizing purity, enlightenment, and rebirth. Merged seamlessly with the Olympic torch rising from the center, the logo creates a unique visual identity that honors both local culture and global athletic excellence. The lotus blooms from muddy waters, reaching toward the light, just as athletes rise from challenges to achieve greatness.
+                </p>
+              </SlantCard>
             </div>
 
             <div className="mt-16">
@@ -391,7 +351,7 @@ export default function DelhiOlympicsPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[03]"}</span>
+            <SectionNumber>03</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">COLOR PALETTE</h2>
 
@@ -461,7 +421,7 @@ export default function DelhiOlympicsPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[04]"}</span>
+            <SectionNumber>04</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">DELIVERABLES</h2>
 
@@ -541,7 +501,7 @@ export default function DelhiOlympicsPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[05]"}</span>
+            <SectionNumber>05</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             INSPIRATIONS & REFERENCES
@@ -637,19 +597,6 @@ export default function DelhiOlympicsPage() {
         </div>
       </section>
 
-      <footer className="relative border-t border-white/20 py-12 bg-[#000000]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white/70 transition-colors mb-4"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-          <p className="text-xs text-white/40">{"© 2025 RAJIT GOEL"}</p>
-        </div>
-      </footer>
-
       {/* Lightbox Modal */}
       {lightboxOpen && currentSection && imageSections[currentSection as keyof typeof imageSections] && imageSections[currentSection as keyof typeof imageSections].length > 0 && (
         <div
@@ -660,7 +607,7 @@ export default function DelhiOlympicsPage() {
             {/* Close Button */}
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-white/20"
+              className={`absolute top-6 right-6 z-50 ${lightboxControl}`}
               aria-label="Close lightbox"
             >
               <X className="w-6 h-6" />
@@ -673,9 +620,7 @@ export default function DelhiOlympicsPage() {
                 prevImage()
               }}
               disabled={currentImageIndex === 0}
-              className={`absolute left-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-white/20 ${
-                currentImageIndex === 0 ? "text-white/20 cursor-not-allowed" : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute left-6 z-50 ${lightboxControl}`}
               aria-label="Previous image"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -689,29 +634,25 @@ export default function DelhiOlympicsPage() {
               disabled={
                 currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1
               }
-              className={`absolute right-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-white/20 ${
-                currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1
-                  ? "text-white/20 cursor-not-allowed"
-                  : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute right-6 z-50 ${lightboxControl}`}
               aria-label="Next image"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
 
             {/* Zoom Controls */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-black/50 p-2 rounded-full border border-white/20">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
               <button
                 onClick={(e) => {
                   e.stopPropagation()
                   zoomOut()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom out"
               >
                 <ZoomOut className="w-5 h-5" />
               </button>
-              <span className="text-white/80 text-sm font-medium min-w-[60px] text-center">
+              <span className={`${caseStudy.readout} min-w-[72px]`}>
                 {Math.round(zoomLevel * 100)}%
               </span>
               <button
@@ -719,7 +660,7 @@ export default function DelhiOlympicsPage() {
                   e.stopPropagation()
                   zoomIn()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom in"
               >
                 <ZoomIn className="w-5 h-5" />
@@ -727,10 +668,8 @@ export default function DelhiOlympicsPage() {
             </div>
 
             {/* Image Counter */}
-            <div className="absolute top-6 left-6 z-50 bg-black/50 px-4 py-2 rounded-full border border-white/20">
-              <span className="text-white/80 text-sm font-medium">
-                {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
-              </span>
+            <div className={`absolute top-6 left-6 z-50 ${caseStudy.readout}`}>
+              {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
             </div>
 
             {/* Image Container */}
@@ -767,6 +706,6 @@ export default function DelhiOlympicsPage() {
           </div>
         </div>
       )}
-    </div>
+    </CaseStudyShell>
   )
 }

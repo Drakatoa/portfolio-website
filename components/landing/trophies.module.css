@@ -1,0 +1,55 @@
+.collection { position: relative; isolation: isolate; }
+.canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; }
+.shelf { position: relative; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 44px; padding: 0; margin: 0; }
+/* Each exhibit spans six shared rows (trophy, name, hook, year/role, tags, controls) via
+   subgrid, so the same part lines up across a row however long each hook is. */
+.exhibit { min-width: 0; padding-bottom: 26px; display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; }
+.object { position: relative; height: 250px; touch-action: pan-y; cursor: grab; }
+.object:active { cursor: grabbing; }
+.poster { position: absolute; inset: 35px 20px; }
+.collection[data-ready="true"] .poster { visibility: hidden; }
+.caption { position: relative; z-index: 2; grid-row: span 5; display: grid; grid-template-rows: subgrid; align-content: start; row-gap: 12px; }
+.inspect { color: white; text-align: left; cursor: pointer; background: none; border: 0; width: 100%; }
+/* Caption link: the name on its own line; the year small right below it, with the
+   destination label at the right of that row. */
+.inspect.inspect { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 2px 10px; padding: 0; min-height: 56px; border: none; }
+.inspect.inspect > span:first-child { grid-column: 1 / -1; justify-self: start; }
+.hook { margin: -4px 0 0; color: #c1c1c7; font-size: 15px; line-height: 1.45; max-width: 34ch; }
+/* Pinned to the top of the shared row: when one card's tags wrap, the others keep their chip height. */
+.tags { display: flex; flex-wrap: wrap; align-self: start; align-items: flex-start; align-content: flex-start; gap: 6px; list-style: none; padding: 0; margin: 0; }
+.moreItem { display: flex; }
+.tags .moreTags { cursor: pointer; font: 400 12px/1.3 var(--landing-body), sans-serif; }
+.moreTags:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+/* Labelled actions: "turn" (icon + word) and "reset" (word only, enabled once the trophy has moved). */
+.controls { display: flex; gap: 6px; margin-left: -10px; }
+.controls button { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border: 0; background: transparent; color: #bbbcc5; cursor: pointer; font: 400 14px/1 var(--landing-body), sans-serif; }
+.controls button:hover { color: white; }
+.controls button:disabled { opacity: .3; cursor: default; }
+.inspect:focus-visible, .controls button:focus-visible { outline: 2px solid white; outline-offset: 5px; }
+@media (max-width: 1050px) { .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px 35px; } }
+@media (max-width: 760px) {
+ .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 22px; }
+ .object { height: 180px; }
+ .poster { inset: 20px 4px; }
+ .exhibit { padding-bottom: 8px; }
+ .caption { row-gap: 8px; }
+ .hook { font-size: 13px; line-height: 1.4; margin-top: -2px; }
+ .tags { gap: 5px; }
+ .tags :is(li:not(.moreItem), button) { min-height: 24px; padding: 3px 7px; font-size: 11px; }
+ .inspect.inspect { min-height: 48px; gap: 2px 8px; }
+ .inspect.inspect > span:first-child { --blade-pad: 4px; font-size: 19px; line-height: 1.15; padding-inline: 4px; margin-left: -4px; }
+}
+@media (max-width: 360px) { .object { height: 155px; } .shelf { gap: 16px; } .inspect.inspect > span:first-child { font-size: 17px; } }
+
+
+/* Where the caption goes, so a click is never a surprise. */
+.destination { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; color: #a1a1aa; font: 400 13px/1 var(--landing-body), sans-serif; }
+.inspect:is(:hover, :focus-visible) .destination { color: white; }
+/* Rajit's role, in readable body text. */
+.meta { margin: -4px 0 0; color: #c1c1c7; font: 400 15px/1.4 var(--landing-body), sans-serif; }
+.year { color: #a1a1aa; font: 900 italic 14px/1.2 var(--landing-display), sans-serif; letter-spacing: .04em; }
+/* Aigis peeks in above the Aegis trophy on hover or keyboard focus. */
+.exhibit { position: relative; }
+.easterEgg { position: absolute; z-index: 3; top: -6px; left: 0; width: 100%; height: auto; opacity: 0; transform: translateY(6px); transition: opacity 220ms, transform 220ms; pointer-events: none; }
+.exhibit:is(:hover, :focus-within) .easterEgg { opacity: 1; transform: none; }
+@media (max-width: 760px) { .destination { font-size: 12px; } .meta { font-size: 13px; } .inspect.inspect > .year { font-size: 12px; } }

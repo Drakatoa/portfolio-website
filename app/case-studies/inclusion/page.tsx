@@ -1,10 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowLeft, ArrowUpRight, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
-import Link from "next/link"
-import { CaseStudyNav } from "@/components/case-study-nav"
+import { CaseStudyShell, CaseStudyLabel, CaseStudyMeta, SectionNumber, caseStudyProject, lightboxControl } from "@/components/case-study-shell"
+import { ProjectActions } from "@/components/project-actions"
+import { SlantCard } from "@/components/slant-card"
+import caseStudy from "@/components/case-study.module.css"
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import { useState, useEffect } from "react"
+
+const project = caseStudyProject("inclusion")
 
 export default function InclusionCaseStudy() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -141,32 +145,17 @@ export default function InclusionCaseStudy() {
   }, [lightboxOpen])
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
-
-      <div className="relative z-10 border-b border-white/20 bg-black">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white/70 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-        </div>
-      </div>
-
-      <CaseStudyNav />
-
+    <CaseStudyShell project={project}>
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-8">
-            <span className="text-xs text-white/60 tracking-widest">{"[CASE STUDY]"}</span>
+            <CaseStudyLabel />
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold mb-12 tracking-tighter">
+          <h1 className="text-6xl md:text-8xl font-bold mb-5 tracking-tighter">
             DESIGNING FOR REAL INCLUSION
           </h1>
+          <CaseStudyMeta project={project} className="mb-12" />
 
           <div className="relative aspect-[21/9] mb-12 border border-white/20 overflow-hidden bg-gradient-to-br from-purple-900/20 to-pink-900/20">
             <Image
@@ -250,7 +239,7 @@ export default function InclusionCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="relative z-10">
                 <div className="mb-4">
-                  <span className="text-xs text-white/60 tracking-widest">{"[01]"}</span>
+                  <SectionNumber>01</SectionNumber>
                 </div>
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">THE PROBLEM</h2>
                 <p className="text-sm md:text-base text-white/50 max-w-md">
@@ -258,41 +247,11 @@ export default function InclusionCaseStudy() {
                 </p>
               </div>
 
-              <div className="relative h-[400px] md:h-[500px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "30px",
-                    top: "40px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-10 h-full flex items-center">
-                    <div className="max-w-[430px] ml-16">
-                      <p className="text-base md:text-lg text-black leading-relaxed mb-4">
-                        Nonbinary and gender-diverse students face systemic exclusion through institutional neglect. Despite existing DEI policies, students experience misgendering, invisible resources, and lack of support.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SlantCard>
+                <p className="text-base md:text-lg text-black leading-relaxed">
+                  Nonbinary and gender-diverse students face systemic exclusion through institutional neglect. Despite existing DEI policies, students experience misgendering, invisible resources, and lack of support.
+                </p>
+              </SlantCard>
             </div>
           </div>
         </div>
@@ -301,7 +260,7 @@ export default function InclusionCaseStudy() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[02]"}</span>
+            <SectionNumber>02</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter">SECONDARY RESEARCH</h2>
 
@@ -359,7 +318,7 @@ export default function InclusionCaseStudy() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[03]"}</span>
+            <SectionNumber>03</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter">PRIMARY RESEARCH</h2>
 
@@ -519,7 +478,7 @@ export default function InclusionCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="relative z-10">
                 <div className="mb-4">
-                  <span className="text-xs text-white/60 tracking-widest">{"[04]"}</span>
+                  <SectionNumber>04</SectionNumber>
                 </div>
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">THE SOLUTION</h2>
                 <p className="text-sm md:text-base text-white/50 max-w-md">
@@ -527,39 +486,11 @@ export default function InclusionCaseStudy() {
                 </p>
               </div>
 
-              <div className="relative h-[400px] md:h-[500px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "45px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-10 h-full flex items-center">
-                    <p className="text-base md:text-lg text-black leading-relaxed max-w-[430px] ml-15">
-                      I proposed a mobile app with three main parts. First, a centralized LGBTQ+ resource hub with a searchable campus map. Second, an anonymous feedback system paired with identity change guides. Third, an inclusive event feed with networking opportunities. The goal was to reduce reliance on hidden knowledge and give structural support to those who need it.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 45]}>
+                <p className="text-base md:text-lg text-black leading-relaxed">
+                  I proposed a mobile app with three main parts. First, a centralized LGBTQ+ resource hub with a searchable campus map. Second, an anonymous feedback system paired with identity change guides. Third, an inclusive event feed with networking opportunities. The goal was to reduce reliance on hidden knowledge and give structural support to those who need it.
+                </p>
+              </SlantCard>
             </div>
           </div>
         </div>
@@ -568,7 +499,7 @@ export default function InclusionCaseStudy() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[05]"}</span>
+            <SectionNumber>05</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter">PROPOSED FEATURES</h2>
 
@@ -654,7 +585,7 @@ export default function InclusionCaseStudy() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[06]"}</span>
+            <SectionNumber>06</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter">FEATURE VALIDATION</h2>
 
@@ -744,7 +675,7 @@ export default function InclusionCaseStudy() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <div className="mb-4">
-                <span className="text-xs text-white/60 tracking-widest">{"[07]"}</span>
+                <SectionNumber>07</SectionNumber>
               </div>
               <h2 className="text-5xl md:text-7xl font-bold mb-4 tracking-tighter">PROJECT SUMMARY</h2>
               <p className="text-sm md:text-base text-white/50">
@@ -753,107 +684,23 @@ export default function InclusionCaseStudy() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-              <div className="relative h-[300px] md:h-[350px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "35px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-8 h-full flex items-center justify-center">
-                    <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      Performative inclusion harms students. DEI policies exist on paper but lack structural follow-through. Students experience daily misgendering, navigate bureaucratic identity changes alone, and discover critical resources only through peer networks.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 35]}>
+                <p className="text-xs md:text-sm text-black leading-relaxed text-center">
+                  Performative inclusion harms students. DEI policies exist on paper but lack structural follow-through. Students experience daily misgendering, navigate bureaucratic identity changes alone, and discover critical resources only through peer networks.
+                </p>
+              </SlantCard>
 
-              <div className="relative h-[300px] md:h-[350px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "35px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-8 h-full flex items-center justify-center">
-                    <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      Technology can reduce institutional friction. A centralized app makes hidden resources visible, gives students anonymous reporting channels, and keeps them informed about opportunities. Removes dependency on word-of-mouth knowledge transmission.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 35]}>
+                <p className="text-xs md:text-sm text-black leading-relaxed text-center">
+                  Technology can reduce institutional friction. A centralized app makes hidden resources visible, gives students anonymous reporting channels, and keeps them informed about opportunities. Removes dependency on word-of-mouth knowledge transmission.
+                </p>
+              </SlantCard>
 
-              <div className="relative h-[300px] md:h-[350px]">
-                <svg
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    left: "35px",
-                    top: "35px",
-                  }}
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polygon
-                    points="8,0 100,0 92,100 0,100"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div
-                  className="absolute inset-0 bg-white z-10"
-                  style={{
-                    clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                  }}
-                >
-                  <div className="p-6 md:p-8 h-full flex items-center justify-center">
-                    <p className="text-xs md:text-sm text-black leading-relaxed text-center max-w-[280px]">
-                      Community matters more than policy. Despite DEI rollbacks, the culture built by students remains strongest support system. Solutions should amplify existing community while addressing systemic gaps. Avoid segregation, integrate support into general university tools.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <SlantCard offset={[35, 35]}>
+                <p className="text-xs md:text-sm text-black leading-relaxed text-center">
+                  Community matters more than policy. Despite DEI rollbacks, the culture built by students remains strongest support system. Solutions should amplify existing community while addressing systemic gaps. Avoid segregation, integrate support into general university tools.
+                </p>
+              </SlantCard>
             </div>
           </div>
         </div>
@@ -862,7 +709,7 @@ export default function InclusionCaseStudy() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[08]"}</span>
+            <SectionNumber>08</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter">NEXT STEPS</h2>
 
@@ -886,27 +733,7 @@ export default function InclusionCaseStudy() {
             <p className="text-white/70 mb-8">
               View the complete research presentation with detailed findings, participant quotes, and recommendations presented to UTD faculty.
             </p>
-            <a
-              href="/Design Research Final Presentation - Rajit Goel.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-block transition-transform hover:translate-x-2"
-            >
-              <svg
-                className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                viewBox="0 0 350 50"
-                preserveAspectRatio="xMinYMin meet"
-                style={{
-                  height: "100%",
-                }}
-              >
-                <polygon points="0,0 350,0 327,50 0,50" fill="white" className="transition-all" />
-              </svg>
-              <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
-                <span>VIEW PRESENTATION</span>
-                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </div>
-            </a>
+            <ProjectActions project={project} exclude={["case-study"]} />
           </div>
         </div>
       </section>
@@ -935,19 +762,6 @@ export default function InclusionCaseStudy() {
         </div>
       </section>
 
-      <footer className="relative border-t border-white/20 py-12 bg-black">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white/70 transition-colors mb-4"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-          <p className="text-xs text-white/40">{"© 2025 RAJIT GOEL"}</p>
-        </div>
-      </footer>
-
       {lightboxOpen && currentSection && (
         <div
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center"
@@ -956,7 +770,7 @@ export default function InclusionCaseStudy() {
           <div className="relative w-full h-full flex items-center justify-center p-4">
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-white/20"
+              className={`absolute top-6 right-6 z-50 ${lightboxControl}`}
               aria-label="Close lightbox"
             >
               <X className="w-6 h-6" />
@@ -968,11 +782,7 @@ export default function InclusionCaseStudy() {
                 prevImage()
               }}
               disabled={currentImageIndex === 0}
-              className={`absolute left-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-white/20 ${
-                currentImageIndex === 0
-                  ? "text-white/20 cursor-not-allowed"
-                  : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute left-6 z-50 ${lightboxControl}`}
               aria-label="Previous image"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -984,28 +794,24 @@ export default function InclusionCaseStudy() {
                 nextImage()
               }}
               disabled={currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1}
-              className={`absolute right-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-white/20 ${
-                currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1
-                  ? "text-white/20 cursor-not-allowed"
-                  : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute right-6 z-50 ${lightboxControl}`}
               aria-label="Next image"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
 
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-black/50 p-2 rounded-full border border-white/20">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
               <button
                 onClick={(e) => {
                   e.stopPropagation()
                   zoomOut()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom out"
               >
                 <ZoomOut className="w-5 h-5" />
               </button>
-              <span className="text-white/80 text-sm font-medium min-w-[60px] text-center">
+              <span className={`${caseStudy.readout} min-w-[72px]`}>
                 {Math.round(zoomLevel * 100)}%
               </span>
               <button
@@ -1013,17 +819,15 @@ export default function InclusionCaseStudy() {
                   e.stopPropagation()
                   zoomIn()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom in"
               >
                 <ZoomIn className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="absolute top-6 left-6 z-50 bg-black/50 px-4 py-2 rounded-full border border-white/20">
-              <span className="text-white/80 text-sm font-medium">
-                {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
-              </span>
+            <div className={`absolute top-6 left-6 z-50 ${caseStudy.readout}`}>
+              {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
             </div>
 
             <div
@@ -1059,6 +863,6 @@ export default function InclusionCaseStudy() {
           </div>
         </div>
       )}
-    </div>
+    </CaseStudyShell>
   )
 }

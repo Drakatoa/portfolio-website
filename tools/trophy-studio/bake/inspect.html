@@ -1,0 +1,18 @@
+<!doctype html><meta charset="utf-8"><script type="module">
+import * as THREE from "three"
+import { FBXLoader } from "three/addons/loaders/FBXLoader.js"
+window.inspect = async (url) => {
+  const obj = await new FBXLoader().loadAsync(url)
+  const lines = []
+  obj.traverse((o) => {
+    let depth = 0; let p = o.parent; while (p) { depth++; p = p.parent }
+    const extra = o.isMesh ? ` tris=${(o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3} skinned=${!!o.isSkinnedMesh} mat=${[].concat(o.material).map((m) => m.name + ":" + m.type + (m.map ? "+map" : "")).join(",")} attrs=${Object.keys(o.geometry.attributes)}` : ""
+    if (depth < 9) lines.push(`${"  ".repeat(depth)}${o.type} "${o.name}" pos=${o.position.toArray().map((v) => v.toFixed(2))} rot=${o.rotation.toArray().slice(0, 3).map((v) => v.toFixed(2))} s=${o.scale.x.toFixed(3)}${extra}`)
+  })
+  const box = new THREE.Box3().setFromObject(obj)
+  lines.push("bounds " + box.min.toArray().map((v) => v.toFixed(2)) + " / " + box.max.toArray().map((v) => v.toFixed(2)))
+  lines.push("animations " + obj.animations.map((a) => `${a.name}(${a.duration.toFixed(2)}s, ${a.tracks.length} tracks)`).join(", "))
+  return lines.join("\n")
+}
+window.ready = true
+</script>

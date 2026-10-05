@@ -1,19 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Space_Mono, Courier_Prime } from "next/font/google"
+import { Barlow_Condensed, Source_Sans_3 } from "next/font/google"
 import "./globals.css"
 
-const spaceMono = Space_Mono({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-space-mono",
-})
-
-const courierPrime = Courier_Prime({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-courier",
-})
+const display = Barlow_Condensed({ subsets: ["latin"], weight: ["900"], style: ["normal", "italic"], variable: "--landing-display" })
+const body = Source_Sans_3({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--landing-body" })
 
 export const metadata: Metadata = {
   title: "RAJIT ✦ GOEL",
@@ -27,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${spaceMono.className} antialiased`}>
+      <body className={`${display.variable} ${body.variable} ${body.className} antialiased`}>
         {children}
       </body>
     </html>

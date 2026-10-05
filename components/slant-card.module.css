@@ -1,0 +1,46 @@
+/* SlantCard (components/slant-card.tsx). The card's edges run from 8% in at the top-left and
+   bottom-right; the frame behind it is the same parallelogram, shifted by --dx/--dy. */
+.card {
+  position: relative; isolation: isolate;
+  container-type: inline-size; /* the insets follow the card's width, not the viewport's */
+  color: #000;
+}
+
+.frame {
+  position: absolute; z-index: 0; left: var(--dx); top: var(--dy);
+  width: 100%; height: 100%; overflow: visible; pointer-events: none;
+}
+.fill {
+  position: absolute; z-index: 1; inset: 0; background: #fff;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+}
+
+/* The text block. Two floats fill the empty corners: a triangle on the left whose edge runs
+   from 8% at the top to 0 at the bottom, and its mirror on the right. Each is widened by
+   --pad, so every line starts and ends --pad inside the slanted edge. The script gives the
+   floats the card's full height, pushes the block down to centre it, and sets the body's
+   height to the card's own (so a stretched grid row never props itself open). Before the
+   script runs (no JS, or before hydration) the floats are empty and the text sits in the
+   card's inner rectangle instead, --pad-y from the top and bottom: everything still shows,
+   inside the slant. */
+.body {
+  --pad: 28px; --pad-y: 40px;
+  position: relative; z-index: 2; display: flow-root;
+}
+.edgeLeft, .edgeRight { width: calc(8% + var(--pad)); height: 0; }
+.edgeLeft { float: left; shape-outside: polygon(0 0, 100% 0, var(--pad) 100%, 0 100%); }
+.edgeRight { float: right; shape-outside: polygon(calc(100% - var(--pad)) 0, 100% 0, 100% 100%, 0 100%); }
+.text { padding-top: var(--pad-y); text-wrap: pretty; }
+.card:not([data-ready]) .text { padding: var(--pad-y) calc(8% + var(--pad)); }
+/* The block's own outer margins would push it off centre (beats the case-study margin restore). */
+.text.text > :first-child { margin-top: 0; }
+.text.text > :last-child { margin-bottom: 0; }
+
+@container (max-width: 420px) {
+  .body { --pad: 18px; --pad-y: 28px; }
+}
+
+/* Phones: a shorter shift keeps the frame inside the page's gutter. */
+@media (max-width: 760px) {
+  .frame { left: calc(var(--dx) / 2); top: calc(var(--dy) / 2); }
+}

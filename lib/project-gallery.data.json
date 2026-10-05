@@ -1,0 +1,488 @@
+{
+  "sonare-live": [
+    {
+      "src": "/projects/sonare-live/01.webp",
+      "width": 1600,
+      "height": 793,
+      "alt": "Sonare.Live desktop-style interface with a navigation map window, a song card for \"The Last March On Earth\" and Hatsune Miku speaking in a dialogue box.",
+      "credit": "Drakatoa & Porukana",
+      "source": "https://porukana.itch.io/sonarelive",
+      "origin": "https://img.itch.zone/aW1hZ2UvNDcyNzMzNy8yODE5MjEwOC5qcGc=/original/GsiBjK.jpg"
+    },
+    {
+      "src": "/projects/sonare-live/02.webp",
+      "width": 1600,
+      "height": 791,
+      "alt": "Sonare.Live navigation window showing an island map, a \"Toritsukology\" song card and Kagamine Rin asking Miku to cover the next stage.",
+      "credit": "Drakatoa & Porukana",
+      "source": "https://porukana.itch.io/sonarelive",
+      "origin": "https://img.itch.zone/aW1hZ2UvNDcyNzMzNy8yODE5MjEwNS5qcGc=/original/F0onF5.jpg"
+    },
+    {
+      "src": "/projects/sonare-live/03.webp",
+      "width": 1600,
+      "height": 790,
+      "alt": "Sonare.Live map view of islands on a dark blue sea with golden song markers and a small boat in the centre.",
+      "credit": "Drakatoa & Porukana",
+      "source": "https://porukana.itch.io/sonarelive",
+      "origin": "https://img.itch.zone/aW1hZ2UvNDcyNzMzNy8yODE5MjEwNy5qcGc=/original/vPHM8E.jpg"
+    },
+    {
+      "src": "/projects/sonare-live/04.webp",
+      "width": 546,
+      "height": 328,
+      "alt": "Sonare.Live live-stream window showing a Hatsune Miku concert with a progress bar and a scrolling chat from viewers.",
+      "credit": "Drakatoa & Porukana",
+      "source": "https://porukana.itch.io/sonarelive",
+      "origin": "https://img.itch.zone/aW1hZ2UvNDcyNzMzNy8yODE5MjEwNi5wbmc=/original/yD34ZF.png"
+    },
+    {
+      "src": "/projects/sonare-live/05.webp",
+      "width": 595,
+      "height": 357,
+      "alt": "Sonare.Live song list window with the song \"Shutter Chance\", its time and max combo, and a B rank badge.",
+      "credit": "Drakatoa & Porukana",
+      "source": "https://porukana.itch.io/sonarelive",
+      "origin": "https://img.itch.zone/aW1hZ2UvNDcyNzMzNy8yODE5MjEwNC5wbmc=/original/cJoaA8.png"
+    },
+    {
+      "src": "/projects/sonare-live/06.webp",
+      "width": 544,
+      "height": 328,
+      "alt": "Sonare.Live results screen for \"Shutter Chance\" ranking Hatsune Miku first with an A grade above two other performers, beside the live chat.",
+      "credit": "Drakatoa & Porukana",
+      "source": "https://porukana.itch.io/sonarelive",
+      "origin": "https://img.itch.zone/aW1hZ2UvNDcyNzMzNy8yODE5MjEwOS5wbmc=/original/1DA6co.png"
+    }
+  ],
+  "ideate-ai-whiteboard": [
+    {
+      "src": "/projects/ideate-ai-whiteboard/01.webp",
+      "width": 1600,
+      "height": 1014,
+      "alt": "Ideate landing page on a dark background with the headline \"Turn your sketches into stories, your ideas into worlds\" and Try the Magic and Enter the Whiteboard buttons.",
+      "credit": "Ideate team (HackUTD 2025)",
+      "source": "https://devpost.com/software/ideate-mratxn",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/959/399/datas/original.png"
+    },
+    {
+      "src": "/projects/ideate-ai-whiteboard/02.webp",
+      "width": 1600,
+      "height": 1014,
+      "alt": "Ideate whiteboard with an empty canvas, a drawing toolbar and colour palette on the left, and an AI Insights panel on the right.",
+      "credit": "Ideate team (HackUTD 2025)",
+      "source": "https://devpost.com/software/ideate-mratxn",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/959/410/datas/original.png"
+    },
+    {
+      "src": "/projects/ideate-ai-whiteboard/03.webp",
+      "width": 1600,
+      "height": 1014,
+      "alt": "Ideate whiteboard canvas holding a purple e-commerce checkout flowchart from Item Added To Cart to Confirm Order.",
+      "credit": "Ideate team (HackUTD 2025)",
+      "source": "https://devpost.com/software/ideate-mratxn",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/959/425/datas/original.png"
+    },
+    {
+      "src": "/projects/ideate-ai-whiteboard/04.webp",
+      "width": 1600,
+      "height": 1000,
+      "alt": "Ideate whiteboard with the checkout flowchart and a Competitive Analysis panel listing Shopify, WooCommerce, BigCommerce and Amazon Checkout.",
+      "credit": "Ideate team (HackUTD 2025)",
+      "source": "https://devpost.com/software/ideate-mratxn",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/959/439/datas/original.png"
+    },
+    {
+      "src": "/projects/ideate-ai-whiteboard/05.webp",
+      "width": 1600,
+      "height": 1014,
+      "alt": "Ideate whiteboard with an uploaded photo of a hand-drawn e-commerce checkout flow beside a 90-Day Roadmap panel.",
+      "credit": "Ideate team (HackUTD 2025)",
+      "source": "https://devpost.com/software/ideate-mratxn",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/960/128/datas/original.png"
+    },
+    {
+      "src": "/projects/ideate-ai-whiteboard/06.webp",
+      "width": 1600,
+      "height": 911,
+      "alt": "Exported Ideate product report showing an Investor Pitch with problem, solution, target audience, traction and key differentiator cards.",
+      "credit": "Ideate team (HackUTD 2025)",
+      "source": "https://devpost.com/software/ideate-mratxn",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/959/449/datas/original.png"
+    },
+    {
+      "src": "/projects/ideate-ai-whiteboard/07.webp",
+      "width": 1600,
+      "height": 911,
+      "alt": "Exported Ideate product report with Market Opportunity and Positioning sections and a competitor list starting with Shopify and WooCommerce.",
+      "credit": "Ideate team (HackUTD 2025)",
+      "source": "https://devpost.com/software/ideate-mratxn",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/959/448/datas/original.png"
+    },
+    {
+      "src": "/projects/ideate-ai-whiteboard/08.webp",
+      "width": 1600,
+      "height": 911,
+      "alt": "Exported Ideate product report showing Our Differentiators and a 90-Day Roadmap with MVP, Beta and Launch phases.",
+      "credit": "Ideate team (HackUTD 2025)",
+      "source": "https://devpost.com/software/ideate-mratxn",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/959/446/datas/original.png"
+    }
+  ],
+  "auralis": [
+    {
+      "src": "/projects/auralis/01.webp",
+      "width": 1600,
+      "height": 797,
+      "alt": "Auralis landing page in a pixel-art neon style with the tagline \"An AI-Powered Sound Generator\" and Start Generating and View Examples buttons.",
+      "credit": "Rajit Goel & Auralis team",
+      "source": "https://github.com/Drakatoa/Auralis/blob/main/beta_images/img1.png",
+      "origin": "Drakatoa/Auralis:beta_images/img1.png"
+    },
+    {
+      "src": "/projects/auralis/02.webp",
+      "width": 1600,
+      "height": 792,
+      "alt": "Auralis Generate Sounds page with category, sound type and style selectors and a text box to describe the sound.",
+      "credit": "Rajit Goel & Auralis team",
+      "source": "https://github.com/Drakatoa/Auralis/blob/main/beta_images/img2.png",
+      "origin": "Drakatoa/Auralis:beta_images/img2.png"
+    },
+    {
+      "src": "/projects/auralis/03.webp",
+      "width": 1600,
+      "height": 792,
+      "alt": "Auralis Generate Sounds page after generating \"an awesome sword slash\", showing a waveform with play, download and save controls.",
+      "credit": "Rajit Goel & Auralis team",
+      "source": "https://github.com/Drakatoa/Auralis/blob/main/beta_images/img3.png",
+      "origin": "Drakatoa/Auralis:beta_images/img3.png"
+    },
+    {
+      "src": "/projects/auralis/04.webp",
+      "width": 1600,
+      "height": 788,
+      "alt": "Auralis Community Library page with search, category, sound type and style filters and one shared sound card, \"epic sword slash\".",
+      "credit": "Rajit Goel & Auralis team",
+      "source": "https://github.com/Drakatoa/Auralis/blob/main/beta_images/img4.png",
+      "origin": "Drakatoa/Auralis:beta_images/img4.png"
+    },
+    {
+      "src": "/projects/auralis/05.webp",
+      "width": 1600,
+      "height": 792,
+      "alt": "Auralis My Library page showing the credits remaining, a saved sound with a waveform, and a Liked Sounds section.",
+      "credit": "Rajit Goel & Auralis team",
+      "source": "https://github.com/Drakatoa/Auralis/blob/main/beta_images/img5.png",
+      "origin": "Drakatoa/Auralis:beta_images/img5.png"
+    },
+    {
+      "src": "/projects/auralis/06.webp",
+      "width": 1600,
+      "height": 790,
+      "alt": "Auralis sign-up form with Google sign-in and email, username and password fields.",
+      "credit": "Rajit Goel & Auralis team",
+      "source": "https://github.com/Drakatoa/Auralis/blob/main/beta_images/img6.png",
+      "origin": "Drakatoa/Auralis:beta_images/img6.png"
+    }
+  ],
+  "hackmate": [
+    {
+      "src": "/projects/hackmate/01.webp",
+      "width": 1600,
+      "height": 1000,
+      "alt": "HackMate home screen welcoming a signed-in user above a carousel of upcoming hackathons, each with a Read More button.",
+      "credit": "HackMate team (UTD CS 3354)",
+      "source": "Run locally from the team repo (Evelas78/HackMate) with fictional demo data",
+      "origin": "local-capture:hackmate/03-home.png"
+    },
+    {
+      "src": "/projects/hackmate/02.webp",
+      "width": 1600,
+      "height": 1000,
+      "alt": "Explore Users grid of developer cards with name and role, filterable by year, developer type and college.",
+      "credit": "HackMate team (UTD CS 3354)",
+      "source": "Run locally from the team repo (Evelas78/HackMate) with fictional demo data",
+      "origin": "local-capture:hackmate/05-explore.png"
+    },
+    {
+      "src": "/projects/hackmate/03.webp",
+      "width": 1600,
+      "height": 1000,
+      "alt": "A developer profile with a starfield banner, Chat and Block buttons, a bio, technical skill tags and teammate preferences.",
+      "credit": "HackMate team (UTD CS 3354)",
+      "source": "Run locally from the team repo (Evelas78/HackMate) with fictional demo data",
+      "origin": "local-capture:hackmate/06-profile.png"
+    },
+    {
+      "src": "/projects/hackmate/04.webp",
+      "width": 1600,
+      "height": 1000,
+      "alt": "A team page for the group Byte Me, showing its hackathon tag, project description, skill tags and member list.",
+      "credit": "HackMate team (UTD CS 3354)",
+      "source": "Run locally from the team repo (Evelas78/HackMate) with fictional demo data",
+      "origin": "local-capture:hackmate/09-group-view.png"
+    },
+    {
+      "src": "/projects/hackmate/05.webp",
+      "width": 1600,
+      "height": 1000,
+      "alt": "The chat inbox, with conversations listed on the left and an open thread about joining a team on the right.",
+      "credit": "HackMate team (UTD CS 3354)",
+      "source": "Run locally from the team repo (Evelas78/HackMate) with fictional demo data",
+      "origin": "local-capture:hackmate/10-chat-inbox.png"
+    },
+    {
+      "src": "/projects/hackmate/06.webp",
+      "width": 1600,
+      "height": 1000,
+      "alt": "The slide-out navigation menu open over the home screen, listing profile, explore, groups, messages and settings.",
+      "credit": "HackMate team (UTD CS 3354)",
+      "source": "Run locally from the team repo (Evelas78/HackMate) with fictional demo data",
+      "origin": "local-capture:hackmate/13-menu.png"
+    }
+  ],
+  "project-pawkour": [
+    {
+      "src": "/projects/project-pawkour/01.webp",
+      "width": 1600,
+      "height": 993,
+      "alt": "Project Pawkour main menu: a cyan low-poly paw logo with a leaping cat beside Start Run, Level Select, Options, Credits and Quit buttons.",
+      "credit": "Project Pawkour team",
+      "source": "https://github.com/Drakatoa/Project-Pawkour",
+      "origin": "unity-capture:project-pawkour/0040"
+    },
+    {
+      "src": "/projects/project-pawkour/02.webp",
+      "width": 1600,
+      "height": 1071,
+      "alt": "Intro cutscene panel: the cat PAW-013 sits inside a glowing examination pod at the far end of a dark teal lab full of robots and workbenches.",
+      "credit": "Project Pawkour team",
+      "source": "https://github.com/Drakatoa/Project-Pawkour",
+      "origin": "unity-capture:project-pawkour/0051"
+    },
+    {
+      "src": "/projects/project-pawkour/03.webp",
+      "width": 1600,
+      "height": 1071,
+      "alt": "Intro cutscene panel: the lab plunges into red light as monitors flash ERROR and ALERT and the cat stretches inside its pod.",
+      "credit": "Project Pawkour team",
+      "source": "https://github.com/Drakatoa/Project-Pawkour",
+      "origin": "unity-capture:project-pawkour/0052"
+    },
+    {
+      "src": "/projects/project-pawkour/04.webp",
+      "width": 1600,
+      "height": 1071,
+      "alt": "Intro cutscene panel: the black-and-white cat runs down a long corridor of pipes and beams while patrol robots shine lights behind it.",
+      "credit": "Project Pawkour team",
+      "source": "https://github.com/Drakatoa/Project-Pawkour",
+      "origin": "unity-capture:project-pawkour/0054"
+    },
+    {
+      "src": "/projects/project-pawkour/05.webp",
+      "width": 1600,
+      "height": 993,
+      "alt": "Gameplay: the cat stands on a desk in a round lab room beside an empty specimen pod, with cyan floor lights and tall windows.",
+      "credit": "Project Pawkour team",
+      "source": "https://github.com/Drakatoa/Project-Pawkour",
+      "origin": "unity-capture:project-pawkour/0089"
+    },
+    {
+      "src": "/projects/project-pawkour/06.webp",
+      "width": 1600,
+      "height": 993,
+      "alt": "Gameplay: a high view across the lab level, with desks, shelving and catwalk beams for the cat to climb between.",
+      "credit": "Project Pawkour team",
+      "source": "https://github.com/Drakatoa/Project-Pawkour",
+      "origin": "unity-capture:project-pawkour/0079"
+    }
+  ],
+  "eukarya": [
+    {
+      "src": "/projects/eukarya/01.webp",
+      "width": 1600,
+      "height": 898,
+      "alt": "Eukarya title screen: a low-poly coastal cliff with flat-topped trees above the sea, with Start Game, Level Select and Quit buttons.",
+      "credit": "Eukarya team",
+      "source": "https://github.com/a-sriel/Eukarya",
+      "origin": "unity-capture:eukarya/LatestAI/0002"
+    },
+    {
+      "src": "/projects/eukarya/02.webp",
+      "width": 1600,
+      "height": 898,
+      "alt": "Early cell stage: a round cell drifts across a grey sea floor toward green food, with health and stamina bars and evolution stars on the left.",
+      "credit": "Eukarya team",
+      "source": "https://github.com/a-sriel/Eukarya",
+      "origin": "unity-capture:eukarya/LatestAI/0032"
+    },
+    {
+      "src": "/projects/eukarya/03.webp",
+      "width": 1600,
+      "height": 898,
+      "alt": "Comb jelly stage: a translucent blue comb jelly swims through a dark underwater canyon.",
+      "credit": "Eukarya team",
+      "source": "https://github.com/a-sriel/Eukarya",
+      "origin": "unity-capture:eukarya/LatestAI/0132"
+    },
+    {
+      "src": "/projects/eukarya/04.webp",
+      "width": 1600,
+      "height": 898,
+      "alt": "Tiktaalik stage underwater: the lobe-finned fish noses along a rocky riverbed in teal light.",
+      "credit": "Eukarya team",
+      "source": "https://github.com/a-sriel/Eukarya",
+      "origin": "unity-capture:eukarya/LatestAI/0152"
+    },
+    {
+      "src": "/projects/eukarya/05.webp",
+      "width": 1600,
+      "height": 898,
+      "alt": "Tiktaalik surfaces at the water line, looking toward a rocky beach and trees on the shore.",
+      "credit": "Eukarya team",
+      "source": "https://github.com/a-sriel/Eukarya",
+      "origin": "unity-capture:eukarya/LatestAI/0147"
+    },
+    {
+      "src": "/projects/eukarya/06.webp",
+      "width": 1600,
+      "height": 898,
+      "alt": "Tiktaalik walks on land beside a giant millipede, with its portrait, health and stamina in the HUD.",
+      "credit": "Eukarya team",
+      "source": "https://github.com/a-sriel/Eukarya",
+      "origin": "unity-capture:eukarya/LatestAI/0172"
+    },
+    {
+      "src": "/projects/eukarya/07.webp",
+      "width": 1600,
+      "height": 898,
+      "alt": "Sugar glider stage: the glider chases a dragonfly across a scrubby hillside.",
+      "credit": "Eukarya team",
+      "source": "https://github.com/a-sriel/Eukarya",
+      "origin": "unity-capture:eukarya/LatestAI/0203"
+    },
+    {
+      "src": "/projects/eukarya/08.webp",
+      "width": 1600,
+      "height": 898,
+      "alt": "Jerboa stage: a long-tailed jerboa hops across dry ground in a rocky valley.",
+      "credit": "Eukarya team",
+      "source": "https://github.com/a-sriel/Eukarya",
+      "origin": "unity-capture:eukarya/LatestAI/0216"
+    }
+  ],
+  "catfish": [
+    {
+      "src": "/projects/catfish/01.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Catfish chat screen showing a Day 3 conversation with Morgan, a scammer persona, pushing to move the chat to WhatsApp.",
+      "credit": "Catfish team (HackGT 13)",
+      "source": "https://devpost.com/software/catfish-training-against-romance-scams",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/397/718/datas/original.png"
+    },
+    {
+      "src": "/projects/catfish/02.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Catfish \"Make your call\" screen where the player labels Morgan, Casey and Alex as scammer, real human or bot and picks a next move.",
+      "credit": "Catfish team (HackGT 13)",
+      "source": "https://devpost.com/software/catfish-training-against-romance-scams",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/397/719/datas/original.png"
+    },
+    {
+      "src": "/projects/catfish/03.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Catfish setup screen, \"Set your matches\", with match filters beside a portrait of a smiling young man.",
+      "credit": "Catfish team (HackGT 13)",
+      "source": "https://devpost.com/software/catfish-training-against-romance-scams",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/397/720/datas/original.png"
+    },
+    {
+      "src": "/projects/catfish/04.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Catfish round results screen showing a 330 of 400 score, identities uncovered and a breakdown of the scammer's red flags.",
+      "credit": "Catfish team (HackGT 13)",
+      "source": "https://devpost.com/software/catfish-training-against-romance-scams",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/397/721/datas/original.png"
+    },
+    {
+      "src": "/projects/catfish/05.webp",
+      "width": 1574,
+      "height": 1154,
+      "alt": "Catfish human-player view, \"Playing as Maya\", a casual chat about finishing a 36-hour hackathon.",
+      "credit": "Catfish team (HackGT 13)",
+      "source": "https://devpost.com/software/catfish-training-against-romance-scams",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/397/750/datas/original.png"
+    }
+  ],
+  "appeara": [
+    {
+      "src": "/projects/appeara/01.webp",
+      "width": 1490,
+      "height": 735,
+      "alt": "Appeara's armory in VR, with holographic machine-gun schematics, a station telemetry panel and a Start Wave prompt in a dark void.",
+      "credit": "Appeara team (Hack the North 2026)",
+      "source": "https://devpost.com/software/ink-bound",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/354/582/datas/original.png"
+    },
+    {
+      "src": "/projects/appeara/02.webp",
+      "width": 1406,
+      "height": 782,
+      "alt": "First-person view in the space station with an ARIA comms panel and a Start Wave prompt, in a mostly empty arena.",
+      "credit": "Appeara team (Hack the North 2026)",
+      "source": "https://devpost.com/software/ink-bound",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/354/712/datas/original.png"
+    },
+    {
+      "src": "/projects/appeara/03.webp",
+      "width": 1407,
+      "height": 791,
+      "alt": "Space-station arena with a countermeasure warning, an ARIA comms panel and a hostile alien approaching, with the player's weapon in view.",
+      "credit": "Appeara team (Hack the North 2026)",
+      "source": "https://devpost.com/software/ink-bound",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/354/713/datas/original.png"
+    },
+    {
+      "src": "/projects/appeara/04.webp",
+      "width": 1485,
+      "height": 826,
+      "alt": "A holographic First Contact Mk. I weapon card, station telemetry and ARIA comms floating in the space-station arena.",
+      "credit": "Appeara team (Hack the North 2026)",
+      "source": "https://devpost.com/software/ink-bound",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/354/714/datas/original.png"
+    },
+    {
+      "src": "/projects/appeara/05.webp",
+      "width": 1485,
+      "height": 826,
+      "alt": "A beam weapon firing at hostile creatures and robots in the arena while the ARIA comms panel confirms the player's spoken weapon request.",
+      "credit": "Appeara team (Hack the North 2026)",
+      "source": "https://devpost.com/software/ink-bound",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/354/715/datas/original.png"
+    },
+    {
+      "src": "/projects/appeara/06.webp",
+      "width": 1485,
+      "height": 826,
+      "alt": "The Static Lancer weapon schematic and telemetry panel over the ARIA chat, with a Start Wave button and a controller in view.",
+      "credit": "Appeara team (Hack the North 2026)",
+      "source": "https://devpost.com/software/ink-bound",
+      "origin": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/354/716/datas/original.png"
+    }
+  ],
+  "arrestoriq": [
+    {
+      "src": "/projects/arrestoriq/01.webp",
+      "width": 1600,
+      "height": 2115,
+      "alt": "ArrestorIQ capstone poster from UT Dallas and Emerson with the abstract, tech stack, architecture diagram, feature screenshots, key statistics and results.",
+      "credit": "ArrestorIQ capstone team (UTD × Emerson)",
+      "source": "public/arrestoriqposter.pdf",
+      "origin": "public/arrestoriqposter.pdf#page=1"
+    }
+  ]
+}

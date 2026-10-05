@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><title>Trophy bake</title><script type="module">
+import { exportGLB, toBase64 } from "./common.js"
+// Asset-based trophies: each module turns an original game mesh into a posed static GLB.
+const modules = { "003": () => import("./pawkour.js"), "014": () => import("./eukarya.js") }
+window.bakeIds = Object.keys(modules)
+window.bake = async (id) => toBase64(await exportGLB(await (await modules[id]()).build()))
+window.ready = true
+</script>

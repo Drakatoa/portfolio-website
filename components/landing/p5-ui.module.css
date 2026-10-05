@@ -1,0 +1,207 @@
+/* Persona 5 homage UI: dialogue box + battle command menu.
+   Animation is stepped (held poses, ~15 fps) to match the game; see
+   tools/hero-mock/PLAN.md for the frame-by-frame reference. */
+
+@font-face {
+  font-family: "p5hatty";
+  src: url("/fonts/p5hatty.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------- lettering */
+.word { display: inline-flex; align-items: baseline; white-space: nowrap; }
+.word > span { display: inline-block; transform-origin: 50% 70%; }
+/* command words: letters sit on a shared baseline and the whole word leans */
+.wordCmd { transform: skewX(-5deg); }
+.wordCmd > span { transform-origin: 50% 88%; }
+.inv { background: #fff; color: #050507; padding: 0 .05em; margin: 0 .03em; line-height: 1; }
+
+/* ---------------------------------------------------------- dialogue */
+.dialogueWrap { position: relative; z-index: 3; width: 108%; margin: -7% 0 0 -12%; }
+.dialogue { position: relative; width: 100%; aspect-ratio: 800 / 226; container-type: inline-size; }
+.dlgFirst { animation: boxPop 330ms steps(1, end) both; transform-origin: 2% 50%; }
+.dlgIn { animation: slideIn 230ms steps(1, end) both; }
+.dlgOut { opacity: 0; }
+@keyframes boxPop {
+  0% { opacity: 0; transform: scale(.55); }
+  20% { opacity: 1; transform: scale(.55); }
+  30% { transform: scale(.6); }
+  50% { transform: scale(.9); }
+  60% { transform: scale(1); }
+  80% { transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
+/* re-entry after a click: comes back from the right, fading in, on twos */
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateX(9%); }
+  15% { opacity: .3; transform: translateX(7%); }
+  43% { opacity: .65; transform: translateX(3.5%); }
+  72% { opacity: .9; transform: translateX(1%); }
+  100% { opacity: 1; transform: none; }
+}
+.dialogueArt { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.dialogueHit { position: absolute; z-index: 2; inset: 18% 8% 0 6%; background: none; border: 0; padding: 0; cursor: pointer; }
+.dialogueHit:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.boil { animation: boil 400ms steps(1, end) infinite; transform-origin: 50% 50%; }
+@keyframes boil {
+  0% { transform: none; }
+  33% { transform: skewY(.2deg) translateY(.5px); }
+  66% { transform: skewX(-.2deg) translateX(.5px); }
+}
+.edgeFlash { fill: #fff; opacity: 0; animation: edgeFlash 400ms steps(1, end) both; }
+.dlgOut .edgeFlash, .dlgIn .edgeFlash { animation: none; }
+@keyframes edgeFlash { 0%, 74% { opacity: 0; } 75% { opacity: 1; } 84%, 100% { opacity: 0; } }
+.arrowIn { animation: arrowIn 470ms steps(1, end) both; }
+@keyframes arrowIn {
+  0%, 78% { opacity: 0; transform: translate(-16px, 10px); }
+  79% { opacity: .4; transform: translate(-11px, 7px); }
+  92% { opacity: .45; transform: translate(-4px, 2px); }
+  100% { opacity: 1; transform: none; }
+}
+/* three keyposes, A (5 holds) -> B (3) -> C (3), shrinking a touch while held */
+.arrowCycle { transform-box: view-box; transform-origin: 716px 124px; animation: arrowCycle 667ms steps(1, end) 470ms infinite; }
+@keyframes arrowCycle {
+  0% { transform: rotate(0) scale(1); }
+  15% { transform: rotate(0) scale(.97); }
+  30% { transform: rotate(0) scale(.93); }
+  45% { transform: rotate(0) scale(.9); }
+  50% { transform: rotate(6deg) translate(-2px, -10px) scale(1.04); }
+  60% { transform: rotate(6deg) translate(-2px, -10px) scale(.98); }
+  70% { transform: rotate(4deg) translate(1px, 8px) scale(1.02); }
+  80% { transform: rotate(4deg) translate(1px, 8px) scale(.98); }
+  90% { transform: rotate(4deg) translate(1px, 8px) scale(.95); }
+  100% { transform: rotate(0) scale(1); }
+}
+.tagText {
+  display: flex; align-items: center; justify-content: center; height: 100%;
+  font: 33px/1 "p5hatty", var(--landing-body), sans-serif;
+  color: #050507;
+}
+.tagText .inv { background: #050507; color: #fff; }
+/* text: horizontal, left-aligned, starting at the top of the box like the game */
+.dialogueText {
+  position: absolute; z-index: 1; left: 18%; right: 17%; top: 48%; bottom: 16%;
+  display: flex; align-items: flex-start;
+  margin: 0;
+  font: 18px/1.1 "p5hatty", var(--landing-body), sans-serif;
+  font-size: clamp(11px, 3.05cqw, 19px);
+  color: #fff;
+  text-align: left;
+  pointer-events: none;
+  text-wrap: wrap;
+}
+.dlgLine { display: block; width: 100%; white-space: pre-wrap; }
+.ghostText { visibility: hidden; }
+
+/* ---------------------------------------------------------- battle menu */
+/* One SVG (670x445 viewBox) centred on my chest. --menu-w sets the size. */
+.menuBack, .menu { position: absolute; inset: 0; pointer-events: none; }
+.menuBack { z-index: 0; }
+.menu { z-index: 2; }
+.menuSvg {
+  position: absolute;
+  left: 50%; top: 61%;
+  width: var(--menu-w, 100%);
+  translate: -48% -50%;
+  overflow: visible;
+}
+.redIn { animation: rayIn 500ms steps(1, end) both; transform-box: fill-box; transform-origin: 50% 50%; }
+@keyframes rayIn {
+  0%, 46% { opacity: 0; scale: .4; }
+  47% { opacity: 1; scale: .6; }
+  66% { scale: .9; }
+  86% { scale: 1.03; }
+  100% { opacity: 1; scale: 1; }
+}
+.menuDrift { animation: drift 2.4s steps(36, end) 500ms infinite; transform-box: fill-box; transform-origin: 50% 50%; }
+@keyframes drift {
+  0%, 100% { transform: none; }
+  25% { transform: rotate(-.5deg) translate(-2px, 1px); }
+  50% { transform: rotate(.4deg) translate(2px, -2px); }
+  75% { transform: rotate(-.2deg) translate(1px, 1px); }
+}
+.cmd {
+  pointer-events: auto;
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: cmdIn 500ms steps(1, end) var(--d, 0s) both;
+}
+@keyframes cmdIn {
+  0% { transform: translate(var(--fx), var(--fy)) rotate(25deg) scale(3.2); }
+  13% { transform: translate(calc(var(--fx) * .6), calc(var(--fy) * .6)) rotate(14deg) scale(2.2); }
+  40% { transform: translate(calc(var(--fx) * .08), calc(var(--fy) * .08)) rotate(-4deg) scale(1.3); }
+  53% { transform: rotate(-2deg) scale(1.1); }
+  67% { transform: scale(.96); }
+  80% { transform: scale(1.03); }
+  100% { transform: none; }
+}
+.slabPath { fill: #0c0c10; }
+.slabHot { fill: #fc0000; }
+.slabFocus { fill: #fc0000; pointer-events: none; }
+.focusHalo { fill: #fff; stroke: #fff; stroke-linejoin: miter; stroke-miterlimit: 6; }
+/* white copy of the hovered text, outlines grown by 2px (the EDGE in battle-menu.tsx) each side */
+.haloText { --ol: #fff; }
+.haloText .cmdWord > span:not(.inv) { -webkit-text-stroke-width: calc(.08em + 4px); }
+.haloText .cmdWord .inv { box-shadow: 0 0 0 calc(.07em + 2px) #fff; }
+.haloText .cmdSub { -webkit-text-stroke-width: calc(.3em + 4px); }
+.hitPath { fill: transparent; }
+.cmdLink:focus-visible { outline: none; }
+.cmdLink:focus-visible .hitPath { stroke: #fff; stroke-width: 3; }
+.cmdLink { --ol: #0c0c10; }
+/* hovered command: the letter outlines and subtitle blob go red with the slab */
+.cmdLink.cmdHot { --ol: #fc0000; }
+.cmdText { display: flex; flex-direction: column; align-items: flex-start; line-height: .86; color: #fff; }
+.subBox { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.subUnder { display: flex; justify-content: center; white-space: nowrap; margin-top: .06em; line-height: 1; }
+.fitWord { display: inline-block; transform-origin: 0 50%; white-space: nowrap; }
+.cmdWord { font: 900 1em/1 var(--p5-cmd), "Jost", "Futura", sans-serif; letter-spacing: -.05em; }
+.cmdWord .inv { padding: 0 .04em; margin: 0 .02em; box-shadow: 0 0 0 .07em var(--ol); }
+/* like the game: a heavy black outline hugs every letter, so text always sits on black */
+.cmdWord > span:not(.inv) { -webkit-text-stroke: .08em var(--ol); paint-order: stroke fill; }
+.cmdSub {
+  /* white text on a black blob: a thick black outline painted under the fill */
+  font: 850 14px/1.05 var(--p5-sub), "Archivo", "Arial Narrow", sans-serif;
+  font-stretch: 70%;
+  margin: 0;
+  color: #fff;
+  -webkit-text-stroke: .3em var(--ol);
+  paint-order: stroke fill;
+  /* copies of the outline nudged in 8 directions close the letter holes (b, o, a, e...) */
+  text-shadow:
+    .1em 0 var(--ol), -.1em 0 var(--ol), 0 .1em var(--ol), 0 -.1em var(--ol),
+    .07em .07em var(--ol), -.07em .07em var(--ol), .07em -.07em var(--ol), -.07em -.07em var(--ol);
+  letter-spacing: .01em;
+}
+.glyphTagText { fill: #050507; font: 900 1em/1 var(--p5-cmd), sans-serif; }
+
+@media (max-width: 760px) {
+  .menuSvg { --menu-w: 112%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dlgFirst, .dlgIn, .boil, .edgeFlash, .arrowIn, .arrowCycle, .menuDrift, .cmd, .redIn { animation: none !important; }
+  .edgeFlash { opacity: 0; }
+}
+
+/* knobs panel (review only: /hero-mock?knobs) */
+.knobs {
+  position: fixed; top: 12px; left: 12px; bottom: 12px; z-index: 1000; width: 300px; overflow-y: auto;
+  padding: 12px; border: 1px solid #333; border-radius: 8px; background: rgba(12, 12, 16, .94); color: #eee;
+  font: 12px/1.3 ui-sans-serif, system-ui, sans-serif;
+}
+.knobs h3 { margin: 12px 0 6px; font-size: 12px; font-weight: 700; color: #fc4040; }
+.knobs button { padding: 4px 8px; border: 1px solid #444; border-radius: 4px; background: #1c1c22; color: #eee; font: inherit; cursor: pointer; }
+.knobs button[aria-pressed="true"] { border-color: #fc0000; background: #fc0000; }
+.knobTabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.knobRow { display: grid; grid-template-columns: 92px 1fr 58px; align-items: center; gap: 6px; margin: 3px 0; }
+.knobRow input[type="range"] { width: 100%; accent-color: #fc0000; }
+.knobRow input[type="number"] { width: 100%; padding: 2px 4px; border: 1px solid #444; border-radius: 3px; background: #000; color: #eee; font: inherit; }
+.knobCheck { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
+.knobActions { display: flex; gap: 6px; margin-top: 10px; }
+.knobNote { margin: 8px 0 0; color: #999; }
+/* text boxes are padded well past their text (foreignObject clips), so only the letters
+   themselves take the pointer; the white hover copy never does */
+.cmdLink foreignObject { pointer-events: none; }
+.cmdLink .cmdWord, .cmdLink .cmdSub { pointer-events: auto; }
+.haloText, .haloText * { pointer-events: none !important; }

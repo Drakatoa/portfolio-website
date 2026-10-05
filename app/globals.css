@@ -14,66 +14,9 @@
   }
 }
 
-/* Custom Fonts */
-@font-face {
-  font-family: 'Franklin Gothic Heavy';
-  src: url('/fonts/FRAHV.TTF') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Franklin Gothic Heavy';
-  src: url('/fonts/FRAHVIT.TTF') format('truetype');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Franklin Gothic Medium';
-  src: url('/fonts/framd.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Franklin Gothic Medium';
-  src: url('/fonts/framdit.ttf') format('truetype');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'FOT-NEWRODIN PRO';
-  src: url('/fonts/FOT-NewRodin Pro M.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'FOT-NEWRODIN PRO';
-  src: url('/fonts/FOT-NewRodin Pro B.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'FOT-NEWRODIN PRO';
-  src: url('/fonts/FOT-NewRodin Pro L.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
-  --font-heading: 'Franklin Gothic Heavy', sans-serif;
-  --font-body: 'FOT-NEWRODIN PRO', sans-serif;
+  --font-heading: var(--landing-display), sans-serif;
+  --font-body: var(--landing-body), sans-serif;
   --background: oklch(0 0 0);
   --foreground: oklch(1 0 0);
   --card: oklch(0.05 0 0);
@@ -146,8 +89,8 @@
 
 @theme inline {
   /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-sans: var(--landing-body), sans-serif;
+  --font-mono: var(--landing-body), sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

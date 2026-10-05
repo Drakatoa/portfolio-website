@@ -33,3 +33,9 @@ CLAUDE.local.md
 PLAN.md
 .playwright-mcp
 
+
+# Build artifacts and local tooling
+tsconfig.tsbuildinfo
+.superpowers
+.impeccable
+tools/*/sources

@@ -1,0 +1,29 @@
+{
+  "name": "trophy-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Authoring and review workspace for the portfolio trophy models. Not part of the portfolio bundle.",
+  "scripts": {
+    "dev": "vite --port 5187 --strictPort",
+    "trace": "node scripts/trace-logos.mjs",
+    "bake": "node scripts/bake.mjs",
+    "stats": "node scripts/stats.mjs",
+    "render": "node scripts/render.mjs",
+    "all": "npm run trace && npm run bake && npm run stats && npm run render",
+    "fetch": "node scripts/fetch-sources.mjs"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "^4.5.1",
+    "@gltf-transform/extensions": "^4.5.1",
+    "@gltf-transform/functions": "^4.5.1",
+    "@pixiv/three-vrm": "^3.5.5",
+    "@pixiv/three-vrm-animation": "^3.5.5",
+    "meshoptimizer": "^1.3.0",
+    "playwright-core": "^1.63.0",
+    "pngjs": "^7.0.0",
+    "potrace": "^2.1.8",
+    "three": "^0.186.1",
+    "vite": "^7.3.6"
+  }
+}

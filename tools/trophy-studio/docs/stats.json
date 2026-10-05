@@ -1,0 +1,338 @@
+[
+  {
+    "id": "001",
+    "title": "PREFACE",
+    "status": "traced-export",
+    "artifact": "Preface F-block mark with ✗/✓ assessment tiles",
+    "file": "001-preface.glb",
+    "bytes": 108964,
+    "triangles": 1664,
+    "materials": 4,
+    "min": [
+      -0.635,
+      0,
+      -0.18
+    ],
+    "max": [
+      0.639,
+      1.488,
+      0.189
+    ],
+    "radius": 0.647
+  },
+  {
+    "id": "002",
+    "title": "AEGIS",
+    "status": "traced-export",
+    "artifact": "Aegis shield: swirl, sun and gold rim",
+    "file": "002-aegis.glb",
+    "bytes": 323856,
+    "triangles": 5016,
+    "materials": 5,
+    "min": [
+      -0.621,
+      0,
+      -0.17
+    ],
+    "max": [
+      0.621,
+      1.57,
+      0.179
+    ],
+    "radius": 0.624
+  },
+  {
+    "id": "012",
+    "title": "SONARE.LIVE",
+    "status": "source-grounded",
+    "artifact": "Title-logo microphone with a Koi Swim gesture ribbon",
+    "file": "012-sonare-live.glb",
+    "bytes": 37376,
+    "triangles": 1428,
+    "materials": 6,
+    "min": [
+      -0.656,
+      0,
+      -0.3
+    ],
+    "max": [
+      0.767,
+      1.332,
+      0.656
+    ],
+    "radius": 0.767
+  },
+  {
+    "id": "016",
+    "title": "APPEARA",
+    "status": "traced-export",
+    "artifact": "Appeara app icon: character with pencil and star on the dark tile",
+    "file": "016-appeara.glb",
+    "bytes": 508408,
+    "triangles": 6092,
+    "materials": 9,
+    "min": [
+      -0.679,
+      0,
+      -0.17
+    ],
+    "max": [
+      0.68,
+      1.429,
+      0.179
+    ],
+    "radius": 0.681
+  },
+  {
+    "id": "003",
+    "title": "PROJECT PAWKOUR",
+    "status": "original-asset",
+    "artifact": "The game's cat at the take-off frame of its run cycle",
+    "file": "003-project-pawkour.glb",
+    "bytes": 166508,
+    "triangles": 1458,
+    "materials": 4,
+    "min": [
+      -0.83,
+      0,
+      -0.371
+    ],
+    "max": [
+      0.83,
+      1.595,
+      0.383
+    ],
+    "radius": 0.838
+  },
+  {
+    "id": "004",
+    "title": "AURALIS",
+    "status": "traced-export",
+    "artifact": "Auralis nine-bar waveform mark",
+    "file": "004-auralis.glb",
+    "bytes": 103768,
+    "triangles": 1058,
+    "materials": 3,
+    "min": [
+      -0.93,
+      0,
+      -0.2
+    ],
+    "max": [
+      0.93,
+      1.15,
+      0.209
+    ],
+    "radius": 0.951
+  },
+  {
+    "id": "005",
+    "title": "IDEATE - AI WHITEBOARD",
+    "status": "traced-export",
+    "artifact": "Ideate speech bubble with circuit-brain sketch",
+    "file": "005-ideate-ai-whiteboard.glb",
+    "bytes": 272216,
+    "triangles": 3100,
+    "materials": 4,
+    "min": [
+      -0.654,
+      0,
+      -0.16
+    ],
+    "max": [
+      0.655,
+      1.519,
+      0.169
+    ],
+    "radius": 0.661
+  },
+  {
+    "id": "013",
+    "title": "ARRESTORIQ",
+    "status": "traced-export",
+    "artifact": "ArrestorIQ 'Ar' disc with folded corner",
+    "file": "013-arrestoriq.glb",
+    "bytes": 128696,
+    "triangles": 1440,
+    "materials": 5,
+    "min": [
+      -0.679,
+      0,
+      -0.17
+    ],
+    "max": [
+      0.68,
+      1.43,
+      0.179
+    ],
+    "radius": 0.687
+  },
+  {
+    "id": "014",
+    "title": "EUKARYA",
+    "status": "original-asset",
+    "artifact": "The game's Tiktaalik hauling out of the water",
+    "file": "014-eukarya.glb",
+    "bytes": 102148,
+    "triangles": 660,
+    "materials": 3,
+    "min": [
+      -1,
+      0,
+      -1
+    ],
+    "max": [
+      1.053,
+      0.875,
+      1
+    ],
+    "radius": 1.054
+  },
+  {
+    "id": "006",
+    "title": "DESIGN FOR INCLUSION",
+    "status": "traced-export",
+    "artifact": "DEI letters in the nonbinary-flag colours",
+    "file": "006-design-for-inclusion.glb",
+    "bytes": 40800,
+    "triangles": 584,
+    "materials": 5,
+    "min": [
+      -0.975,
+      0,
+      -0.21
+    ],
+    "max": [
+      0.975,
+      0.886,
+      0.219
+    ],
+    "radius": 0.997
+  },
+  {
+    "id": "007",
+    "title": "HACKMATE",
+    "status": "traced-export",
+    "artifact": "HackMate />/ mark as three standing pieces",
+    "file": "007-hackmate.glb",
+    "bytes": 45412,
+    "triangles": 464,
+    "materials": 3,
+    "min": [
+      -0.801,
+      0,
+      -0.2
+    ],
+    "max": [
+      0.8,
+      1.425,
+      0.209
+    ],
+    "radius": 0.806
+  },
+  {
+    "id": "015",
+    "title": "CATFISH",
+    "status": "traced-export",
+    "artifact": "\"catfish.\" wordmark on a paper backing, red full stop",
+    "file": "015-catfish.glb",
+    "bytes": 389276,
+    "triangles": 5924,
+    "materials": 5,
+    "min": [
+      -0.99,
+      0,
+      -0.18
+    ],
+    "max": [
+      0.99,
+      0.858,
+      0.189
+    ],
+    "radius": 0.991
+  },
+  {
+    "id": "008",
+    "title": "HOMETOWN OLYMPICS: NEW DELHI",
+    "status": "traced-export",
+    "artifact": "Lotus-torch emblem (hypothetical identity project)",
+    "file": "008-hometown-olympics-new-delhi.glb",
+    "bytes": 244580,
+    "triangles": 2914,
+    "materials": 5,
+    "min": [
+      -0.875,
+      0,
+      -0.16
+    ],
+    "max": [
+      0.875,
+      1.452,
+      0.169
+    ],
+    "radius": 0.877
+  },
+  {
+    "id": "009",
+    "title": "ZENZ",
+    "status": "traced-export",
+    "artifact": "Zenz lotus line mark",
+    "file": "009-zenz.glb",
+    "bytes": 717740,
+    "triangles": 11340,
+    "materials": 4,
+    "min": [
+      -0.68,
+      0,
+      -0.17
+    ],
+    "max": [
+      0.68,
+      1.43,
+      0.179
+    ],
+    "radius": 0.681
+  },
+  {
+    "id": "010",
+    "title": "ARC",
+    "status": "traced-export",
+    "artifact": "Arc 'A' with arched crossbar on its app-icon tile",
+    "file": "010-arc.glb",
+    "bytes": 72396,
+    "triangles": 1076,
+    "materials": 4,
+    "min": [
+      -0.67,
+      0,
+      -0.17
+    ],
+    "max": [
+      0.67,
+      1.41,
+      0.179
+    ],
+    "radius": 0.672
+  },
+  {
+    "id": "011",
+    "title": "UTD CSA SHIRT DESIGN",
+    "status": "traced-export",
+    "artifact": "P.F. Wang's chef-tiger emblem",
+    "file": "011-utd-csa-shirt-design.glb",
+    "bytes": 774216,
+    "triangles": 11804,
+    "materials": 4,
+    "min": [
+      -0.804,
+      0,
+      -0.17
+    ],
+    "max": [
+      0.808,
+      1.57,
+      0.179
+    ],
+    "radius": 0.812
+  }
+]

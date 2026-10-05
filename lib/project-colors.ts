@@ -13,6 +13,8 @@ export const getProjectColor = (projectTitle: string): string => {
   if (title.includes("SONARE")) return "#39C5BB"
   if (title.includes("ARRESTOR")) return "#E8742C"
   if (title.includes("EUKARYA")) return "#6FBF73"
+  if (title.includes("CATFISH")) return "#AA392D"
+  if (title.includes("APPEARA")) return "#B9A8F0"
   return "rgba(255, 255, 255, 0.3)" // default
 }
 
@@ -37,4 +39,10 @@ export const brightenColor = (color: string, amount: number = 0.3): string => {
   }
 
   return color
+}
+
+export function getProjectWedgeColors(title: string) {
+  const border = getProjectColor(title)
+  const color = border.startsWith("rgba") ? "#95959f" : border
+  return { color, light: brightenColor(color, .4) }
 }

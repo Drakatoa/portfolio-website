@@ -1,10 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
-import { CaseStudyNav } from "@/components/case-study-nav"
-import { ArrowLeft, ArrowUpRight, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
+import { CaseStudyShell, CaseStudyLabel, CaseStudyMeta, SectionNumber, caseStudyProject, lightboxControl } from "@/components/case-study-shell"
+import { ProjectActions } from "@/components/project-actions"
+import { SlantCard } from "@/components/slant-card"
+import caseStudy from "@/components/case-study.module.css"
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
 import { useState, useEffect } from "react"
+
+const project = caseStudyProject("arc")
 
 export default function ARCPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -138,31 +142,16 @@ export default function ARCPage() {
   }, [lightboxOpen])
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
-
-      <div className="relative z-10 border-b border-white/20 bg-black">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white/70 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-        </div>
-      </div>
-
-      <CaseStudyNav />
-
+    <CaseStudyShell project={project}>
       {/* Hero Section */}
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-8">
-            <span className="text-xs text-white/60 tracking-widest">{"[CASE STUDY]"}</span>
+            <CaseStudyLabel />
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold mb-12 tracking-tighter">ARC</h1>
+          <h1 className="text-6xl md:text-8xl font-bold mb-5 tracking-tighter">ARC</h1>
+          <CaseStudyMeta project={project} className="mb-12" />
 
           <div className="relative aspect-[21/9] mb-12 border border-white/20 overflow-hidden">
             <Image
@@ -242,78 +231,22 @@ export default function ARCPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[01]"}</span>
+            <SectionNumber>01</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">THE PROBLEM</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative h-[350px] md:h-[400px]">
-              <svg
-                className="absolute pointer-events-none z-0"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  left: "30px",
-                  top: "40px",
-                }}
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
-              >
-                <polygon
-                  points="8,0 100,0 92,100 0,100"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="0.5"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
-              <div
-                className="absolute inset-0 bg-white z-10"
-                style={{
-                  clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                }}
-              >
-                <div className="p-6 md:p-10 ml-10 mt-5 w-135 flex items-center">
-                  <p className="text-base md:text-lg text-black leading-relaxed">
-                    Your fitness tracker knows everything. Heart rate, calories, reps, split times. But what does any of it actually mean? Most apps just throw numbers at you without explaining how they connect to your goals. You end up with data overload and no real understanding of whether you're actually getting better.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <SlantCard>
+              <p className="text-base md:text-lg text-black leading-relaxed">
+                Your fitness tracker knows everything. Heart rate, calories, reps, split times. But what does any of it actually mean? Most apps just throw numbers at you without explaining how they connect to your goals. You end up with data overload and no real understanding of whether you're actually getting better.
+              </p>
+            </SlantCard>
 
-            <div className="relative h-[350px] md:h-[400px]">
-              <svg
-                className="absolute pointer-events-none z-0"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  left: "30px",
-                  top: "40px",
-                }}
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
-              >
-                <polygon
-                  points="8,0 100,0 92,100 0,100"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="0.5"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
-              <div
-                className="absolute inset-0 bg-white z-10"
-                style={{
-                  clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)",
-                }}
-              >
-                <div className="p-6 md:p-10 ml-10 mt-5 w-135 flex items-center">
-                  <p className="text-base md:text-lg text-black leading-relaxed">
-                    ARC actually reads between the lines. It watches for when you're pushing close to failure, notices when your speed drops off, tracks how many reps you had left in the tank. The AI connects these patterns so you can see what's really happening in your training. It's the difference between knowing you did 10 reps and understanding whether those 10 reps actually moved you forward.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <SlantCard>
+              <p className="text-base md:text-lg text-black leading-relaxed">
+                ARC actually reads between the lines. It watches for when you're pushing close to failure, notices when your speed drops off, tracks how many reps you had left in the tank. The AI connects these patterns so you can see what's really happening in your training. It's the difference between knowing you did 10 reps and understanding whether those 10 reps actually moved you forward.
+              </p>
+            </SlantCard>
           </div>
         </div>
       </section>
@@ -322,7 +255,7 @@ export default function ARCPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[02]"}</span>
+            <SectionNumber>02</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">DESIGN PROCESS OVERVIEW</h2>
 
@@ -382,7 +315,7 @@ export default function ARCPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[03]"}</span>
+            <SectionNumber>03</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">USER PERSONA</h2>
 
@@ -458,7 +391,7 @@ export default function ARCPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[04]"}</span>
+            <SectionNumber>04</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">
             WIREFRAMES & USER FLOW
@@ -487,7 +420,7 @@ export default function ARCPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[05]"}</span>
+            <SectionNumber>05</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">BRAND IDENTITY</h2>
 
@@ -536,7 +469,7 @@ export default function ARCPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[06]"}</span>
+            <SectionNumber>06</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">FINAL SCREEN DESIGNS</h2>
 
@@ -562,7 +495,7 @@ export default function ARCPage() {
       <section className="relative border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="mb-4">
-            <span className="text-xs text-white/60 tracking-widest">{"[07]"}</span>
+            <SectionNumber>07</SectionNumber>
           </div>
           <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter text-white">INTERACTIVE PROTOTYPE</h2>
 
@@ -570,27 +503,7 @@ export default function ARCPage() {
             Try the interactive prototype to see how everything flows together, from first launch to tracking workouts, checking progress, getting AI insights, and competing with friends.
           </p>
 
-          <a
-            href="https://www.figma.com/proto/6SD371fF4AKi2JseX9QSwZ/ARC?page-id=0%3A1&node-id=15-12&viewport=573%2C-79%2C0.26&t=aKwp36k0FRYIXUSb-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=15%3A12"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-block transition-transform hover:translate-x-2"
-          >
-            <svg
-              className="absolute inset-0 pointer-events-none transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-              viewBox="0 0 350 50"
-              preserveAspectRatio="xMinYMin meet"
-              style={{
-                height: "100%",
-              }}
-            >
-              <polygon points="0,0 350,0 327,50 0,50" fill="white" className="transition-all" />
-            </svg>
-            <div className="relative z-10 flex items-center gap-2 px-8 py-3.5 font-black text-base md:text-lg italic tracking-tighter text-black whitespace-nowrap">
-              <span>VIEW PROTOTYPE</span>
-              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </div>
-          </a>
+          <ProjectActions project={project} exclude={["case-study"]} />
         </div>
       </section>
 
@@ -619,19 +532,6 @@ export default function ARCPage() {
         </div>
       </section>
 
-      <footer className="relative border-t border-white/20 py-12 bg-[#000000]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm hover:text-white/70 transition-colors mb-4"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            BACK TO PORTFOLIO
-          </Link>
-          <p className="text-xs text-white/40">{"© 2025 RAJIT GOEL"}</p>
-        </div>
-      </footer>
-
       {/* Lightbox Modal */}
       {lightboxOpen && currentSection && imageSections[currentSection as keyof typeof imageSections] && imageSections[currentSection as keyof typeof imageSections].length > 0 && (
         <div
@@ -642,7 +542,7 @@ export default function ARCPage() {
             {/* Close Button */}
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 z-50 text-white/80 hover:text-white transition-colors bg-black/50 p-3 rounded-full border border-white/20"
+              className={`absolute top-6 right-6 z-50 ${lightboxControl}`}
               aria-label="Close lightbox"
             >
               <X className="w-6 h-6" />
@@ -655,9 +555,7 @@ export default function ARCPage() {
                 prevImage()
               }}
               disabled={currentImageIndex === 0}
-              className={`absolute left-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-white/20 ${
-                currentImageIndex === 0 ? "text-white/20 cursor-not-allowed" : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute left-6 z-50 ${lightboxControl}`}
               aria-label="Previous image"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -671,29 +569,25 @@ export default function ARCPage() {
               disabled={
                 currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1
               }
-              className={`absolute right-6 z-50 transition-colors bg-black/50 p-3 rounded-full border border-white/20 ${
-                currentImageIndex === imageSections[currentSection as keyof typeof imageSections].length - 1
-                  ? "text-white/20 cursor-not-allowed"
-                  : "text-white/80 hover:text-white"
-              }`}
+              className={`absolute right-6 z-50 ${lightboxControl}`}
               aria-label="Next image"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
 
             {/* Zoom Controls */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-black/50 p-2 rounded-full border border-white/20">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
               <button
                 onClick={(e) => {
                   e.stopPropagation()
                   zoomOut()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom out"
               >
                 <ZoomOut className="w-5 h-5" />
               </button>
-              <span className="text-white/80 text-sm font-medium min-w-[60px] text-center">
+              <span className={`${caseStudy.readout} min-w-[72px]`}>
                 {Math.round(zoomLevel * 100)}%
               </span>
               <button
@@ -701,7 +595,7 @@ export default function ARCPage() {
                   e.stopPropagation()
                   zoomIn()
                 }}
-                className="text-white/80 hover:text-white transition-colors p-2"
+                className={lightboxControl}
                 aria-label="Zoom in"
               >
                 <ZoomIn className="w-5 h-5" />
@@ -709,10 +603,8 @@ export default function ARCPage() {
             </div>
 
             {/* Image Counter */}
-            <div className="absolute top-6 left-6 z-50 bg-black/50 px-4 py-2 rounded-full border border-white/20">
-              <span className="text-white/80 text-sm font-medium">
-                {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
-              </span>
+            <div className={`absolute top-6 left-6 z-50 ${caseStudy.readout}`}>
+              {currentImageIndex + 1} / {imageSections[currentSection as keyof typeof imageSections].length}
             </div>
 
             {/* Image Container */}
@@ -749,6 +641,6 @@ export default function ARCPage() {
           </div>
         </div>
       )}
-    </div>
+    </CaseStudyShell>
   )
 }
