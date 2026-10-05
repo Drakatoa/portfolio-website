@@ -16,8 +16,8 @@ const p5Cmd = Jost({ subsets: ["latin"], weight: ["800", "900"], variable: "--p5
 const p5Sub = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--p5-sub" })
 
 export const metadata: Metadata = {
-  title: "Rajit Goel — games, AI & interactive things",
-  description: "Games, AI systems, and things you can play with. Rajit Goel's selected work, experiments, and other rabbit holes.",
+  title: "RAJIT✦GOEL",
+  description: "My work, experiments, and other rabbit holes I've gone down.",
 }
 
 const albums = [

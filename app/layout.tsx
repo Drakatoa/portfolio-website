@@ -7,8 +7,12 @@ const display = Barlow_Condensed({ subsets: ["latin"], weight: ["900"], style: [
 const body = Source_Sans_3({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--landing-body" })
 
 export const metadata: Metadata = {
+  // Absolute base for the share image (app/opengraph-image.png) and other metadata URLs.
+  metadataBase: new URL("https://rgoel-portfolio.vercel.app"),
   title: "RAJIT ✦ GOEL",
   description: "Rajit's Portfolio Website",
+  openGraph: { type: "website", siteName: "Rajit Goel", url: "/" },
+  twitter: { card: "summary_large_image" },
 }
 
 export default function RootLayout({
