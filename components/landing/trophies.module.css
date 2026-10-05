@@ -45,11 +45,11 @@
 /* Where the caption goes, so a click is never a surprise. */
 .destination { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; color: #a1a1aa; font: 400 13px/1 var(--landing-body), sans-serif; }
 .inspect:is(:hover, :focus-visible) .destination { color: white; }
-/* Rajit's role, in readable body text. */
-.meta { margin: -4px 0 0; color: #c1c1c7; font: 400 15px/1.4 var(--landing-body), sans-serif; }
+/* Rajit's role, muted and smaller than the hook so it reads as metadata. */
+.meta { margin: -4px 0 0; color: #a1a1aa; font: 400 14px/1.4 var(--landing-body), sans-serif; }
 .year { color: #a1a1aa; font: 900 italic 14px/1.2 var(--landing-display), sans-serif; letter-spacing: .04em; }
 /* Aigis peeks in above the Aegis trophy on hover or keyboard focus. */
 .exhibit { position: relative; }
 .easterEgg { position: absolute; z-index: 3; top: -6px; left: 0; width: 100%; height: auto; opacity: 0; transform: translateY(6px); transition: opacity 220ms, transform 220ms; pointer-events: none; }
 .exhibit:is(:hover, :focus-within) .easterEgg { opacity: 1; transform: none; }
-@media (max-width: 760px) { .destination { font-size: 12px; } .meta { font-size: 13px; } .inspect.inspect > .year { font-size: 12px; } }
+@media (max-width: 760px) { .destination { font-size: 12px; } .meta { font-size: 12px; } .inspect.inspect > .year { font-size: 12px; } }

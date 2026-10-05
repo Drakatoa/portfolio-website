@@ -23,7 +23,7 @@ export function caseStudyProject(dir: string): Project {
 export function CaseStudyShell({ project, children }: { project: Project; children: ReactNode }) {
   return (
     <div className={`${landing.site} ${styles.page}`}>
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
       <a href="#main" className={landing.skipLink}>skip to content</a>
       <SiteHeader base="/" />
       <CaseStudyNav title={project.title} />
